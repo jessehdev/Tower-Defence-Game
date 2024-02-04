@@ -1,3 +1,8 @@
+package utils
+
+import enemies.Enemy
+import scala.collection.mutable.ArrayBuffer
+
 //enemy related
 var enemyHealth = 1000
 var enemyDamage = 120
@@ -8,4 +13,9 @@ var towerAttack = 150
 var towerRange = 7
 var firingRate = 2
 
+//these will be read from a JSON file eventually
 
+val enemyPath = ???
+val enemyWave = ???
+val enemies: ArrayBuffer[Enemy] = ???
+val initialResources = 150
