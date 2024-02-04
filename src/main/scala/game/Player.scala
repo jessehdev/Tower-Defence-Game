@@ -1,6 +1,6 @@
 package game
 
-import utils.{constants}
+import utils.initialResources
 import towers.{Tower}
 
 class Player {

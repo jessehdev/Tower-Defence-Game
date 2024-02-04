@@ -2,7 +2,7 @@ package gridcells
 import utils.{GridPos}
 
 abstract class GridCell {
-  gridPos: GridPos
+  val gridPos: GridPos
 
   def hasEnemy(): Boolean = ???
   def hasTower(): Boolean = ???
