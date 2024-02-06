@@ -15,9 +15,8 @@ class constants {
   var firingRate = 2
   
   //these will be read from a JSON file eventually
-  
   val enemyPath = ???
   val enemyWave = ???
   val enemies: ArrayBuffer[Enemy] = ???
-  val initialResources = 150
+  var initialResources = 150
 }

@@ -1,13 +1,14 @@
 package game
 
-import utils.initialResources
+import utils.{constants}
 import towers.{Tower}
 
 class Player {
-//figure out if it should be utils.constants.initialResources
-  var resources: Int = utils.initialResources
+ //creating an instance of the class constants
+  var constants = new constants
+  var resources = constants.initialResources
 
-   override def toString: String =
+  override def toString: String =
     s"Player with ($resources) amount of resources"
 
   def earnResources(r: Int) =

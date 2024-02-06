@@ -1,13 +1,23 @@
-val scala3Version = "3.3.1"
+ThisBuild / version := "0.1.0-SNAPSHOT"
 
-lazy val root = project
-  .in(file("."))
+ThisBuild / scalaVersion := "3.3.1"
+
+lazy val root = (project in file("."))
   .settings(
-    name := "Tower-Defence-Game",
-    version := "0.1.0-SNAPSHOT",
+    name := "Tower-Defence-Game"
+  )
+libraryDependencies += "org.scalafx" %% "scalafx" % "18.0.1-R28"
+libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.15"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % "test"
 
-    scalaVersion := scala3Version,
-
-    libraryDependencies += "org.scalameta" %% "munit" % "0.7.29" % Test
-)
-   libraryDependencies += "org.scalafx" % "scalafx_3" % "20.0.0-R31"
+libraryDependencies ++= {
+  // Determine OS version of JavaFX binaries
+  lazy val osName = System.getProperty("os.name") match {
+    case n if n.startsWith("Linux") => "linux"
+    case n if n.startsWith("Mac") => "mac"
+    case n if n.startsWith("Windows") => "win"
+    case _ => throw new Exception("Unknown platform!")
+  }
+  Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
+    .map(m => "org.openjfx" % s"javafx-$m" % "16" classifier osName)
+}
