@@ -1,11 +1,25 @@
 package gridcells
 import utils.{GridPos}
+import game.{TowerDefenceGame}
 
 abstract class GridCell {
   val gridPos: GridPos
 
-  def hasEnemy(): Boolean = ???
-  def hasTower(): Boolean = ???
+  //canPlaceTower wasn't in the original plan
+  val canPlaceTower = false
+
+//will be replaced with reading JSON
+  val game = new TowerDefenceGame
+  var enemies = game.enemies
+  var towers = game.towers
+
+  def hasEnemy(): Boolean = 
+    enemies.exists(_.gridPos == this.gridPos) 
+  end hasEnemy
+
+  def hasTower(): Boolean = 
+    towers.exists(_.position == this.gridPos)
+  end hasTower
 
   def isNeighbourOf(g: GridCell): Boolean =
     val dx = (this.gridPos.x - g.gridPos.x).abs

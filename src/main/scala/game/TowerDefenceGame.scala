@@ -29,11 +29,13 @@ class TowerDefenceGame {
   }
 
   def gameTick() = 
-    this.towers.foreach( _.shootEnemy() )
-    this.enemies.foreach( _.move() )
+    if (this.tickCounter % 800 == 0) then
+        this.towers.foreach( _.shootEnemy() )
+    if (this.tickCounter % 600 == 0) then
+      this.enemies.foreach( _.move() )
     //todo: wave movement, check game state
   end gameTick
-  
+
   def gameWon() = ???
   def gameOver() = ???
 }
