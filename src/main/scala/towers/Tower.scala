@@ -7,6 +7,7 @@ trait Tower {
   val firingRate: Int
   val range: Int
   val position: GridPos
+  val cost: Int
 
   def shootEnemy() = ???
   
