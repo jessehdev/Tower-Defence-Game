@@ -26,6 +26,9 @@ class GameBoard (val width: Int, val height: Int) {
 // logic how tower gets added to the arraybuffer might still need some extra thinking
 // might not work, think how a tower is added e.g. placeTower(Basic(gridPos(2,2)), gridPos(2,2))
   val game = new TowerDefenceGame
+
+  //also check if gridpos already populated
+  // if it is, throw a new exception
   def placeTower(tower: Tower, gridPos: GridPos): Boolean = 
     if grid(gridPos.x)(gridPos.y).canPlaceTower then
       val t = tower

@@ -24,8 +24,8 @@ class Constants {
   val n = new Tanker
   val enemies: ArrayBuffer[Enemy] = ArrayBuffer[Enemy](m,n)
 
-  val k = new Basic
-  val l = new Basic
+  val k = new Basic(GridPos(3,3))
+  val l = new Basic(GridPos(2,1))
   val towers: ArrayBuffer[Tower] = ArrayBuffer[Tower](k,l)
 
   var initialResources = 150
@@ -56,5 +56,5 @@ class Constants {
 
   grid += Array(SceneryCell(GridPos(5,0)), PathCell(GridPos(5,1)), SceneryCell(GridPos(5,2)), SceneryCell(GridPos(5,3)),
   SceneryCell(GridPos(5,4)), SceneryCell(GridPos(1,5)))
-  
+
 }
