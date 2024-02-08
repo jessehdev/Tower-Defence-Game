@@ -12,13 +12,14 @@ class GameState(game: TowerDefenceGame) {
 
   def enemiesMove() =
      if ( game.tickCounter % 600 == 0 ) then
-       game.enemies.foreach( _.move() )
+       game.enemies.foreach( _.move(this.game) )
   end enemiesMove
 
   // uses the towers and enemies of a specific game instance
   def towersAttack() =
     if ( game.tickCounter % 800 == 0 ) then
       game.towers.foreach( _.shootEnemy(game.enemies) )
+      enemiesKilled += game.enemies.filterNot( _.health >= 0).size
       game.enemies = game.enemies.filter( _.health >= 0 )
   end towersAttack
 
@@ -28,7 +29,7 @@ class GameState(game: TowerDefenceGame) {
       val wave = game.waves(amountOfWaves - wavesLeft)
       for i <- wave.enemies do
         //only adds tankers now, should add different types of enemies
-        game.enemies += enemies.Tanker(game.constants.initialPos)
+        game.enemies += enemies.Tanker(game.enemyPath.head.gridPos)
         Thread.sleep(500)
 
       wavesLeft -= 1

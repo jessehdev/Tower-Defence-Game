@@ -26,7 +26,7 @@ trait Tower {
     if inRange.nonEmpty then
       val target = inRange.head
       target.takeDamage(this.damage)
-   end shootEnemy
+  end shootEnemy
 
   def ugrade(): Unit 
 }

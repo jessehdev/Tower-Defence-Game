@@ -1,6 +1,9 @@
 package gridcells
 import utils.{GridPos}
 import game.{TowerDefenceGame}
+import towers.{Tower}
+import scala.collection.mutable.ArrayBuffer
+
 
 abstract class GridCell {
   val gridPos: GridPos
@@ -8,7 +11,10 @@ abstract class GridCell {
   //canPlaceTower wasn't in the original plan
   val canPlaceTower = false
 
-//will be replaced with reading JSON
+/*
+  * Two problems with below
+  * 1) Should not create a new game instance, it should be sent as a parameter
+  * 2) no need to use hasEnemy -- at leazt yet
   val game = new TowerDefenceGame
   var enemies = game.enemies
   var towers = game.towers
@@ -16,8 +22,9 @@ abstract class GridCell {
   def hasEnemy(): Boolean = 
     enemies.exists(_.position == this.gridPos) 
   end hasEnemy
+*/
 
-  def hasTower(): Boolean = 
+  def hasTower(towers: ArrayBuffer[Tower]): Boolean = 
     towers.exists(_.position == this.gridPos)
   end hasTower
 

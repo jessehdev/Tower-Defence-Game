@@ -34,7 +34,7 @@ class GameBoard(game: TowerDefenceGame) {
   */
 
   def placeTower(tower: Tower, gridPos: GridPos): Boolean = 
-    if ( grid(gridPos.x)(gridPos.y).canPlaceTower && !game.enemies.exists(_.position == gridPos) )then
+    if ( grid(gridPos.x)(gridPos.y).canPlaceTower && !game.towers.exists(_.position == gridPos) )then
       game.towers += tower
       true
     else 
@@ -47,10 +47,10 @@ class GameBoard(game: TowerDefenceGame) {
 // think about is checking the grid too complex or should gridPos itself know if it has a tower
 // is it possible in any case for val tower to be None?
   def destroyTower(gridPos: GridPos): Boolean = 
-    if grid(gridPos.x)(gridPos.y).hasTower() then 
+    if grid(gridPos.x)(gridPos.y).hasTower(game.towers) then 
       game.towers = game.towers.filter( _.position != gridPos)
       true
     else 
       false
   end destroyTower
-}
+} 
