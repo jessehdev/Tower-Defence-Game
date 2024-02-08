@@ -6,26 +6,27 @@ import utils.{Constants}
 import towers.{Tower}
 import game.{TowerDefenceGame}
 
-class GameBoard (val width: Int, val height: Int) {
+class GameBoard(game: TowerDefenceGame) {
+  val width = game.constants.boardWidth
+  val height = game.constants.boardHeight
   val size = width * height
  
  /*  
   * initializes a grid consisting of scenery cells
   * use later on, when reading JSON files
+  * might be unnecessary if grid data is given in JSON
 
   var grid: Array[Array[GridCell]] = Array.tabulate(width, height)( (i, j) =>
   SceneryCell(GridPos(i, j)) 
   )
 */
 
-  //will be replaced with reading from JSON
-  val constants = new Constants
-  val enemyPath = constants.enemyPath
-  var grid = constants.grid
+  val enemyPath = game.constants.enemyPath
+  var grid = game.constants.grid
 
 // logic how tower gets added to the arraybuffer might still need some extra thinking
 // might not work, think how a tower is added e.g. placeTower(Basic(gridPos(2,2)), gridPos(2,2))
-  val game = new TowerDefenceGame
+  
 
   //also check if gridpos already populated
   // if it is, throw a new exception

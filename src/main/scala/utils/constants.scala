@@ -1,7 +1,7 @@
 package utils
 
 import enemies.{Enemy, Tanker}
-import gridcells.{GridCell, PathCell, SceneryCell}
+import gridcells.{GridCell, PathCell, SceneryCell, WinningAreaCell}
 import towers.{Tower,Basic}
 import utils.{Wave}
 import scala.collection.mutable.ArrayBuffer
@@ -18,6 +18,9 @@ class Constants {
   val towers: ArrayBuffer[Tower] = ArrayBuffer[Tower](k,l)
 
   var initialResources = 150
+
+  val boardHeight = 6
+  val boardWidth = 6
   
   val i = new Wave(ArrayBuffer(m))
   val j = new Wave(ArrayBuffer(m,n))
@@ -25,7 +28,7 @@ class Constants {
   var amountOfWaves = waves.length
 
   val enemyPath = Array[GridCell](PathCell(GridPos(0,1)), PathCell(GridPos(1,1)), PathCell(GridPos(2,1)),
-    PathCell(GridPos(3,1)), PathCell(GridPos(4,1)), PathCell(GridPos(5,1)))
+    PathCell(GridPos(3,1)), PathCell(GridPos(4,1)), WinningAreaCell(GridPos(5,1)))
 
   val initialPos = enemyPath(0).gridPos
   

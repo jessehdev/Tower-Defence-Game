@@ -16,6 +16,8 @@ class TowerDefenceGame {
   var towers = constants.towers
   val waves = constants.waves
 
+  var gameBoard = new GameBoard(this)
+
 //variables used for gameTick
 //look for documentation of java util timer, timertask and java lang runnable
   val timer = new Timer()
@@ -33,13 +35,20 @@ class TowerDefenceGame {
   def gameTick() = 
     gameState.towersAttack()
     gameState.enemiesMove()
-   
-    //todo: wave movement, check game state
+    gameState.startWave()
+    //maybe check game state
   end gameTick
   
-  val tickInterval = 1 // Tick interval in milliseconds
+  val tickInterval = 1 // Tick interval in milliseconds, if too heavy, consider ticking every 10ms
   timer.scheduleAtFixedRate(task, 0, tickInterval)
 
-  def gameWon() = ???
-  def gameOver() = ???
+  def gameWon() = 
+    if ( enemies.isEmpty && gameState.wavesLeft == 0 ) then 
+      println("Game won!!!")
+    // maybe update state to won, which ends the game
+  end gameWon
+
+  //last cell should be winning area cell
+  def gameOver() = 
+    enemies.exists(_.position == enemyPath.last)
 }
