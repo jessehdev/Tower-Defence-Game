@@ -13,6 +13,9 @@ trait Enemy {
 //added this, wasn't in the original plan
   var pathIndex: Int 
 
+  override def toString(): String = 
+    s"An enemy with $health amount of health at position $position"
+
   def getPos() = 
     this.position
   end getPos
