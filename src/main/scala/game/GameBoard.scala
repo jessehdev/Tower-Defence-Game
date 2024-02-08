@@ -5,6 +5,7 @@ import utils.{GridPos}
 import utils.{Constants}
 import towers.{Tower}
 import game.{TowerDefenceGame}
+import game.{TowerException}
 
 class GameBoard(game: TowerDefenceGame) {
   val width = game.constants.boardWidth
@@ -21,21 +22,25 @@ class GameBoard(game: TowerDefenceGame) {
   )
 */
 
-  val enemyPath = game.constants.enemyPath
-  var grid = game.constants.grid
+  val enemyPath = game.enemyPath
+  var grid = game.grid
 
-// logic how tower gets added to the arraybuffer might still need some extra thinking
-// might not work, think how a tower is added e.g. placeTower(Basic(gridPos(2,2)), gridPos(2,2))
-  
+  /*
+    * logic how tower gets added to the arraybuffer might still need some extra thinking
+    * might not work, think how a tower is added e.g. placeTower(Basic(gridPos(2,2)), gridPos(2,2))
+    * also check if gridpos already populated
+    * 
+    * if it is, throw a new exception
+  */
 
-  //also check if gridpos already populated
-  // if it is, throw a new exception
   def placeTower(tower: Tower, gridPos: GridPos): Boolean = 
-    if grid(gridPos.x)(gridPos.y).canPlaceTower then
-      val t = tower
-      game.towers += t
+    if ( grid(gridPos.x)(gridPos.y).canPlaceTower && !game.enemies.exists(_.position == gridPos) )then
+      game.towers += tower
       true
     else 
+      throw TowerException(
+        s"Cannot place tower, check if the gridCell is already populated or whether it is a towerCell or not"
+      )
       false
   end placeTower 
 
@@ -43,8 +48,7 @@ class GameBoard(game: TowerDefenceGame) {
 // is it possible in any case for val tower to be None?
   def destroyTower(gridPos: GridPos): Boolean = 
     if grid(gridPos.x)(gridPos.y).hasTower() then 
-      val tower = game.towers.find(_.position == gridPos)
-      game.towers -= tower.get
+      game.towers = game.towers.filter( _.position != gridPos)
       true
     else 
       false

@@ -15,6 +15,7 @@ class TowerDefenceGame {
   var enemies = constants.enemies
   var towers = constants.towers
   val waves = constants.waves
+  var grid = constants.grid
 
   var gameBoard = new GameBoard(this)
 
@@ -32,6 +33,7 @@ class TowerDefenceGame {
 //contrary to initial plan, passin game as parameter to gamestate and having a reference in towerdefencegame
   var gameState = new GameState(this)
 
+  // add a functionality: If any tower health is below 0 call gameboard.destroytower
   def gameTick() = 
     gameState.towersAttack()
     gameState.enemiesMove()

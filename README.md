@@ -17,3 +17,4 @@ Eliminating enemies gives the player resources (most likely gold), which the pla
 2) Consider moving all the new constant to towerdefencegame
 3) Consider how player, gamestate and towerdefencegame need to and will interact
 4) Add player gaining resources when eliminating enemies
+5) Enemy constants should come from game
