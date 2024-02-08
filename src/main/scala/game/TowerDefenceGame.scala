@@ -1,16 +1,16 @@
 package game
 
 import gridcells.{GridCell, SceneryCell}
-import utils.{GridPos}
-import utils.{Constants}
+import utils.{GridPos, Constants}
 import towers.{Tower}
 import enemies.{Enemy}
-import game.{GameBoard}
+import game.{GameBoard, GameState}
 import scala.collection.mutable.ArrayBuffer
 import java.util.{Timer, TimerTask}
 
 class TowerDefenceGame {
-  val constants = new Constants
+  ///the below should be the only instance of constants in the entire project
+  var constants = new Constants
   val enemyPath = constants.enemyPath
   var enemies = constants.enemies
   var towers = constants.towers
@@ -27,15 +27,13 @@ class TowerDefenceGame {
       if tickCounter % 1000 == 0 then
         println(s"Seconds passed: $tickCounter")
   }
+//contrary to initial plan, passin game as parameter to gamestate and having a reference in towerdefencegame
+  var gameState = new GameState(this)
 
   def gameTick() = 
-    //consider moving the below methods to gamestate or create now method in this class
-    if (this.tickCounter % 800 == 0) then
-        this.towers.foreach( _.shootEnemy(this.enemies) )
-        this.enemies = this.enemies.filter( _.health >= 0 )
-
-    if (this.tickCounter % 600 == 0) then
-      this.enemies.foreach( _.move() )
+    gameState.towersAttack()
+    gameState.enemiesMove()
+   
     //todo: wave movement, check game state
   end gameTick
   

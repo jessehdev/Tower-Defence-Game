@@ -14,7 +14,7 @@ abstract class GridCell {
   var towers = game.towers
 
   def hasEnemy(): Boolean = 
-    enemies.exists(_.gridPos == this.gridPos) 
+    enemies.exists(_.position == this.gridPos) 
   end hasEnemy
 
   def hasTower(): Boolean = 

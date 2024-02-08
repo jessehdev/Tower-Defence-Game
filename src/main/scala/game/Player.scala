@@ -2,8 +2,9 @@ package game
 
 import utils.{Constants}
 import towers.{Tower}
+import game.{GameState}
 
-class Player {
+class Player(gameState: GameState) {
  //creating an instance of the class constants
   var constants = new Constants
   var resources = constants.initialResources

@@ -9,7 +9,7 @@ trait Enemy {
   var health: Int
   val damage: Int
   val attackSpeed: Int
-  var gridPos: GridPos
+  var position: GridPos
 //added this, wasn't in the original plan
   var pathIndex: Int 
 //concretes
@@ -20,12 +20,12 @@ trait Enemy {
   val enemies = game.enemies
   
   def getPos() = 
-    this.gridPos
+    this.position
   end getPos
 
   def move() = 
     pathIndex += 1
-    this.gridPos = enemyPath(pathIndex).gridPos
+    this.position = enemyPath(pathIndex).gridPos
   end move
   
   //added the construction parameter

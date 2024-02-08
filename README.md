@@ -6,12 +6,13 @@ If an enemy reaches the goal area the game is lost. If enough waves of enemies a
 
 Eliminating enemies gives the player resources (most likely gold), which the player can use either to buy new towers or to upgrade the existing ones. There will be three types of towers: basic, long range and splash damage. The program will keep track of the number of eliminated enemies, the amount of resources the player has and how many waves of enemies are left for the level.
 
-# Find out
+### Find out
 1) Creating instances of TowerDefenceGame class (multiple vs. one)
 2) Having "game-wide" variables in game vs. constants
 3) Should I create a new GameState class in TowerDefenceGame (var gameState = new GameState)
+4) If ticking every millisecond overloads the processor
 
-# Todo
+### Todo
 1) Change all new game to using only variables and methods from the towerdefencegame class
 2) Consider moving all the new constant to towerdefencegame
 3) Consider how player, gamestate and towerdefencegame need to and will interact

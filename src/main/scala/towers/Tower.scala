@@ -16,8 +16,8 @@ trait Tower {
   def shootEnemy(arr: ArrayBuffer[Enemy]) = 
     var inRange = ArrayBuffer[Enemy]()
     arr.foreach( enemy =>
-      val dx = ( this.position.x - enemy.gridPos.x ).abs.toDouble
-      val dy = ( this.position.y - enemy.gridPos.y ).abs.toDouble
+      val dx = ( this.position.x - enemy.position.x ).abs.toDouble
+      val dy = ( this.position.y - enemy.position.y ).abs.toDouble
       val squared = pow(dx, 2.0) + pow(dy, 2.0)
       if sqrt(squared) <= this.range then
         inRange += enemy

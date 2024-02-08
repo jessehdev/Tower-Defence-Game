@@ -7,21 +7,10 @@ import utils.{Wave}
 import scala.collection.mutable.ArrayBuffer
 
 class Constants {
-  //enemy related
-  var enemyHealth = 1000
-  var enemyDamage = 120
-  
-  //tower related
-  var towerHealth = 1500
-  var towerAttack = 150
-  var towerRange = 7
-  var firingRate = 2
-  
-  //these will be read from a JSON file eventually
-  val enemyWave = ???
 
-  val m = new Tanker
-  val n = new Tanker
+  //these will be read from a JSON file eventually
+  val m = new Tanker(initialPos)
+  val n = new Tanker(initialPos)
   val enemies: ArrayBuffer[Enemy] = ArrayBuffer[Enemy](m,n)
 
   val k = new Basic(GridPos(3,3))
@@ -33,9 +22,12 @@ class Constants {
   val i = new Wave(ArrayBuffer(m))
   val j = new Wave(ArrayBuffer(m,n))
   val waves = Array[Wave](i,j)
+  var amountOfWaves = waves.length
 
   val enemyPath = Array[GridCell](PathCell(GridPos(0,1)), PathCell(GridPos(1,1)), PathCell(GridPos(2,1)),
     PathCell(GridPos(3,1)), PathCell(GridPos(4,1)), PathCell(GridPos(5,1)))
+
+  val initialPos = enemyPath(0).gridPos
   
     // define a 6x6 grid and add gridcells to it, in the beginning only scenerycells and pathcells
   val grid = ArrayBuffer[Array[GridCell]]()
