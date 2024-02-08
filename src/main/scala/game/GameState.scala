@@ -3,11 +3,12 @@ import game.{TowerDefenceGame}
 
 class GameState(game: TowerDefenceGame) {
   var enemiesKilled: Int = 0
-  var constants = game.constants
-  val amountOfWaves = constants.amountOfWaves
+ // var constants = game.constants => does this create a new constants and therefore doesnt update the original constants defined in towerdefencegme?
+  val amountOfWaves = game.constants.amountOfWaves
   var wavesLeft: Int = amountOfWaves
-  // added gamestate as a construction parameter to player
-  var player = new Player(this)
+
+  // added gamestate and game as a construction parameters to player
+  var player = new Player(game, this)
 
   def enemiesMove() =
      if ( game.tickCounter % 600 == 0 ) then

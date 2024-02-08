@@ -11,6 +11,7 @@ trait Tower {
   val firingRate: Int
   val range: Double
   val cost: Int
+  val upgradeCost: Int
 
   // if enemy if range, choose an arbitrary one to shoot
   def shootEnemy(arr: ArrayBuffer[Enemy]) = 
