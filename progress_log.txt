@@ -1,0 +1,6 @@
+Progress log
+
+Logic code should be ok for minimum viable product on 08.02.2024
+Next starting to create tests
+After that GUI
+Then adding more logic features
