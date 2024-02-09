@@ -10,6 +10,4 @@ Eliminating enemies gives the player resources (most likely gold), which the pla
 1) If ticking every millisecond overloads the processor
 
 ### Todo
-1) Add player gaining resources when eliminating enemies
-2) Enemy constants should come from game
-3) Add feature for enemies attacking towers
+1) Add feature for enemies attacking towers
