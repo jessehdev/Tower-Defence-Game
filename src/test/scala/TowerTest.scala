@@ -32,5 +32,22 @@ class TowerTest extends AnyFlatSpec with Matchers {
         tower.health shouldBe 1500
         tower.damage shouldBe 350
     }
+    "Splashdamage" should "attack multiple enemies" in {
+        var enemyBuffer = ArrayBuffer[Enemy]()
+        val tanker1 = new Tanker(GridPos(2,2))
+        val tanker2 = new Tanker(GridPos(2,3))
+        val tanker3 = new Tanker(GridPos(3,2))
+        val tanker4 = new Tanker(GridPos(4,3))
+        enemyBuffer += tanker1
+        enemyBuffer += tanker2
+        enemyBuffer += tanker3
+        enemyBuffer += tanker4
+        var splashTower = new SplashDamage(GridPos(4,4))
+        splashTower.shootEnemy(enemyBuffer)
+        tanker1.health shouldBe 900
+        tanker2.health shouldBe 900
+        tanker3.health shouldBe 900
+        tanker4.health shouldBe 900
+    }
 }    
 end TowerTest
