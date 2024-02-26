@@ -1,7 +1,7 @@
 package utils
 
 import enemies.{Enemy, Tanker}
-import gridcells.{GridCell, PathCell, SceneryCell, WinningAreaCell}
+import gridcells._
 import towers.{Tower,Basic}
 import utils.{Wave}
 import scala.collection.mutable.ArrayBuffer
@@ -15,7 +15,7 @@ class Constants {
 
   val k = new Basic(GridPos(3,3))
   val l = new Basic(GridPos(2,1))
-  val towers: ArrayBuffer[Tower] = ArrayBuffer[Tower](k,l)
+  //val towers: ArrayBuffer[Tower] = ArrayBuffer[Tower](k,l)
 
   var initialResources = 150
 
@@ -34,7 +34,7 @@ class Constants {
   
     // define a 6x6 grid and add gridcells to it, in the beginning only scenerycells and pathcells
   val grid = ArrayBuffer[Array[GridCell]]()
-  grid += Array(SceneryCell(GridPos(0,0)), PathCell(GridPos(0,1)), SceneryCell(GridPos(0,2)), SceneryCell(GridPos(0,3)),
+  grid += Array(SceneryCell(GridPos(0,0)), PathCell(GridPos(0,1)), TowerCell(GridPos(0,2)), TowerCell(GridPos(0,3)),
   SceneryCell(GridPos(0,4)), SceneryCell(GridPos(0,5)))
 
   grid += Array(SceneryCell(GridPos(1,0)), PathCell(GridPos(1,1)), SceneryCell(GridPos(1,2)), SceneryCell(GridPos(1,3)),

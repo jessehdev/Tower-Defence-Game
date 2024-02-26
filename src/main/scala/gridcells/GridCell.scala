@@ -3,6 +3,7 @@ import utils.{GridPos}
 import game.{TowerDefenceGame}
 import towers.{Tower}
 import scala.collection.mutable.ArrayBuffer
+import scala.compiletime.ops.double
 
 
 abstract class GridCell {
@@ -25,7 +26,8 @@ abstract class GridCell {
 */
 
   def hasTower(towers: ArrayBuffer[Tower]): Boolean = 
-    towers.exists(_.position == this.gridPos)
+  // THIS WAS THE ORIGINAL  towers.exists( _.position == this.gridPos )
+    towers.exists(tower => tower.position.x == this.gridPos.x && tower.position.y == this.gridPos.y)
   end hasTower
 
   def isNeighbourOf(g: GridCell): Boolean =

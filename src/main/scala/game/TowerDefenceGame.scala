@@ -13,7 +13,8 @@ class TowerDefenceGame {
   var constants = new Constants
   val enemyPath = constants.enemyPath
   var enemies = constants.enemies
-  var towers = constants.towers
+  //towers originally was constants.towers
+  var towers = new ArrayBuffer[Tower]()
   val waves = constants.waves
   var grid = constants.grid
 

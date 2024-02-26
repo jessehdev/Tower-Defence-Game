@@ -30,8 +30,6 @@ class EnemyTest extends AnyFlatSpec with Matchers {
     it should "correctly move the defined path when move() is called" in {
         val tanker = new Tanker(GridPos(0,1))
         val game = new TowerDefenceGame
-        game.enemyPath = Array[GridCell](PathCell(GridPos(0,1)), PathCell(GridPos(1,1)), PathCell(GridPos(2,1)),
-    PathCell(GridPos(3,1)), PathCell(GridPos(4,1)), WinningAreaCell(GridPos(5,1)))
         tanker.move(game)
         tanker.pathIndex shouldBe 1
         tanker.position.x shouldBe 1

@@ -44,8 +44,6 @@ class GameBoard(game: TowerDefenceGame) {
       false
   end placeTower 
 
-// think about is checking the grid too complex or should gridPos itself know if it has a tower
-// is it possible in any case for val tower to be None?
   def destroyTower(gridPos: GridPos): Boolean = 
     if grid(gridPos.x)(gridPos.y).hasTower(game.towers) then 
       game.towers = game.towers.filter( _.position != gridPos)
