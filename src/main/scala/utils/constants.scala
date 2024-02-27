@@ -35,7 +35,7 @@ class Constants {
     // define a 6x6 grid and add gridcells to it, in the beginning only scenerycells and pathcells
   val grid = ArrayBuffer[Array[GridCell]]()
   grid += Array(SceneryCell(GridPos(0,0)), PathCell(GridPos(0,1)), TowerCell(GridPos(0,2)), TowerCell(GridPos(0,3)),
-  SceneryCell(GridPos(0,4)), SceneryCell(GridPos(0,5)))
+  TowerCell(GridPos(0,4)), TowerCell(GridPos(0,5)))
 
   grid += Array(SceneryCell(GridPos(1,0)), PathCell(GridPos(1,1)), SceneryCell(GridPos(1,2)), SceneryCell(GridPos(1,3)),
   SceneryCell(GridPos(1,4)), SceneryCell(GridPos(1,5)))

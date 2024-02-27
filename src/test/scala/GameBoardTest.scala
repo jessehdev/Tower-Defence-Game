@@ -66,7 +66,7 @@ class GameBoardTest extends AnyFlatSpec with Matchers {
   it should "throw a TowerException when trying to place a tower on a wrong type of GridCell" in {
     val game = new TowerDefenceGame
     val board = new GameBoard(game)
-    val gridPos = GridPos(0,5) 
+    val gridPos = GridPos(3,5) 
     val tower = new Basic(gridPos)
     assertThrows[TowerException] {
       board.placeTower(tower, gridPos) 

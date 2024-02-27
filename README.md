@@ -11,5 +11,7 @@ Eliminating enemies gives the player resources (most likely gold), which the pla
 
 ### Todo
 1) Add feature for enemies attacking towers
+2) Add game Test + other tests
+3) Renew gametick algorithm
 
 https://javadoc.io/static/org.scalafx/scalafx_2.13/16.0.0-R22/scalafx/animation/AnimationTimer.html
