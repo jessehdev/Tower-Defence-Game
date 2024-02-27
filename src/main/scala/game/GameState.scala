@@ -11,27 +11,25 @@ class GameState(game: TowerDefenceGame) {
   var player = new Player(game, this)
 
   def enemiesMove() =
-     if ( game.tickCounter % 600 == 0 ) then
+     if ( game.tickCounter % 14 == 0 ) then
        game.enemies.foreach( _.move(this.game) )
   end enemiesMove
 
   // uses the towers and enemies of a specific game instance
   def towersAttack() =
-    if ( game.tickCounter % 800 == 0 ) then
+    if ( game.tickCounter % 16 == 0 ) then
       game.towers.foreach( _.shootEnemy(game.enemies) )
       enemiesKilled += game.enemies.filterNot( _.health >= 0).size
-      game.enemies = game.enemies.filter( _.health >= 0 )
+      game.enemies = game.enemies.filter( _.health > 0 )
   end towersAttack
 
   //figure out if Thread.sleep works as intended, might block Main thread
   def startWave() =
-    if ( game.tickCounter % 10000 == 0 && wavesLeft > 0 ) then
+    if ( game.tickCounter % 200 == 0 && wavesLeft > 0 ) then
       val wave = game.waves(amountOfWaves - wavesLeft)
       for i <- wave.enemies do
         //only adds tankers now, should add different types of enemies
         game.enemies += enemies.Tanker(game.enemyPath.head.gridPos)
-        Thread.sleep(500)
-
       wavesLeft -= 1
   end startWave
 

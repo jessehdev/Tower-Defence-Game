@@ -12,7 +12,8 @@ class TowerDefenceGame {
   ///the below should be the only instance of constants in the entire project
   var constants = new Constants
   val enemyPath = constants.enemyPath
-  var enemies = constants.enemies
+  //enemies originally was constants.enemies
+  var enemies = new ArrayBuffer[Enemy]()
   //towers originally was constants.towers
   var towers = new ArrayBuffer[Tower]()
   val waves = constants.waves
@@ -28,7 +29,7 @@ class TowerDefenceGame {
     def run(): Unit = 
       tickCounter += 1
       gameTick() 
-      if tickCounter % 1000 == 0 then
+      if tickCounter % 60 == 0 then
         println(s"Seconds passed: $tickCounter")
   }
 //contrary to initial plan, passin game as parameter to gamestate and having a reference in towerdefencegame
@@ -42,7 +43,7 @@ class TowerDefenceGame {
     //maybe check game state
   end gameTick
   
-  val tickInterval = 1 // Tick interval in milliseconds, if too heavy, consider ticking every 10ms
+  val tickInterval = 16 // Tick interval in milliseconds
   timer.scheduleAtFixedRate(task, 0, tickInterval)
 
   def gameWon() = 
