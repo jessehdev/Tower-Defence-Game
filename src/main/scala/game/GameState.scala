@@ -3,21 +3,22 @@ import game.{TowerDefenceGame}
 
 class GameState(game: TowerDefenceGame) {
   var enemiesKilled: Int = 0
- // var constants = game.constants => does this create a new constants and therefore doesnt update the original constants defined in towerdefencegme?
   val amountOfWaves = game.constants.amountOfWaves
   var wavesLeft: Int = amountOfWaves
 
+  var enemiesMoveModulo = 14
+  var towersAttackModulo = 16
   // added gamestate and game as a construction parameters to player
   var player = new Player(game, this)
 
   def enemiesMove() =
-     if ( game.tickCounter % 14 == 0 ) then
+     if ( game.tickCounter % enemiesMoveModulo == 0 ) then
        game.enemies.foreach( _.move(this.game) )
   end enemiesMove
 
   // uses the towers and enemies of a specific game instance
   def towersAttack() =
-    if ( game.tickCounter % 16 == 0 ) then
+    if ( game.tickCounter % towersAttackModulo == 0 ) then
       game.towers.foreach( _.shootEnemy(game.enemies) )
       enemiesKilled += game.enemies.filterNot( _.health >= 0).size
       game.enemies = game.enemies.filter( _.health > 0 )

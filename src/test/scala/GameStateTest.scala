@@ -14,7 +14,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     val pos = GridPos(0,1)
     val tanker = new Tanker(pos)
     game.enemies += tanker
-    game.tickCounter = 14
+    game.tickCounter = state.enemiesMoveModulo
     state.enemiesMove()
     tanker.pathIndex shouldBe 1
     tanker.position.x shouldBe game.enemyPath(tanker.pathIndex).gridPos.x
@@ -35,7 +35,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     game.enemies += tanker
     game.enemies += tanker2
     game.enemies += tanker3
-    game.tickCounter = 14
+    game.tickCounter = state.enemiesMoveModulo
     state.enemiesMove()
 
     tanker.pathIndex shouldBe 1
@@ -77,7 +77,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     game.enemies += tanker2
     game.towers += basic1
     game.towers += splashTower
-    game.tickCounter = 16
+    game.tickCounter = state.towersAttackModulo
     state.towersAttack()
     tanker1.health shouldBe comparisonTanker.health - basic1.damage // should be 750
     tanker2.health shouldBe comparisonTanker.health - splashTower.damage // should be 900
@@ -99,7 +99,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     game.enemies += tanker3
     game.enemies.length shouldBe 3
     game.towers += basic
-    game.tickCounter = 16
+    game.tickCounter = state.towersAttackModulo
     state.towersAttack()
     game.enemies.length shouldBe 2
   }
