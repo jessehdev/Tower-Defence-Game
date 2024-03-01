@@ -2,10 +2,10 @@ package gui
 
 import game._
 import gridcells._
+import gui._
 import scalafx.scene.layout.GridPane
 import scalafx.scene.shape.{Rectangle, Circle, Polygon}
 import scalafx.scene.paint.Color
-import game.{TowerDefenceGame, GameState}
 
 class GameBoardView(game: TowerDefenceGame, gameState: GameState) extends GridPane {
  // val cellSize = 40
@@ -32,4 +32,6 @@ class GameBoardView(game: TowerDefenceGame, gameState: GameState) extends GridPa
     
     add(rectangle, x, y)
   }
+  val enemyRenderer = EnemyRenderer(game, gameState, this)
+  enemyRenderer.renderEnemies() // Call this whenever you need to refresh the enemy renderings
 }

@@ -7,6 +7,7 @@ import enemies.{Enemy}
 import game.{GameBoard, GameState}
 import scala.collection.mutable.ArrayBuffer
 import java.util.{Timer, TimerTask}
+import enemies._
 
 class TowerDefenceGame {
   ///the below should be the only instance of constants in the entire project
@@ -14,6 +15,8 @@ class TowerDefenceGame {
   val enemyPath = constants.enemyPath
   //enemies originally was constants.enemies
   var enemies = new ArrayBuffer[Enemy]()
+  enemies += Tanker(GridPos(4,1))
+  enemies += Fiend(GridPos(6,1))
   //towers originally was constants.towers
   var towers = new ArrayBuffer[Tower]()
   val waves = constants.waves
@@ -29,8 +32,9 @@ class TowerDefenceGame {
     def run(): Unit = 
       tickCounter += 1
       gameTick() 
-      if tickCounter % 60 == 0 then
-        println(s"Seconds passed: $tickCounter")
+      if tickCounter % 160 == 0 then
+        println(s"Game ticked: $tickCounter")
+       // println(s"Seconds passed: $tickCounter")
   }
 //contrary to initial plan, passin game as parameter to gamestate and having a reference in towerdefencegame
   var gameState = new GameState(this)
@@ -43,7 +47,7 @@ class TowerDefenceGame {
     //maybe check game state
   end gameTick
   
-  val tickInterval = 16 // Tick interval in milliseconds
+  val tickInterval = 160 // Tick interval in milliseconds
   timer.scheduleAtFixedRate(task, 0, tickInterval)
 
   def gameWon() = 
