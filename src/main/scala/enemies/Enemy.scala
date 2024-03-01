@@ -22,8 +22,9 @@ trait Enemy {
 
   // added construction parameter
   def move(game: TowerDefenceGame) = 
-    pathIndex += 1
-    this.position = game.enemyPath(pathIndex).gridPos
+    if pathIndex < game.grid.length - 1 then
+      pathIndex += 1
+      this.position = game.enemyPath(pathIndex).gridPos
   end move
   
   //added the construction parameter
