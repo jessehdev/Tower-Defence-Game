@@ -9,7 +9,7 @@ import scalafx.scene.shape.Circle
 import scalafx.scene.paint.Color
 import scalafx.scene.layout.StackPane
 
-class EnemyRenderer(game: TowerDefenceGame, gameState: GameState, gameBoard: GridPane) {
+class EnemyRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
 //  val cellSize = 100 //gameBoard.cellSize // Assuming you can access cellSize from GameBoardView
 
   def renderEnemies(): Unit = 

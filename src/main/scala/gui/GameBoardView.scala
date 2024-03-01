@@ -20,7 +20,7 @@ class GameBoardView(game: TowerDefenceGame, gameState: GameState) extends GridPa
   
   val gridCellView = new GridCellView
   // Initializing the grid
-  for (x <- 0 until gridWidth; y <- 0 until gridHeight) {
+  for (x <- 0 until gridWidth; y <- 0 until gridHeight) 
     val cell = game.grid(x)(y) 
     val rectangle = new Rectangle {
       //binding would be <==
@@ -29,9 +29,12 @@ class GameBoardView(game: TowerDefenceGame, gameState: GameState) extends GridPa
       fill = gridCellView.determineCellColor(cell) 
       stroke = Color.Black
     }
-    
     add(rectangle, x, y)
-  }
-  val enemyRenderer = EnemyRenderer(game, gameState, this)
+  
+  val enemyRenderer = EnemyRenderer(game, this)
   enemyRenderer.renderEnemies() // Call this whenever you need to refresh the enemy renderings
+
+  val towerRenderer = new TowerRenderer(game, this)
+  towerRenderer.renderTowers() // Call this when initializing the game board and whenever towers are added/updated
+
 }

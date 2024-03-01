@@ -8,6 +8,7 @@ import game.{GameBoard, GameState}
 import scala.collection.mutable.ArrayBuffer
 import java.util.{Timer, TimerTask}
 import enemies._
+import towers._
 
 class TowerDefenceGame {
   ///the below should be the only instance of constants in the entire project
@@ -19,6 +20,9 @@ class TowerDefenceGame {
   enemies += Fiend(GridPos(6,1))
   //towers originally was constants.towers
   var towers = new ArrayBuffer[Tower]()
+  towers += Basic(GridPos(0,2))
+  towers += SplashDamage(GridPos(0,3))
+
   val waves = constants.waves
   var grid = constants.grid
 
