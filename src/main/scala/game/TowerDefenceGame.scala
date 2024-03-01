@@ -17,7 +17,9 @@ class TowerDefenceGame {
   //enemies originally was constants.enemies
   var enemies = new ArrayBuffer[Enemy]()
   enemies += Tanker(GridPos(4,1))
-  enemies += Fiend(GridPos(6,1))
+  enemies += Tanker(GridPos(6,1))
+  enemies += Fiend(GridPos(1,1))
+  enemies += Fiend(GridPos(2,1))
   //towers originally was constants.towers
   var towers = new ArrayBuffer[Tower]()
   towers += Basic(GridPos(0,2))
@@ -36,8 +38,8 @@ class TowerDefenceGame {
     def run(): Unit = 
       tickCounter += 1
       gameTick() 
-      if tickCounter % 160 == 0 then
-        println(s"Game ticked: $tickCounter")
+      if tickCounter % 60 == 0 then
+        println(s"Seconds passed: ${tickCounter / 60}")
        // println(s"Seconds passed: $tickCounter")
   }
 //contrary to initial plan, passin game as parameter to gamestate and having a reference in towerdefencegame
@@ -48,10 +50,12 @@ class TowerDefenceGame {
     gameState.towersAttack()
     gameState.enemiesMove()
     gameState.startWave()
+    gameWon()
+    gameOver()
     //maybe check game state
   end gameTick
   
-  val tickInterval = 160 // Tick interval in milliseconds
+  val tickInterval = 1000 / 60 // Tick interval in milliseconds
   timer.scheduleAtFixedRate(task, 0, tickInterval)
 
   def gameWon() = 
@@ -62,5 +66,6 @@ class TowerDefenceGame {
 
   //last cell should be winning area cell
   def gameOver() = 
-    enemies.exists(_.position == enemyPath.last)
+    if enemies.exists( enemy => enemy.position.x == enemyPath.last.gridPos.x && enemy.position.y == enemyPath.last.gridPos.y ) then
+      println("Game Lost :(")
 }

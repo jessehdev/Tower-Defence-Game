@@ -6,8 +6,8 @@ class GameState(game: TowerDefenceGame) {
   val amountOfWaves = game.constants.amountOfWaves
   var wavesLeft: Int = amountOfWaves
 
-  var enemiesMoveModulo = 14
-  var towersAttackModulo = 16
+  var enemiesMoveModulo = 80
+  var towersAttackModulo = 40
   // added gamestate and game as a construction parameters to player
   var player = new Player(game, this)
 
