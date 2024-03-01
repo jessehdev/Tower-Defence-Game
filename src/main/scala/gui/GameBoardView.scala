@@ -17,7 +17,8 @@ class GameBoardView(game: TowerDefenceGame, gameState: GameState) extends GridPa
 
   prefWidth = gridPaneSize
   prefHeight = gridPaneSize
-
+  
+  val gridCellView = new GridCellView
   // Initializing the grid
   for (x <- 0 until gridWidth; y <- 0 until gridHeight) {
     val cell = game.grid(x)(y) 
@@ -25,19 +26,10 @@ class GameBoardView(game: TowerDefenceGame, gameState: GameState) extends GridPa
       //binding would be <==
       width = cellSize
       height = cellSize
-      fill = determineCellColor(cell) 
+      fill = gridCellView.determineCellColor(cell) 
       stroke = Color.Black
     }
     
     add(rectangle, x, y)
   }
-
-  // Method to determine the color of a cell based on its type
-  def determineCellColor(cell: GridCell): Color = cell match {
-    case _: PathCell => Color.LightGray
-    case _: TowerCell => Color.Violet
-    case _: SceneryCell => Color.LightGreen
-    case _: WinningAreaCell => Color.Gold
-    case _ => Color.Red //shouldn't appear
-  }
-}  
+}
