@@ -8,6 +8,7 @@ class GameState(game: TowerDefenceGame) {
 
   var enemiesMoveModulo = 80
   var towersAttackModulo = 40
+  val startWaveModulo = 300
   // added gamestate and game as a construction parameters to player
   var player = new Player(game, this)
 
@@ -23,15 +24,15 @@ class GameState(game: TowerDefenceGame) {
       enemiesKilled += killed
       player.earnResources( 100 * killed )
       game.enemies = game.enemies.filter( _.health > 0 )
-      println(s"Resources: ${player.resources}, enemies killed: ${enemiesKilled}")
+      println(s"Resources: ${player.resources}, enemies killed: ${enemiesKilled}, waves left : ${wavesLeft}")
   end towersAttack
 
   def startWave() =
-    if ( game.tickCounter % 200 == 0 && wavesLeft > 0 ) then
+    var j = 0
+    if ( game.tickCounter % startWaveModulo == 0 && wavesLeft > 0 ) then
       val wave = game.waves(amountOfWaves - wavesLeft)
       for i <- wave.enemies do
-        //only adds tankers now, should add different types of enemies
-        game.enemies += enemies.Tanker(game.enemyPath.head.gridPos)
+        game.enemies += i
       wavesLeft -= 1
   end startWave
 

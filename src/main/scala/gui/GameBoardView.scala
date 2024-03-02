@@ -33,11 +33,4 @@ class GameBoardView(game: TowerDefenceGame, gameState: GameState) extends GridPa
       add(rectangle, x, y)
 
   end renderBoard
-  
- // val enemyRenderer = EnemyRenderer(game, this)
- // enemyRenderer.renderEnemies() // Call this whenever you need to refresh the enemy renderings
-
- // val towerRenderer = new TowerRenderer(game, this)
- // towerRenderer.renderTowers() // Call this when initializing the game board and whenever towers are added/updated
-
 }

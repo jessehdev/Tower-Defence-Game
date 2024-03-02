@@ -7,4 +7,7 @@ class Tanker(var position: GridPos) extends Enemy {
   val damage: Int = 300
   val attackSpeed: Int = 2
   var pathIndex: Int = 0
+
+  override def getType =
+    "Tanker"
 }

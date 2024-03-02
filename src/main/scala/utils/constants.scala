@@ -9,10 +9,8 @@ import scala.collection.mutable.ArrayBuffer
 class Constants {
 
   //these will be read from a JSON file eventually
-  val m = new Tanker(initialPos)
-  val n = new Tanker(GridPos(1,1))
-  val a = new Fiend(GridPos(2,1))
-  val b = new Fiend(GridPos(3,1))
+  val m = Tanker(GridPos(2,1))
+  val n = Fiend(GridPos(3,1))
   val enemies: ArrayBuffer[Enemy] = ArrayBuffer[Enemy](m,n)
 
   val k = new Basic(GridPos(3,3))
@@ -24,9 +22,13 @@ class Constants {
   val boardHeight = 6
   val boardWidth = 6
   
-  val i = new Wave(ArrayBuffer(m))
-  val j = new Wave(ArrayBuffer(m,n))
-  val waves = Array[Wave](i,j)
+  val waves = Array[Wave](
+    Wave(ArrayBuffer(new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)))),
+    Wave(ArrayBuffer(new Tanker(GridPos(0,1)), new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)), new Fiend(GridPos(0,1)))),
+    Wave(ArrayBuffer(new Tanker(GridPos(0,1)), new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)), new Fiend(GridPos(0,1))),
+    // Continue for other waves
+    ))
+  
   var amountOfWaves = waves.length
 
   val enemyPath = Array[GridCell](PathCell(GridPos(0,1)), PathCell(GridPos(1,1)), PathCell(GridPos(2,1)),

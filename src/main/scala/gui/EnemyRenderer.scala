@@ -16,7 +16,7 @@ class EnemyRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
     // First, clear existing enemy representations from the GridPane to avoid duplicates
     //gameBoard.children.clear()
     game.enemies.foreach( enemy =>
-      val enemyNode = createEnemyNode(enemy)
+      val enemyNode = createEnemyNode(enemy) 
       GridPane.setConstraints(enemyNode, enemy.position.x, enemy.position.y)
       gameBoard.children.add(enemyNode)
     )
@@ -24,10 +24,9 @@ class EnemyRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
     def createEnemyNode(enemy: Enemy): StackPane = 
       val enemyCircle = new Circle {
       radius = 12 //cellSize / 4 Adjust the size as needed
-      fill = enemy match {
+      fill = enemy match 
         case _: Fiend => Color.Red // Fiends are red
         case _: Tanker => Color.Violet // Tankers are violet
-      }
     }
       // StackPane centers children by default => circles in middle of GridCells
       new StackPane {

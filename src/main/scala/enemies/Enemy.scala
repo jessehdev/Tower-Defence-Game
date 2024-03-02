@@ -30,4 +30,6 @@ trait Enemy {
   //added the construction parameter
   def takeDamage(amountOfDamage: Int) = 
     this.health -= amountOfDamage
+
+  def getType: String
 }
