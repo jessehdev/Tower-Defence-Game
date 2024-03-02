@@ -5,7 +5,7 @@ import scala.collection.mutable.ArrayBuffer
 import scala.math.{pow, sqrt}
 
 trait Tower {
-  val position: GridPos
+  var position: GridPos
   var health: Int
   var damage: Int
   val firingRate: Int

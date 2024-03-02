@@ -1,7 +1,7 @@
 package gui
 
 import game._
-import gui.EnemyRenderer
+import gui.{EnemyRenderer}
 
 class RenderGameState(game: TowerDefenceGame, board: GameBoardView, statusBar: StatusBar) {
   def renderGame() = 

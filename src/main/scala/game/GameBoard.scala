@@ -6,6 +6,7 @@ import utils.{Constants}
 import towers.{Tower}
 import game.{TowerDefenceGame}
 import game.{TowerException}
+import scala.collection.mutable.ArrayBuffer
 
 class GameBoard(game: TowerDefenceGame) {
   val width = game.constants.boardWidth
@@ -25,6 +26,14 @@ class GameBoard(game: TowerDefenceGame) {
   val enemyPath = game.enemyPath
   var grid = game.grid
 
+  var available = ArrayBuffer[GridPos]() 
+  
+  def updateAvailable() =
+    grid.foreach(_.foreach( cell => 
+    if cell.canPlaceTower && !cell.hasTower(game.towers) then
+      available += cell.gridPos))  
+  end updateAvailable 
+
   /*
     * logic how tower gets added to the arraybuffer might still need some extra thinking
     * might not work, think how a tower is added e.g. placeTower(Basic(gridPos(2,2)), gridPos(2,2))
@@ -36,6 +45,7 @@ class GameBoard(game: TowerDefenceGame) {
   def placeTower(tower: Tower, gridPos: GridPos): Boolean = 
     if ( grid(gridPos.x)(gridPos.y).canPlaceTower && !game.towers.exists(_.position == gridPos) )then
       game.towers += tower
+      updateAvailable()
       true
     else 
       throw TowerException(

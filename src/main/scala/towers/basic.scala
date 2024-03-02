@@ -1,7 +1,7 @@
 package towers
 import utils.{GridPos}
 
-class Basic(override val position: GridPos) extends Tower {
+class Basic(var position: GridPos) extends Tower {
   var health: Int = 1200
   var damage: Int = 250
   val firingRate: Int = 3

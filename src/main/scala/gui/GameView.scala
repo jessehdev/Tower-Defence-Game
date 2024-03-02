@@ -10,18 +10,25 @@ object GameView {
     val state = game.gameState
     
     val purchaseButton = PurchaseButton(state.player)
+   // val placeButton = PlaceButton(state.player)
     val board = GameBoardView(game, state)
     val statusBar = StatusBar(state)
+    val towerInventory = TowerInventory(game)
 
     // class renderGameState, which renders enemies, towers and status bar
     val render = RenderGameState(game, board, statusBar)
 
-    val topContainer: VBox = new VBox {
+    val topContainer = new VBox {
        children = Seq(statusBar, purchaseButton)
     }   
+    
+    val inventoryContainer = new VBox {
+      children = Seq(towerInventory)
+    } 
 
     top = topContainer
     center = board
+    right = inventoryContainer
 
     // override def handle(now: Long) = 
     // render.renderGame()

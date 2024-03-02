@@ -16,8 +16,8 @@ trait Enemy {
 
   val rand = new Random
   
-  val offsetX: Double = rand.nextDouble() * 15
-  val offsetY: Double = rand.nextDouble() * 15
+  val offsetX: Double = rand.nextDouble() * 25
+  val offsetY: Double = rand.nextDouble() * 25
 
   override def toString(): String = 
     s"An enemy with $health amount of health at position $position"

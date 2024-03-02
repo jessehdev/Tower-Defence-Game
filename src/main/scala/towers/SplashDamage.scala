@@ -4,7 +4,7 @@ import enemies.{Enemy}
 import scala.collection.mutable.ArrayBuffer
 import scala.math.{sqrt, pow}
 
-class SplashDamage(override val position: GridPos) extends Tower {
+class SplashDamage(var position: GridPos) extends Tower {
   var health: Int = 800
   var damage: Int = 100
   val firingRate: Int = 3
