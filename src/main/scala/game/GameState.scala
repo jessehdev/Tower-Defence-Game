@@ -18,8 +18,7 @@ class GameState(game: TowerDefenceGame) {
   var player = new Player(game, this)
 
   def enemiesMove() =
-     if ( game.tickCounter % enemiesMoveModulo == 0 ) then
-       game.enemies.foreach( _.move(this.game) )
+    game.enemies.foreach( _.move(this, this.game) )
   end enemiesMove
 
   def towersAttack() =
