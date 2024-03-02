@@ -10,7 +10,6 @@ Eliminating enemies gives the player resources (most likely gold), which the pla
 
 
 ### Todo
-1) Add feature for enemies attacking tower
-2) Renew gametick algorithm to use scalafx animation timer, then create TowerDefenceGameTest and renew GameStateTest
-
-https://javadoc.io/static/org.scalafx/scalafx_2.13/16.0.0-R22/scalafx/animation/AnimationTimer.html
+ 1) Loading levels from JSON
+ 2) Add buying and placing towers to gui
+ 3) Make more levels

@@ -31,8 +31,8 @@ class TowerRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
       val towerNode = new StackPane {
         val octagon = createOctagon(48, 48, 24) 
         octagon.fill = tower match {
-          case _: Basic => Color.DarkCyan
-          case _: SplashDamage => Color.DarkOliveGreen 
+          case _: Basic => Color.web("#ed92fd") // ("#da1afb")  
+          case _: SplashDamage => Color.web("#B70404") 
         }
         children.add(octagon)
       }

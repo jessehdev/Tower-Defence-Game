@@ -42,24 +42,24 @@ class Constants {
     // define a 6x6 grid and add gridcells to it, in the beginning only scenerycells and pathcells
   val grid = ArrayBuffer[Array[GridCell]]()
   grid += Array(SceneryCell(GridPos(0,0)), PathCell(GridPos(0,1)), TowerCell(GridPos(0,2)), TowerCell(GridPos(0,3)),
-  TowerCell(GridPos(0,4)), TowerCell(GridPos(0,5)), SceneryCell(GridPos(0,6)), SceneryCell(GridPos(0,7)), SceneryCell(GridPos(0,8)))
+  SceneryCell(GridPos(0,4)), SceneryCell(GridPos(0,5)), SceneryCell(GridPos(0,6)), SceneryCell(GridPos(0,7)), SceneryCell(GridPos(0,8)))
 
   grid += Array(SceneryCell(GridPos(1,0)), PathCell(GridPos(1,1)), SceneryCell(GridPos(1,2)), SceneryCell(GridPos(1,3)),
-  SceneryCell(GridPos(1,4)), SceneryCell(GridPos(1,5)), SceneryCell(GridPos(1,6)), SceneryCell(GridPos(1,7)), SceneryCell(GridPos(1,8)))
+  SceneryCell(GridPos(1,4)), SceneryCell(GridPos(1,5)), TowerCell(GridPos(1,6)), SceneryCell(GridPos(1,7)), SceneryCell(GridPos(1,8)))
 
-  grid += Array(SceneryCell(GridPos(2,0)), PathCell(GridPos(2,1)), SceneryCell(GridPos(2,2)), SceneryCell(GridPos(2,3)),
+  grid += Array(SceneryCell(GridPos(2,0)), PathCell(GridPos(2,1)), TowerCell(GridPos(2,2)), SceneryCell(GridPos(2,3)),
   SceneryCell(GridPos(2,4)), SceneryCell(GridPos(2,5)), SceneryCell(GridPos(2,6)), SceneryCell(GridPos(2,7)), SceneryCell(GridPos(2,8)))
 
   grid += Array(SceneryCell(GridPos(3,0)), PathCell(GridPos(3,1)), SceneryCell(GridPos(3,2)), SceneryCell(GridPos(3,3)),
   SceneryCell(GridPos(3,4)), SceneryCell(GridPos(3,5)), SceneryCell(GridPos(3,6)), SceneryCell(GridPos(3,7)), SceneryCell(GridPos(3,8)))
 
-  grid += Array(SceneryCell(GridPos(4,0)), PathCell(GridPos(4,1)), SceneryCell(GridPos(4,2)), SceneryCell(GridPos(4,3)),
+  grid += Array(SceneryCell(GridPos(4,0)), PathCell(GridPos(4,1)), TowerCell(GridPos(4,2)), TowerCell(GridPos(4,3)),
   SceneryCell(GridPos(4,4)), PathCell(GridPos(4,5)), PathCell(GridPos(4,6)), PathCell(GridPos(4,7)), WinningAreaCell(GridPos(4,8)))
 
-  grid += Array(SceneryCell(GridPos(5,0)), PathCell(GridPos(5,1)), SceneryCell(GridPos(5,2)), SceneryCell(GridPos(5,3)),
-  SceneryCell(GridPos(5,4)), PathCell(GridPos(5,5)), SceneryCell(GridPos(5,6)), SceneryCell(GridPos(5,7)), SceneryCell(GridPos(5,8)))
+  grid += Array(SceneryCell(GridPos(5,0)), PathCell(GridPos(5,1)), SceneryCell(GridPos(5,2)), TowerCell(GridPos(5,3)),
+  SceneryCell(GridPos(5,4)), PathCell(GridPos(5,5)), TowerCell(GridPos(5,6)), SceneryCell(GridPos(5,7)), TowerCell(GridPos(5,8)))
 
-  grid += Array(SceneryCell(GridPos(6,0)), PathCell(GridPos(6,1)), SceneryCell(GridPos(6,2)), SceneryCell(GridPos(6,3)),
+  grid += Array(SceneryCell(GridPos(6,0)), PathCell(GridPos(6,1)), TowerCell(GridPos(6,2)), SceneryCell(GridPos(6,3)),
   PathCell(GridPos(6,4)), PathCell(GridPos(6,5)), SceneryCell(GridPos(6,6)), SceneryCell(GridPos(6,7)), SceneryCell(GridPos(6,8)))
   
   grid += Array(SceneryCell(GridPos(7,0)), PathCell(GridPos(7,1)), SceneryCell(GridPos(7,2)), SceneryCell(GridPos(7,3)),
