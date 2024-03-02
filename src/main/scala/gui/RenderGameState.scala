@@ -1,8 +1,9 @@
 package gui
+
 import game._
 import gui.EnemyRenderer
 
-class RenderGameState(game: TowerDefenceGame, board: GameBoardView) {
+class RenderGameState(game: TowerDefenceGame, board: GameBoardView, statusBar: StatusBar) {
   def renderGame() = 
   // Clear previous GUI elements if necessary
     board.getChildren.clear()
@@ -16,5 +17,6 @@ class RenderGameState(game: TowerDefenceGame, board: GameBoardView) {
   // Render towers
     val towerRenderer = TowerRenderer(game, board)
     towerRenderer.renderTowers()
-
+    
+    statusBar.updateLabels()
 }

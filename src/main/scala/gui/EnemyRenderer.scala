@@ -12,9 +12,8 @@ import scalafx.scene.layout.StackPane
 class EnemyRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
 //  val cellSize = 100 //gameBoard.cellSize // Assuming you can access cellSize from GameBoardView
 
-  def renderEnemies(): Unit = 
+  def renderEnemies() = 
     // First, clear existing enemy representations from the GridPane to avoid duplicates
-    // Note: Implement a more selective clearing mechanism if other elements shouldn't be cleared
     //gameBoard.children.clear()
     game.enemies.foreach( enemy =>
       val enemyNode = createEnemyNode(enemy)
@@ -22,10 +21,9 @@ class EnemyRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
       gameBoard.children.add(enemyNode)
     )
   
-
     def createEnemyNode(enemy: Enemy): StackPane = 
       val enemyCircle = new Circle {
-      radius = 12 //cellSize / 4 // Adjust the size as needed
+      radius = 12 //cellSize / 4 Adjust the size as needed
       fill = enemy match {
         case _: Fiend => Color.Red // Fiends are red
         case _: Tanker => Color.Violet // Tankers are violet

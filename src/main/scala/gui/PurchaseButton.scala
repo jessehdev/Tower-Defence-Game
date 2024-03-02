@@ -8,17 +8,14 @@ import scalafx.geometry.Insets
 
 object PurchaseButton {
   def apply(player: Player): HBox = new HBox {
-    // Set the alignment for the HBox
     alignment = Pos.Center
     padding = Insets(20, 20, 20, 20)
 
-    // Create the button
     val button = new Button("Purchase a new Tower") {
       // Set up the event handler for button action (click)
       onAction = _ => {
         // Define the action to purchase a new tower
         println("Purchasing a new tower...")
-        // Add your purchase logic here
       }
         style = "-fx-font-size: 12pt; " +
           "-fx-background-color: #d3d3d3; " +
@@ -27,8 +24,6 @@ object PurchaseButton {
           "-fx-border-radius: 4; " +
           "-fx-padding: 5;"
     }
-
-    // Add the button to the children of the HBox
     children.add(button)
   }
 }

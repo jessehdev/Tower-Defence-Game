@@ -20,7 +20,9 @@ class GameState(game: TowerDefenceGame) {
   def towersAttack() =
     if ( game.tickCounter % towersAttackModulo == 0 ) then
       game.towers.foreach( _.shootEnemy(game.enemies) )
-      enemiesKilled += game.enemies.filterNot( _.health >= 0).size
+      val killed = game.enemies.filterNot( _.health >= 0).size
+      enemiesKilled += killed
+      player.earnResources( 100 * killed )
       game.enemies = game.enemies.filter( _.health > 0 )
   end towersAttack
 

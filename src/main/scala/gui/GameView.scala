@@ -1,7 +1,6 @@
 package gui
 
-import gui._
-import scalafx.scene.layout.{BorderPane, VBox, Pane}
+import scalafx.scene.layout.{BorderPane, VBox, Pane, HBox}
 import game.{GameState, TowerDefenceGame}
 import scalafx.animation.AnimationTimer
 
@@ -10,12 +9,12 @@ object GameView {
     val game = new TowerDefenceGame
     val state = new GameState(game)
     
-    val statusBar = StatusBar(state.player, state)
     val purchaseButton = PurchaseButton(state.player)
     val board = GameBoardView(game, state)
+    val statusBar = StatusBar(state)
 
-    // class renderGameState, which renders both enemies and towers
-    val render = RenderGameState(game, board)
+    // class renderGameState, which renders enemies, towers and status bar
+    val render = RenderGameState(game, board, statusBar)
 
     val topContainer: VBox = new VBox {
        children = Seq(statusBar, purchaseButton)
@@ -31,6 +30,7 @@ object GameView {
       if lastTime > 0 then
         val delta = (t-lastTime)/1e9
         this.render.renderGame()
+        //println("rendering game state")
 
       lastTime = t
   })
