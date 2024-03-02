@@ -50,6 +50,7 @@ class TowerDefenceGame {
     gameState.enemiesMove()
     gameState.startWave()
     gameState.handleEnemySpawning()
+    gameBoard.updateAvailable()
     gameWon()
     gameOver()
     //maybe check game state
