@@ -16,7 +16,6 @@ class GameState(game: TowerDefenceGame) {
        game.enemies.foreach( _.move(this.game) )
   end enemiesMove
 
-  // uses the towers and enemies of a specific game instance
   def towersAttack() =
     if ( game.tickCounter % towersAttackModulo == 0 ) then
       game.towers.foreach( _.shootEnemy(game.enemies) )
@@ -24,9 +23,9 @@ class GameState(game: TowerDefenceGame) {
       enemiesKilled += killed
       player.earnResources( 100 * killed )
       game.enemies = game.enemies.filter( _.health > 0 )
+      println(s"Resources: ${player.resources}, enemies killed: ${enemiesKilled}")
   end towersAttack
 
-  //figure out if Thread.sleep works as intended, might block Main thread
   def startWave() =
     if ( game.tickCounter % 200 == 0 && wavesLeft > 0 ) then
       val wave = game.waves(amountOfWaves - wavesLeft)

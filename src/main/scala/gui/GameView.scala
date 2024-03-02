@@ -7,7 +7,7 @@ import scalafx.animation.AnimationTimer
 object GameView {
   def apply(): BorderPane = new BorderPane {
     val game = new TowerDefenceGame
-    val state = new GameState(game)
+    val state = game.gameState
     
     val purchaseButton = PurchaseButton(state.player)
     val board = GameBoardView(game, state)

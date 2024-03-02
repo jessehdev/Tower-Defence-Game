@@ -12,13 +12,13 @@ class StatusBar(state: GameState) extends HBox {
   spacing = 90
   alignment = Pos.Center
   
-  val resourcesLabel = new Label()
-  val enemiesKilledLabel = new Label()
-  val wavesLeftLabel = new Label()
+  var resourcesLabel = new Label()
+  var enemiesKilledLabel = new Label()
+  var wavesLeftLabel = new Label()
   
   updateLabels() // Initial update
 
-  def updateLabels(): Unit = {
+  def updateLabels() =  
     resourcesLabel.text = s"Resources: ${state.player.resources}"
     resourcesLabel.font = Font.font("Arial", FontWeight.Bold, FontPosture.Italic, 22)
 
@@ -27,7 +27,7 @@ class StatusBar(state: GameState) extends HBox {
 
     wavesLeftLabel.text = s"Waves Left: ${state.wavesLeft}"
     wavesLeftLabel.font = Font.font("Arial", FontWeight.Bold, FontPosture.Italic, 22)
-  }
+  end updateLabels
 
   children = Seq(resourcesLabel, enemiesKilledLabel, wavesLeftLabel)
 }

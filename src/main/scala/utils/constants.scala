@@ -1,6 +1,6 @@
 package utils
 
-import enemies.{Enemy, Tanker}
+import enemies._
 import gridcells._
 import towers.{Tower,Basic}
 import utils.{Wave}
@@ -10,7 +10,9 @@ class Constants {
 
   //these will be read from a JSON file eventually
   val m = new Tanker(initialPos)
-  val n = new Tanker(initialPos)
+  val n = new Tanker(GridPos(1,1))
+  val a = new Fiend(GridPos(2,1))
+  val b = new Fiend(GridPos(3,1))
   val enemies: ArrayBuffer[Enemy] = ArrayBuffer[Enemy](m,n)
 
   val k = new Basic(GridPos(3,3))
@@ -28,7 +30,10 @@ class Constants {
   var amountOfWaves = waves.length
 
   val enemyPath = Array[GridCell](PathCell(GridPos(0,1)), PathCell(GridPos(1,1)), PathCell(GridPos(2,1)),
-    PathCell(GridPos(3,1)), PathCell(GridPos(4,1)), PathCell(GridPos(5,1)), PathCell(GridPos(6,1)), PathCell(GridPos(7,1)), WinningAreaCell(GridPos(8,1)))
+    PathCell(GridPos(3,1)), PathCell(GridPos(4,1)), PathCell(GridPos(5,1)), PathCell(GridPos(6,1)), PathCell(GridPos(7,1)), PathCell(GridPos(8,1)),
+    PathCell(GridPos(8,2)), PathCell(GridPos(8,3)), PathCell(GridPos(8,4)), PathCell(GridPos(7,4)), PathCell(GridPos(6,5)), PathCell(GridPos(6,4)), PathCell(GridPos(5,5)),
+    PathCell(GridPos(4,5)), PathCell(GridPos(4,6)), PathCell(GridPos(4,7)), WinningAreaCell(GridPos(4,8))
+    )
 
   val initialPos = enemyPath(0).gridPos
   
@@ -47,17 +52,17 @@ class Constants {
   SceneryCell(GridPos(3,4)), SceneryCell(GridPos(3,5)), SceneryCell(GridPos(3,6)), SceneryCell(GridPos(3,7)), SceneryCell(GridPos(3,8)))
 
   grid += Array(SceneryCell(GridPos(4,0)), PathCell(GridPos(4,1)), SceneryCell(GridPos(4,2)), SceneryCell(GridPos(4,3)),
-  SceneryCell(GridPos(4,4)), SceneryCell(GridPos(4,5)), SceneryCell(GridPos(4,6)), SceneryCell(GridPos(4,7)), SceneryCell(GridPos(4,8)))
+  SceneryCell(GridPos(4,4)), PathCell(GridPos(4,5)), PathCell(GridPos(4,6)), PathCell(GridPos(4,7)), WinningAreaCell(GridPos(4,8)))
 
   grid += Array(SceneryCell(GridPos(5,0)), PathCell(GridPos(5,1)), SceneryCell(GridPos(5,2)), SceneryCell(GridPos(5,3)),
-  SceneryCell(GridPos(5,4)), SceneryCell(GridPos(5,5)), SceneryCell(GridPos(5,6)), SceneryCell(GridPos(5,7)), SceneryCell(GridPos(5,8)))
+  SceneryCell(GridPos(5,4)), PathCell(GridPos(5,5)), SceneryCell(GridPos(5,6)), SceneryCell(GridPos(5,7)), SceneryCell(GridPos(5,8)))
 
   grid += Array(SceneryCell(GridPos(6,0)), PathCell(GridPos(6,1)), SceneryCell(GridPos(6,2)), SceneryCell(GridPos(6,3)),
-  SceneryCell(GridPos(6,4)), SceneryCell(GridPos(6,5)), SceneryCell(GridPos(6,6)), SceneryCell(GridPos(6,7)), SceneryCell(GridPos(6,8)))
+  PathCell(GridPos(6,4)), PathCell(GridPos(6,5)), SceneryCell(GridPos(6,6)), SceneryCell(GridPos(6,7)), SceneryCell(GridPos(6,8)))
   
   grid += Array(SceneryCell(GridPos(7,0)), PathCell(GridPos(7,1)), SceneryCell(GridPos(7,2)), SceneryCell(GridPos(7,3)),
-  SceneryCell(GridPos(7,4)), SceneryCell(GridPos(7,5)), SceneryCell(GridPos(7,6)), SceneryCell(GridPos(7,7)), SceneryCell(GridPos(7,8)))
+  PathCell(GridPos(7,4)), SceneryCell(GridPos(7,5)), SceneryCell(GridPos(7,6)), SceneryCell(GridPos(7,7)), SceneryCell(GridPos(7,8)))
   
-  grid += Array(SceneryCell(GridPos(8,0)), WinningAreaCell(GridPos(8,1)), SceneryCell(GridPos(8,2)), SceneryCell(GridPos(8,3)),
-  SceneryCell(GridPos(8,4)), SceneryCell(GridPos(8,5)), SceneryCell(GridPos(8,6)), SceneryCell(GridPos(8,7)), SceneryCell(GridPos(8,8)))
+  grid += Array(SceneryCell(GridPos(8,0)), PathCell(GridPos(8,1)), PathCell(GridPos(8,2)), PathCell(GridPos(8,3)),
+  PathCell(GridPos(8,4)), SceneryCell(GridPos(8,5)), SceneryCell(GridPos(8,6)), SceneryCell(GridPos(8,7)), SceneryCell(GridPos(8,8)))
 }
