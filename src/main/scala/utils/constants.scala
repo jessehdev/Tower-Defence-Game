@@ -23,7 +23,7 @@ class Constants {
   val boardWidth = 6
   
   val waves = Array[Wave](
-    Wave(ArrayBuffer(new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)))),
+    Wave(ArrayBuffer(new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)), new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)), new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)))),
     Wave(ArrayBuffer(new Tanker(GridPos(0,1)), new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)), new Fiend(GridPos(0,1)))),
     Wave(ArrayBuffer(new Tanker(GridPos(0,1)), new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)), new Fiend(GridPos(0,1))),
     // Continue for other waves

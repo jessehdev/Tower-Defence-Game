@@ -1,5 +1,7 @@
 package game
 import game.{TowerDefenceGame}
+import scala.collection.mutable.ArrayBuffer
+import enemies.{Enemy}
 
 class GameState(game: TowerDefenceGame) {
   var enemiesKilled: Int = 0
@@ -8,7 +10,10 @@ class GameState(game: TowerDefenceGame) {
 
   var enemiesMoveModulo = 80
   var towersAttackModulo = 40
-  val startWaveModulo = 300
+  var enemyQueue = ArrayBuffer[Enemy]()
+  var spawnCounter = 0
+  var spawnWait = 80
+  val startWaveModulo = 800
   // added gamestate and game as a construction parameters to player
   var player = new Player(game, this)
 
@@ -31,10 +36,20 @@ class GameState(game: TowerDefenceGame) {
     var j = 0
     if ( game.tickCounter % startWaveModulo == 0 && wavesLeft > 0 ) then
       val wave = game.waves(amountOfWaves - wavesLeft)
-      for i <- wave.enemies do
-        game.enemies += i
+      enemyQueue = wave.enemies
+     // for i <- wave.enemies do
+      //  game.enemies += i
       wavesLeft -= 1
   end startWave
+
+  //handles enemy spawning every 0.5 seconds one by one
+  def handleEnemySpawning() =
+    if enemyQueue.nonEmpty && spawnCounter >= spawnWait then
+      game.enemies += enemyQueue.head
+      enemyQueue = enemyQueue.tail
+      spawnCounter = 0
+    else 
+      spawnCounter += 1
 
   def updateState() = ???
 }

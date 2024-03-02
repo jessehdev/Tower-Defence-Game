@@ -16,10 +16,7 @@ class TowerDefenceGame {
   val enemyPath = constants.enemyPath
   //enemies originally was constants.enemies
   var enemies = new ArrayBuffer[Enemy]()
-  enemies += Tanker(GridPos(0,1))
-  enemies += Tanker(GridPos(1,1))
-  enemies += Fiend(GridPos(2,1))
-  enemies += Fiend(GridPos(3,1))
+
   //towers originally was constants.towers
   var towers = new ArrayBuffer[Tower]()
   towers += Basic(GridPos(0,2))
@@ -50,6 +47,7 @@ class TowerDefenceGame {
     gameState.towersAttack()
     gameState.enemiesMove()
     gameState.startWave()
+    gameState.handleEnemySpawning()
     gameWon()
     gameOver()
     //maybe check game state
