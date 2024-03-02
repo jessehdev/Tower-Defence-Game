@@ -23,10 +23,15 @@ class EnemyRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
   
     def createEnemyNode(enemy: Enemy): StackPane = 
       val enemyCircle = new Circle {
-      radius = 12 //cellSize / 4 Adjust the size as needed
+      radius = enemy match 
+        case _: Fiend => 12
+        case _: Tanker => 15
       fill = enemy match 
         case _: Fiend => Color.web("#FE0000") // Fiends are red
         case _: Tanker => Color.Violet // Tankers are violet
+      // Randomize position within the StackPane
+      translateX = enemy.offsetX
+      translateY = enemy.offsetY
     }
       // StackPane centers children by default => circles in middle of GridCells
       new StackPane {

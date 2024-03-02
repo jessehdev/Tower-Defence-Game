@@ -12,7 +12,7 @@ class GameState(game: TowerDefenceGame) {
   var towersAttackModulo = 40
   var enemyQueue = ArrayBuffer[Enemy]()
   var spawnCounter = 0
-  var spawnWait = 80
+  var spawnWait = 40
   val startWaveModulo = 800
   // added gamestate and game as a construction parameters to player
   var player = new Player(game, this)

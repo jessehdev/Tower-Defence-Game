@@ -4,7 +4,6 @@ import gridcells._
 import scalafx.scene.paint.Color
 
 class GridCellView {
-    
  // Method to determine the color of a cell based on its type
  // Called in GameBoardView.scala
   def determineCellColor(cell: GridCell): Color = cell match {
@@ -14,5 +13,4 @@ class GridCellView {
     case _: WinningAreaCell => Color.web("#ffbf00") 
     case _ => Color.Red // shouldn't appear
   }
-
 }

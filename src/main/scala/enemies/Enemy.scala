@@ -3,6 +3,7 @@ package enemies
 import utils.{GridPos}
 import utils.{Constants}
 import game.{TowerDefenceGame, GameState}
+import scala.util.Random
 
 trait Enemy {
   //abstracts
@@ -12,6 +13,11 @@ trait Enemy {
   var position: GridPos
 //added this, wasn't in the original plan
   var pathIndex: Int 
+
+  val rand = new Random
+  
+  val offsetX: Double = rand.nextDouble() * 15
+  val offsetY: Double = rand.nextDouble() * 15
 
   override def toString(): String = 
     s"An enemy with $health amount of health at position $position"
