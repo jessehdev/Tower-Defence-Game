@@ -20,7 +20,7 @@ class Player(game: TowerDefenceGame, gameState: GameState) {
 
 // both purchaseTower and upgradeTower returned boolean in initial plan
 // changed it to return it again (:D) (at least for testing purposes)
-  def purchaseTower(tower: Tower): Boolean = 
+  def purchaseTower(tower: Tower, pos: GridPos): Boolean = 
     if resources >= tower.cost then
    //   game.gameBoard.placeTower(tower, gridPos)
       game.gameBoard.updateAvailable()

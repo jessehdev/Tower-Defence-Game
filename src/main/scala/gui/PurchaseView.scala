@@ -12,7 +12,7 @@ import scalafx.Includes._
 
 class PurchaseView(game: TowerDefenceGame) extends VBox {
     alignment = Pos.Center
-    padding = Insets(20, 20, 10, 20)
+    padding = Insets(10, 20, 10, 20)
 
     val comboBox = new ComboBox(List("Basic","SplashDamage"))
     var available = game.gameBoard.available
@@ -31,9 +31,9 @@ class PurchaseView(game: TowerDefenceGame) extends VBox {
       println("Trying to purchase tower")
       (comboBox.value.value, posComboBox.value.value) match
         case ("Basic", pos: GridPos) =>
-            game.gameState.player.purchaseTower(Basic(pos), pos)
+            game.gameBoard.placeTower(Basic(pos), pos)
         case ("SplashDamage", pos: GridPos) => 
-            game.gameState.player.purchaseTower(SplashDamage(pos), pos)
+            game.gameBoard.placeTower(SplashDamage(pos), pos)
         case _ => println("Tower or position not selected")
       }
     
@@ -45,8 +45,9 @@ class PurchaseView(game: TowerDefenceGame) extends VBox {
       val posBox = posComboBox
       children = Array(towerBox, posBox)
     }
-
+/*
     def updatePurchasing() =
       posComboBox = new ComboBox(available.toList)
+*/      
     children = Array(button, chooseBoxes)
   }

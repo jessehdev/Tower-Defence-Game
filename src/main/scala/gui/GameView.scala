@@ -9,17 +9,15 @@ object GameView {
     val game = new TowerDefenceGame
     val state = game.gameState
     
-    val purchaseButton = PurchaseButton(state.player)
-   // val placeButton = PlaceButton(state.player)
     val board = GameBoardView(game, state)
     val statusBar = StatusBar(state)
     val towerInventory = TowerInventory(game)
-
+    val purchaseView = PurchaseView(game)
     // class renderGameState, which renders enemies, towers and status bar
     val render = RenderGameState(game, board, statusBar)
 
     val topContainer = new VBox {
-       children = Seq(statusBar, purchaseButton)
+       children = Seq(statusBar, purchaseView)
     }   
     
     top = topContainer

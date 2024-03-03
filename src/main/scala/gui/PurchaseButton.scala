@@ -10,6 +10,8 @@ import towers._
 import utils.GridPos
 import scalafx.Includes._
 
+// CODE NOT CURRENTLY USED IN APPLICATION
+
 object PurchaseButton {
   def apply(player: Player)= new VBox {
     alignment = Pos.Center
@@ -25,7 +27,7 @@ object PurchaseButton {
           "-fx-border-radius: 4; " +
           "-fx-padding: 5;"
     }
-
+/*
     button.onAction = (event: ActionEvent) => {
       println("Trying to purchase tower")
       comboBox.value.value match
@@ -41,7 +43,7 @@ object PurchaseButton {
           case e: Exception => println(s"Error placing tower: ${e.getMessage}")
         case _ => println("Tower or position not selected")
       }
-
+*/
     children = Array(button, comboBox)
   }
 }
