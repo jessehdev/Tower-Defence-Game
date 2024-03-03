@@ -46,7 +46,6 @@ class GameBoard(game: TowerDefenceGame) {
   def placeTower(tower: Tower, gridPos: GridPos): Boolean = 
     if ( grid(gridPos.x)(gridPos.y).canPlaceTower && !game.towers.exists(_.position == gridPos) )then
       game.towers += tower
-      updateAvailable()
       true
     else 
       throw TowerException(

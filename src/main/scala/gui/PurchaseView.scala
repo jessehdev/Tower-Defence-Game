@@ -9,6 +9,7 @@ import scalafx.event.ActionEvent
 import towers._
 import utils.GridPos
 import scalafx.Includes._
+import scalafx.collections.ObservableBuffer
 
 class PurchaseView(game: TowerDefenceGame) extends VBox {
     alignment = Pos.Center
@@ -31,10 +32,11 @@ class PurchaseView(game: TowerDefenceGame) extends VBox {
       println("Trying to purchase tower")
       (comboBox.value.value, posComboBox.value.value) match
         case ("Basic", pos: GridPos) =>
-            game.gameBoard.placeTower(Basic(pos), pos)
+            game.gameState.player.purchaseTower(Basic(pos), pos)
         case ("SplashDamage", pos: GridPos) => 
-            game.gameBoard.placeTower(SplashDamage(pos), pos)
+            game.gameState.player.purchaseTower(SplashDamage(pos), pos)
         case _ => println("Tower or position not selected")
+      updatePurchasing()  
       }
     
     val chooseBoxes = new HBox {
@@ -45,9 +47,11 @@ class PurchaseView(game: TowerDefenceGame) extends VBox {
       val posBox = posComboBox
       children = Array(towerBox, posBox)
     }
-/*
+
     def updatePurchasing() =
-      posComboBox = new ComboBox(available.toList)
-*/      
+      println(s"Updating purchasing. Available positions: ${available.mkString(", ")}")
+      posComboBox.items = ObservableBuffer(available.toList: _*)
+      posComboBox.getSelectionModel.clearSelection()
+
     children = Array(button, chooseBoxes)
   }

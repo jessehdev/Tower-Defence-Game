@@ -22,7 +22,7 @@ class Player(game: TowerDefenceGame, gameState: GameState) {
 // changed it to return it again (:D) (at least for testing purposes)
   def purchaseTower(tower: Tower, pos: GridPos): Boolean = 
     if resources >= tower.cost then
-   //   game.gameBoard.placeTower(tower, gridPos)
+      game.gameBoard.placeTower(tower, pos)
       game.gameBoard.updateAvailable()
       game.placeableTowers += tower
       resources -= tower.cost
