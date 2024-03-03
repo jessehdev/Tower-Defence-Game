@@ -8,11 +8,11 @@ import scalafx.scene.control._
 import scalafx.scene.text._
 import scala.collection.mutable.ArrayBuffer
 import utils.GridPos
-//import scalafx.scene.input.KeyCode.C
 import towers.Tower
 import scalafx.event.ActionEvent
 import scalafx.Includes._
 
+// THIS CODE IS NOT CURRENTLY USED IN THE APPLICATION
 class TowerInventory(game: TowerDefenceGame) extends VBox {
     alignment = Pos.Center
     padding = Insets(0, 28, 0, 5)

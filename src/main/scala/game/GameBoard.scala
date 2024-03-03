@@ -29,7 +29,6 @@ class GameBoard(game: TowerDefenceGame) {
   var available = ArrayBuffer[GridPos]() 
   
   def updateAvailable() =
-    available.clear()
     grid.foreach(_.foreach( cell => 
     if cell.canPlaceTower && !cell.hasTower(game.towers) then
       available += cell.gridPos))  

@@ -9,7 +9,7 @@ object GameView {
     val game = new TowerDefenceGame
     val state = game.gameState
     
-    val purchaseView = PurchaseView(game)
+    val purchaseButton = PurchaseButton(state.player)
    // val placeButton = PlaceButton(state.player)
     val board = GameBoardView(game, state)
     val statusBar = StatusBar(state)
@@ -19,16 +19,11 @@ object GameView {
     val render = RenderGameState(game, board, statusBar)
 
     val topContainer = new VBox {
-       children = Seq(statusBar, purchaseView)
+       children = Seq(statusBar, purchaseButton)
     }   
     
-    val inventoryContainer = new VBox {
-      children = Seq(towerInventory)
-    } 
-
     top = topContainer
     center = board
-    right = inventoryContainer
 
     // override def handle(now: Long) = 
     // render.renderGame()
@@ -37,6 +32,7 @@ object GameView {
       if lastTime > 0 then
         val delta = (t-lastTime)/1e9
         this.render.renderGame()
+        //println("rendering game state")
 
       lastTime = t
   })

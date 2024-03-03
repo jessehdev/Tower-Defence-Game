@@ -12,7 +12,7 @@ import scalafx.Includes._
 
 class PurchaseView(game: TowerDefenceGame) extends VBox {
     alignment = Pos.Center
-    padding = Insets(20, 20, 20, 20)
+    padding = Insets(20, 20, 10, 20)
 
     val comboBox = new ComboBox(List("Basic","SplashDamage"))
     var available = game.gameBoard.available
@@ -40,6 +40,7 @@ class PurchaseView(game: TowerDefenceGame) extends VBox {
     val chooseBoxes = new HBox {
       alignment = Pos.Center
       spacing = 30
+      padding = Insets(10,0,0,0)
       val towerBox = comboBox
       val posBox = posComboBox
       children = Array(towerBox, posBox)

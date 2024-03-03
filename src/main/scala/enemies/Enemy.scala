@@ -11,13 +11,13 @@ trait Enemy {
   val damage: Int
   val attackSpeed: Double
   var position: GridPos
-//added this, wasn't in the original plan
+// added this, wasn't in the original plan
   var pathIndex: Int 
 
   val rand = new Random
   
-  val offsetX: Double = rand.nextDouble() * 25
-  val offsetY: Double = rand.nextDouble() * 25
+  val offsetX: Double = rand.between(-20.0, 20.0)
+  val offsetY: Double = rand.between(-20.0,20.0)
 
   override def toString(): String = 
     s"An enemy with $health amount of health at position $position"
