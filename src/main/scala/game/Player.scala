@@ -14,7 +14,7 @@ class Player(game: TowerDefenceGame, gameState: GameState) {
   var constants = game.constants
   var resources = constants.initialResources
   val upgradeView = UpgradeView(game)
-  val purchaseView = PurchaseView(game)
+  val purchaseView = PurchaseView(game, upgradeView)
 
   override def toString: String =
     s"Player with ($resources) amount of resources"

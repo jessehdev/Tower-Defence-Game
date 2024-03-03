@@ -28,7 +28,8 @@ class TowerDefenceGame {
   var grid = constants.grid
 
   var gameBoard = new GameBoard(this)
-
+  var gameStateLost = false
+  var gameStateWon = false
 //variables used for gameTick
 //look for documentation of java util timer, timertask and java lang runnable
   val timer = new Timer()
@@ -62,6 +63,7 @@ class TowerDefenceGame {
   def gameWon() = 
     if ( enemies.isEmpty && gameState.wavesLeft == 0 ) then 
       println("Game won!!!")
+      gameStateWon = true
     // maybe update state to won, which ends the game
   end gameWon
 
@@ -69,4 +71,5 @@ class TowerDefenceGame {
   def gameOver() = 
     if enemies.exists( enemy => enemy.position.x == enemyPath.last.gridPos.x && enemy.position.y == enemyPath.last.gridPos.y ) then
       println("Game Lost :(")
+      gameStateLost = true
 }

@@ -12,7 +12,7 @@ import scalafx.Includes._
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.control.Alert.AlertType
 
-class PurchaseView(game: TowerDefenceGame) extends VBox {
+class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBox {
     alignment = Pos.Center
     padding = Insets(10, 20, 10, 20)
 
@@ -38,6 +38,7 @@ class PurchaseView(game: TowerDefenceGame) extends VBox {
             game.gameState.player.purchaseTower(SplashDamage(pos), pos)
         case _ => println("Tower or position not selected")
       updatePurchasing()  
+      upgradeView.updateUpgradable()
       }
     
     val chooseBoxes = new HBox {

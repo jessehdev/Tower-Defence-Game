@@ -38,7 +38,7 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
         case pos: GridPos =>
             game.gameState.player.upgradeTower(pos)
             showUpgradeConfirmation(pos)
-        case _ => println("Cannot upgrade") 
+        case null => println("Cannot upgrade") 
       }
 
     def showUpgradeConfirmation(pos: GridPos) = 
@@ -62,6 +62,12 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
           headerText = "Not enough resources"
           contentText = s"Resources: ${game.gameState.player.resources}, Cost: ${t.cost}"
     }.showAndWait()  
+
+    def updateUpgradable() =
+      towerPositions.clear()
+      for i <- game.towers do
+        towerPositions += i.position
+      towerComboBox.getSelectionModel.clearSelection()  
 
     val boxContainer = new VBox {
       alignment = Pos.Center
