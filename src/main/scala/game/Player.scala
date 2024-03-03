@@ -4,6 +4,7 @@ import towers.{Tower, Basic}
 import game.{GameState}
 import utils.{GridPos}
 import scala.collection.mutable.ArrayBuffer
+import gui.{UpgradeView, PurchaseView}
 
 case class TowerException(description: String)
     extends java.lang.Exception(description)
@@ -12,6 +13,8 @@ class Player(game: TowerDefenceGame, gameState: GameState) {
  //using the same constants from game that are used in gamestate
   var constants = game.constants
   var resources = constants.initialResources
+  val upgradeView = UpgradeView(game)
+  val purchaseView = PurchaseView(game)
 
   override def toString: String =
     s"Player with ($resources) amount of resources"
@@ -29,6 +32,7 @@ class Player(game: TowerDefenceGame, gameState: GameState) {
       resources -= tower.cost
       true
     else 
+      purchaseView.showPurchasingError(tower)
       throw TowerException(
         s"Not enough resources to purchase tower, resources: ${resources} cost: ${tower.cost}")
       false
@@ -42,6 +46,7 @@ class Player(game: TowerDefenceGame, gameState: GameState) {
       resources -= tower.upgradeCost
       true
     else
+      upgradeView.showUpgradeError(pos)
       throw TowerException(
         s"Not enough resources to upgrade tower, resources: ${resources} cost: ${tower.cost}"
       )

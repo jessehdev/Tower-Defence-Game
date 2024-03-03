@@ -38,7 +38,7 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
         case pos: GridPos =>
             game.gameState.player.upgradeTower(pos)
             showUpgradeConfirmation(pos)
-        case _ => println("Cannot upgrade")  
+        case _ => println("Cannot upgrade") 
       }
 
     def showUpgradeConfirmation(pos: GridPos) = 
@@ -46,9 +46,22 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
         new Alert(AlertType.Information) {
           title = "Tower Upgrade Successful"
           headerText = s"Tower at position $pos upgraded!"
-          contentText = s"Current Level: ${tower.level}, Current Damage: ${tower.damage}"
+          contentText = s"Current Level: ${tower.level}, Current Damage : ${tower.damage}"
         }.showAndWait()
       )
+
+    def showUpgradeError(pos: GridPos) =
+      val towers = ArrayBuffer[Tower]()
+      for i <- game.towers do
+        if i.position == pos then
+          towers += i
+      val t = towers.head
+      if game.gameState.player.resources < t.cost then 
+        new Alert(AlertType.Error) {
+          title = "Cannot upgrade tower"
+          headerText = "Not enough resources"
+          contentText = s"Resources: ${game.gameState.player.resources}, Cost: ${t.cost}"
+    }.showAndWait()  
 
     val boxContainer = new VBox {
       alignment = Pos.Center

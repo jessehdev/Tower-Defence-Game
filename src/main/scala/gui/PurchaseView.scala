@@ -10,6 +10,7 @@ import towers._
 import utils.GridPos
 import scalafx.Includes._
 import scalafx.collections.ObservableBuffer
+import scalafx.scene.control.Alert.AlertType
 
 class PurchaseView(game: TowerDefenceGame) extends VBox {
     alignment = Pos.Center
@@ -47,6 +48,13 @@ class PurchaseView(game: TowerDefenceGame) extends VBox {
       val posBox = posComboBox
       children = Array(towerBox, posBox)
     }
+
+    def showPurchasingError(t: Tower) =
+      new Alert(AlertType.Error) {
+          title = "Cannot purchase tower"
+          headerText = s"Not enough resources"
+          contentText = s"Current Resources : ${game.gameState.player.resources}, Cost : ${t.cost}"
+        }.showAndWait()
 
     def updatePurchasing() =
       posComboBox.items = ObservableBuffer(available.toList: _*)
