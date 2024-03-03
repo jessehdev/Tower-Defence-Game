@@ -3,6 +3,7 @@ package game
 import towers.{Tower, Basic}
 import game.{GameState}
 import utils.{GridPos}
+import scala.collection.mutable.ArrayBuffer
 
 case class TowerException(description: String)
     extends java.lang.Exception(description)
@@ -33,7 +34,9 @@ class Player(game: TowerDefenceGame, gameState: GameState) {
       false
   end purchaseTower
 
-  def upgradeTower(tower: Tower): Boolean = 
+  def upgradeTower(pos: GridPos): Boolean = 
+    val arr = game.towers.filter( tower => tower.position.x == pos.x && tower.position.y == pos.y )
+    val tower = arr.head
     if resources >= tower.upgradeCost then
       tower.ugrade()
       resources -= tower.upgradeCost

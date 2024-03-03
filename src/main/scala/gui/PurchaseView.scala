@@ -49,7 +49,6 @@ class PurchaseView(game: TowerDefenceGame) extends VBox {
     }
 
     def updatePurchasing() =
-      println(s"Updating purchasing. Available positions: ${available.mkString(", ")}")
       posComboBox.items = ObservableBuffer(available.toList: _*)
       posComboBox.getSelectionModel.clearSelection()
 

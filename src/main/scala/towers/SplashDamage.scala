@@ -1,4 +1,5 @@
 package towers
+
 import utils.{GridPos}
 import enemies.{Enemy}
 import scala.collection.mutable.ArrayBuffer
@@ -11,10 +12,10 @@ class SplashDamage(var position: GridPos) extends Tower {
   val range: Double = 3.3
   val cost: Int = 200
   val upgradeCost: Int = 200
-  
   override def ugrade(): Unit =
     this.health += 200
     this.damage += 70
+    this.level += 1
 
   override def shootEnemy(arr: ArrayBuffer[Enemy]) = 
     var inRange = ArrayBuffer[Enemy]()
