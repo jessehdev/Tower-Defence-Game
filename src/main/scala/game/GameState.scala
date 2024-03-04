@@ -13,7 +13,8 @@ class GameState(game: TowerDefenceGame) {
   var enemyQueue = ArrayBuffer[Enemy]()
   var spawnCounter = 0
   var spawnWait = 40
-  val startWaveModulo = 800
+  val firstWaveModulo = 300
+  val otherWaveModulo = 800
   // added gamestate and game as a construction parameters to player
   var player = new Player(game, this)
 
@@ -32,12 +33,14 @@ class GameState(game: TowerDefenceGame) {
   end towersAttack
 
   def startWave() =
-    var j = 0
+    var startWaveModulo = 600
+    if wavesLeft == amountOfWaves then
+      startWaveModulo = firstWaveModulo
+    else
+      startWaveModulo = otherWaveModulo
     if ( game.tickCounter % startWaveModulo == 0 && wavesLeft > 0 ) then
       val wave = game.waves(amountOfWaves - wavesLeft)
       enemyQueue = wave.enemies
-     // for i <- wave.enemies do
-      //  game.enemies += i
       wavesLeft -= 1
   end startWave
 

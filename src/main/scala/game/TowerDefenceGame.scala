@@ -19,8 +19,6 @@ class TowerDefenceGame {
 
   //towers originally was constants.towers
   var towers = ArrayBuffer[Tower]()
-  towers += Basic(GridPos(0,2))
-  towers += SplashDamage(GridPos(0,3))
 
   var placeableTowers = ArrayBuffer[Tower]()
 
@@ -45,16 +43,15 @@ class TowerDefenceGame {
 //contrary to initial plan, passin game as parameter to gamestate and having a reference in towerdefencegame
   var gameState = new GameState(this)
 
-  // add a functionality: If any tower health is below 0 call gameboard.destroytower
   def gameTick() = 
-    gameState.towersAttack()
-    gameState.enemiesMove()
-    gameState.startWave()
-    gameState.handleEnemySpawning()
-    gameBoard.updateAvailable()
-    gameWon()
-    gameOver()
-    //maybe check game state
+    if !gameStateLost then
+      gameState.towersAttack()
+      gameState.enemiesMove()
+      gameState.startWave()
+      gameState.handleEnemySpawning()
+      gameBoard.updateAvailable()
+      gameWon()
+      gameOver()
   end gameTick
   
   val tickInterval = 1000 / 60 // Tick interval in milliseconds

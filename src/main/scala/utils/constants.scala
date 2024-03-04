@@ -17,7 +17,7 @@ class Constants {
   val l = new Basic(GridPos(2,1))
   //val towers: ArrayBuffer[Tower] = ArrayBuffer[Tower](k,l)
 
-  var initialResources = 150
+  var initialResources = 250
 
   val boardHeight = 6
   val boardWidth = 6

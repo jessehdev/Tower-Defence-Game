@@ -6,6 +6,7 @@ import scalafx.animation.AnimationTimer
 import scalafx.geometry.Pos
 import scalafx.scene.control.Alert
 import scalafx.scene.control.Alert.AlertType
+import scalafx.application.Platform
 
 object GameView {
   def apply(): BorderPane = new BorderPane {
@@ -18,6 +19,9 @@ object GameView {
     val upgradeView = UpgradeView(game)
     val purchaseView = PurchaseView(game, upgradeView)
 
+    // Flags for rendering game state alerts
+    var gameLostAlertShown = false
+    var gameWonAlertShown = false
     // class renderGameState, which renders enemies, towers and status bar
     val render = RenderGameState(game, board, statusBar)
     
@@ -34,23 +38,25 @@ object GameView {
     
     top = topContainer
     center = board
-// EI TOIMI
-/*
-    def renderState(): Unit =
-      if game.gameStateLost == true then
-        new Alert(AlertType.Information) {
-        title = "Game Lost"
-        headerText = s"Too bad :("
-        contentText = s"Enemies managed to get to the winning area"
-        }.showAndWait()
-        guiTimer.stop()
-      else if game.gameStateWon == true then
-        new Alert(AlertType.Information) {
-        title = "Game Won"
-        headerText = s"Congratulations"
-        contentText = s"Total time : ${timeCounter}"
-        }.showAndWait()
-  */
+
+    def renderState() = 
+      Platform.runLater {
+        if game.gameStateLost && !gameLostAlertShown then
+          gameLostAlertShown = true 
+          new Alert(AlertType.Information) {
+          title = "Game Lost"
+          headerText = "Maybe try again?"
+          contentText = s"You lasted : ${game.tickCounter/60} seconds"
+          }.showAndWait()
+        else if game.gameStateWon && !gameWonAlertShown then
+          gameWonAlertShown = true 
+          new Alert(AlertType.Information) {
+          title = "Congratulations, Game Won"
+          headerText = "You've defeated all the enemies!"
+          contentText = s"You lasted : ${game.tickCounter/60} seconds"
+          }.showAndWait()
+      } 
+    end renderState
 
     var timeCounter = 0L
     var lastTime = 0L
@@ -59,7 +65,7 @@ object GameView {
       if lastTime > 0 then
         val delta = (t-lastTime)/1e9
         this.render.renderGame()
-       // this.renderState()
+        this.renderState()
       lastTime = t
   })
     guiTimer.start()
