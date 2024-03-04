@@ -11,7 +11,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
   "enemiesMove" should "move an enemy to correct GridCell" in {
     val game = new TowerDefenceGame
     val state = new GameState(game)
-    val pos = GridPos(0,1)
+    val pos = game.enemyPath.head.gridPos
     val tanker = new Tanker(pos)
     game.enemies += tanker
     game.tickCounter = state.enemiesMoveModulo

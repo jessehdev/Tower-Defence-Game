@@ -14,17 +14,19 @@ class TowerTest extends AnyFlatSpec with Matchers {
         var enemyBuffer = ArrayBuffer[Enemy]()
         val basic = new Basic(GridPos(3,3))
         val tanker = new Tanker(GridPos(4,3))
+        val compareTanker = new Tanker(GridPos(10,10))
         enemyBuffer += tanker
         basic.shootEnemy(enemyBuffer)
-        assert(tanker.health < 1000)
+        assert(tanker.health < compareTanker.health)
     }
     it should "not attack a barely out of range enemy" in {
         var enemyBuffer = ArrayBuffer[Enemy]()
         val tanker = new Tanker(GridPos(0,0))
         val basic = new Basic(GridPos(3,4))
+        val compareTanker = new Tanker(GridPos(10,10))
         enemyBuffer += tanker
         basic.shootEnemy(enemyBuffer)
-        tanker.health shouldBe 1000
+        tanker.health shouldBe compareTanker.health
     }
     it should "upgrade correctly" in {
         var tower = new Basic(GridPos(1,1))
@@ -38,16 +40,17 @@ class TowerTest extends AnyFlatSpec with Matchers {
         val tanker2 = new Tanker(GridPos(2,3))
         val tanker3 = new Tanker(GridPos(3,2))
         val tanker4 = new Tanker(GridPos(4,3))
+        val compareTanker = new Tanker(GridPos(20,20))
         enemyBuffer += tanker1
         enemyBuffer += tanker2
         enemyBuffer += tanker3
         enemyBuffer += tanker4
         var splashTower = new SplashDamage(GridPos(4,4))
         splashTower.shootEnemy(enemyBuffer)
-        tanker1.health shouldBe 900
-        tanker2.health shouldBe 900
-        tanker3.health shouldBe 900
-        tanker4.health shouldBe 900
+        tanker1.health shouldBe compareTanker.health - splashTower.damage
+        tanker2.health shouldBe compareTanker.health - splashTower.damage
+        tanker3.health shouldBe compareTanker.health - splashTower.damage
+        tanker4.health shouldBe compareTanker.health - splashTower.damage
     }
 }    
 end TowerTest

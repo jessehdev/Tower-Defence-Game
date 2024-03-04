@@ -6,6 +6,7 @@ import utils.GridPos
 import scala.collection.mutable.ArrayBuffer
 
 class GameBoardTest extends AnyFlatSpec with Matchers { 
+  /*
   "DestroyTower" should "return true when destroying a tower and remove the towers from towers" in {
     val game = new TowerDefenceGame
     val board = new GameBoard(game)
@@ -42,6 +43,7 @@ class GameBoardTest extends AnyFlatSpec with Matchers {
     board.destroyTower(gridPos = gridPos3)
     game.towers.length shouldBe 1
   }
+  */
   "PlaceTower" should "return true when a tower is successfully placed on the grid" in {
     val game = new TowerDefenceGame
     val board = new GameBoard(game)

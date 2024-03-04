@@ -24,16 +24,17 @@ class EnemyTest extends AnyFlatSpec with Matchers {
     } 
     it should "not take any damage when shot at for 0 damage" in {
         val tanker = new Tanker(GridPos(1,1))
+        val compareTanker = new Tanker(GridPos(10,10))
         tanker.takeDamage(0)
-        tanker.health shouldBe 1000
+        tanker.health shouldBe compareTanker.health
     }
     it should "correctly move the defined path when move() is called" in {
         val tanker = new Tanker(GridPos(0,1))
         val game = new TowerDefenceGame
-        tanker.move(game)
+        tanker.move(game.gameState, game)
         tanker.pathIndex shouldBe 1
-        tanker.position.x shouldBe 1
-        tanker.position.y shouldBe 1 
+        tanker.position.x shouldBe game.enemyPath(1).gridPos.x
+        tanker.position.y shouldBe game.enemyPath(1).gridPos.y
     }
     it should "have the correct position when calling getPos()" in {
         val tanker = new Tanker(GridPos(5,7))
