@@ -19,8 +19,7 @@ class TowerDefenceGame {
 
   //towers originally was constants.towers
   var towers = ArrayBuffer[Tower]()
-
-  var placeableTowers = ArrayBuffer[Tower]()
+ // towers += Basic(GridPos(2,2))
 
   val waves = constants.waves
   var grid = constants.grid
@@ -45,10 +44,10 @@ class TowerDefenceGame {
 
   def gameTick() = 
     if !gameStateLost then
-      gameState.towersAttack()
-      gameState.enemiesMove()
       gameState.startWave()
       gameState.handleEnemySpawning()
+      gameState.enemiesMove()
+      gameState.towersAttack()
       gameBoard.updateAvailable()
       gameWon()
       gameOver()
@@ -59,14 +58,13 @@ class TowerDefenceGame {
 
   def gameWon() = 
     if ( enemies.isEmpty && gameState.wavesLeft == 0 ) then 
-      println("Game won!!!")
+     // println("Game won!!!")
       gameStateWon = true
-    // maybe update state to won, which ends the game
   end gameWon
 
   //last cell should be winning area cell
   def gameOver() = 
     if enemies.exists( enemy => enemy.position.x == enemyPath.last.gridPos.x && enemy.position.y == enemyPath.last.gridPos.y ) then
-      println("Game Lost :(")
+     // println("Game Lost :(")
       gameStateLost = true
 }

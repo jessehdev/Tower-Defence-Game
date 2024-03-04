@@ -13,7 +13,7 @@ class GameState(game: TowerDefenceGame) {
   var enemyQueue = ArrayBuffer[Enemy]()
   var spawnCounter = 0
   var spawnWait = 40
-  val firstWaveModulo = 300
+  val firstWaveModulo = 900
   val otherWaveModulo = 800
   // added gamestate and game as a construction parameters to player
   var player = new Player(game, this)
@@ -27,6 +27,7 @@ class GameState(game: TowerDefenceGame) {
       game.towers.foreach( _.shootEnemy(game.enemies) )
       val killed = game.enemies.filterNot( _.health >= 0).size
       enemiesKilled += killed
+      println(s"killed: $killed")
       player.earnResources( 100 * killed )
       game.enemies = game.enemies.filter( _.health > 0 )
       println(s"Resources: ${player.resources}, enemies killed: ${enemiesKilled}, waves left : ${wavesLeft}")

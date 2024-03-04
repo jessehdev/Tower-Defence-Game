@@ -15,7 +15,7 @@ object GameView {
     
     val board = GameBoardView(game, state)
     val statusBar = StatusBar(state)
-    val towerInventory = TowerInventory(game)
+    //val towerInventory = TowerInventory(game)
     val upgradeView = UpgradeView(game)
     val purchaseView = PurchaseView(game, upgradeView)
 

@@ -6,12 +6,21 @@ import towers._
 import scalafx.scene.layout.{GridPane, StackPane}
 import scalafx.scene.shape.Polygon
 import scalafx.scene.paint.Color
+import enemies.Enemy
+import scalafx.scene.shape.Line
+import scalafx.animation.PathTransition
+import scalafx.util.Duration
+import scalafx.scene.shape.Path
+import scalafx.scene.shape.MoveTo
+import scalafx.scene.shape.LineTo
+import scalafx.animation.PauseTransition
+import scalafx.application.Platform
 
 class TowerRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
- // val cellSize = gameBoard.cellSize // Assuming cellSize is accessible
+  val cellSize = 100
 
   // Function to create an octagon shape for a tower
-  private def createOctagon(centerX: Double, centerY: Double, size: Double): Polygon = {
+  def createOctagon(centerX: Double, centerY: Double, size: Double) = 
     val octagon = new Polygon()
     // Calculate the points for the octagon based on the center position and size
     val numSides = 8
@@ -21,12 +30,11 @@ class TowerRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
         (centerX + size * Math.cos(i * angleStep)),
         (centerY + size * Math.sin(i * angleStep))
       )
-    
     octagon
-  }
+  end createOctagon  
 
   // Function to render towers on the game board
-  def renderTowers(): Unit = 
+  def renderTowers() = 
     game.towers.foreach(tower =>
       val towerNode = new StackPane {
         val octagon = createOctagon(48, 48, 24) 
@@ -39,4 +47,5 @@ class TowerRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
       GridPane.setConstraints(towerNode, tower.position.x, tower.position.y)
       gameBoard.children.add(towerNode)
     )
+  end renderTowers
 }

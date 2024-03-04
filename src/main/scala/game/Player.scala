@@ -28,7 +28,6 @@ class Player(game: TowerDefenceGame, gameState: GameState) {
     if resources >= tower.cost then
       game.gameBoard.placeTower(tower, pos)
       game.gameBoard.updateAvailable()
-      game.placeableTowers += tower
       resources -= tower.cost
       true
     else 

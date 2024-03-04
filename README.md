@@ -11,5 +11,6 @@ Eliminating enemies gives the player resources (most likely gold), which the pla
 
 ### Todo
  1) Loading levels from JSON
- 2) Add buying and placing towers to gui
+ 2) Resources and enemies killed not updating accordingly if tower not upgraded
  3) Make more levels
+ 4) Tower attacking animation

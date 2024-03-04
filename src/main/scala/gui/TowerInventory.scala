@@ -1,4 +1,4 @@
-package gui
+/*package gui
 
 import scalafx.scene.layout.{VBox, HBox}
 import scalafx.geometry.Pos
@@ -13,6 +13,7 @@ import scalafx.event.ActionEvent
 import scalafx.Includes._
 
 // THIS CODE IS NOT CURRENTLY USED IN THE APPLICATION
+
 class TowerInventory(game: TowerDefenceGame) extends VBox {
     alignment = Pos.Center
     padding = Insets(0, 28, 0, 5)
@@ -41,7 +42,7 @@ class TowerInventory(game: TowerDefenceGame) extends VBox {
               game.gameBoard.placeTower(tower, position)  
             catch 
             case e: Exception => println(s"Error placing tower: ${e.getMessage}")
-          case _ => println("Tower or position not selected")
+          case null => println("Tower or position not selected")
       }
     
     val chooseContainer = new HBox {
@@ -70,3 +71,4 @@ class TowerInventory(game: TowerDefenceGame) extends VBox {
     }
     children = Array(placeButton, chooseContainer, optionContainer, towerContainer)
 }
+*/

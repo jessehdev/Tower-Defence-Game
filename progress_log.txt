@@ -1,6 +1,18 @@
 Progress log
 
+Meeting 1
+
 Logic code should be ok for minimum viable product on 08.02.2024
 Next starting to create tests
 After that GUI
 Then adding more logic features
+
+Meeting 2 
+Logic code pretty much complete besides minor fixes that might occur later on
+Created tests and revised them after game logic had changed a bit
+NOTE: For tests, some gui variables in player.scala need to be commented out
+Created an interactive gui (purchasing, placing and updating towers)
+Changed game logic files quite a bit including:
+    - Enemies within a wave spawning in steps
+    - Enemies don't go by the same line, they are a bit transitioned 
+    
