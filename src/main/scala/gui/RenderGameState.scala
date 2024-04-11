@@ -3,6 +3,12 @@ package gui
 import game._
 import gui.{EnemyRenderer}
 
+/*
+ * RenderGameState controls the rendering of the gameboard,
+ * enemies and towers. The methods are found in corresponding file names 
+ * to the variable names with the exception of board, which is 
+ * found in GameBoardView.scala 
+ */
 class RenderGameState(game: TowerDefenceGame, board: GameBoardView, statusBar: StatusBar) {
   def renderGame() = 
   // Clear previous GUI elements if necessary
@@ -14,7 +20,7 @@ class RenderGameState(game: TowerDefenceGame, board: GameBoardView, statusBar: S
     val enemyRenderer = EnemyRenderer(game, board)
     enemyRenderer.renderEnemies()
 
-  // Render towers
+  //Render towers
     val towerRenderer = TowerRenderer(game, board)
     towerRenderer.renderTowers()
     

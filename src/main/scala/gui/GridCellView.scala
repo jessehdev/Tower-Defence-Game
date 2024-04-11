@@ -3,6 +3,9 @@ package gui
 import gridcells._
 import scalafx.scene.paint.Color
 
+/*
+ * Handles the representation of different GridCells 
+ */
 class GridCellView {
  // Method to determine the color of a cell based on its type
  // Called in GameBoardView.scala

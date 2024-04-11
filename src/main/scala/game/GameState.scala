@@ -3,6 +3,10 @@ import game.{TowerDefenceGame}
 import scala.collection.mutable.ArrayBuffer
 import enemies.{Enemy}
 
+/*
+ * GameState handles enemie movement, attacking of towers, 
+ * starting of waves and handling of enemy spawning within a wave  
+ */
 class GameState(game: TowerDefenceGame) {
   var enemiesKilled: Int = 0
   val amountOfWaves = game.constants.amountOfWaves
@@ -15,24 +19,35 @@ class GameState(game: TowerDefenceGame) {
   var spawnWait = 40
   val firstWaveModulo = 900
   val otherWaveModulo = 800
-  // added gamestate and game as a construction parameters to player
+
   var player = new Player(game, this)
 
   def enemiesMove() =
     game.enemies.foreach( _.move(this, this.game) )
   end enemiesMove
 
+ /*
+  * Method for attacking of towers
+  * If an enemy is killed, player earns 100 resources
+  * Handles updating of current (alive) enemies within the game
+  */ 
   def towersAttack() =
     if ( game.tickCounter % towersAttackModulo == 0 ) then
       game.towers.foreach( _.shootEnemy(game.enemies) )
-      val killed = game.enemies.filterNot( _.health >= 0).size
+      val killed = game.enemies.filterNot( _.health > 0).size
+      if killed > 0 then
+        player.earnResources(killed * 100)
       enemiesKilled += killed
       println(s"killed: $killed")
-      player.earnResources( 100 * killed )
       game.enemies = game.enemies.filter( _.health > 0 )
       println(s"Resources: ${player.resources}, enemies killed: ${enemiesKilled}, waves left : ${wavesLeft}")
   end towersAttack
 
+  /*
+   * Method for starting a wave of enemies
+   * First wave has different waiting time than other waves
+   * Adds enemies to "enemyQueue" which is then used in handleEnemySpawning
+   */
   def startWave() =
     var startWaveModulo = 600
     if wavesLeft == amountOfWaves then
@@ -45,7 +60,10 @@ class GameState(game: TowerDefenceGame) {
       wavesLeft -= 1
   end startWave
 
-  //handles enemy spawning every 0.5 seconds one by one
+  /*
+   * Handles enemy spawning one by one. Time between spawnings depends on 
+   * variable spawnWait, which can be configured
+   */ 
   def handleEnemySpawning() =
     if enemyQueue.nonEmpty && spawnCounter >= spawnWait then
       game.enemies += enemyQueue.head
@@ -53,6 +71,4 @@ class GameState(game: TowerDefenceGame) {
       spawnCounter = 0
     else 
       spawnCounter += 1
-
-  def updateState() = ???
 }

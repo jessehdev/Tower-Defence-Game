@@ -7,6 +7,10 @@ import scalafx.geometry.Pos
 import game._
 import scalafx.geometry.Insets
 
+/*
+ * Statusbar is the part of he gui that shows the "stats" of the game
+ * It is found at the top of the window
+ */
 class StatusBar(state: GameState) extends HBox {
   padding = Insets(10, 0, 0, 0)
   spacing = 90

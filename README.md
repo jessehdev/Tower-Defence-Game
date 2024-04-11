@@ -10,7 +10,6 @@ Eliminating enemies gives the player resources (most likely gold), which the pla
 
 
 ### Todo
- 1) Loading levels from JSON
- 2) Resources and enemies killed not updating accordingly if tower not upgraded
- 3) Make more levels
- 4) Tower attacking animation
+ 1) Loading levels from JSON (kato a+)
+ 2) Make more levels
+ 3) Tower attacking animation

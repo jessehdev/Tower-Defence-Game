@@ -4,9 +4,12 @@ import game._
 import gridcells._
 import gui._
 import scalafx.scene.layout.GridPane
-import scalafx.scene.shape.{Rectangle, Circle, Polygon}
+import scalafx.scene.shape.{Rectangle}
 import scalafx.scene.paint.Color
 
+/* 
+ * GameBoardView is a view made for the gameboard, which consists of GridCells
+ */
 class GameBoardView(game: TowerDefenceGame, gameState: GameState) extends GridPane {
  // val cellSize = 40
   val gridPaneSize = 850
@@ -18,6 +21,7 @@ class GameBoardView(game: TowerDefenceGame, gameState: GameState) extends GridPa
   prefWidth = gridPaneSize
   prefHeight = gridPaneSize
 
+//renders the gameboard
   def renderBoard() =   
     val gridCellView = new GridCellView
     // Initializing the grid

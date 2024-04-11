@@ -12,11 +12,19 @@ import scalafx.Includes._
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.control.Alert.AlertType
 
+/*
+ * A view for purchasing a tower
+ * Checks available positions for placing the towers
+ * Enables purchasing & placing towers to those positions 
+ * Shows error messages if errors encountered
+ */
 class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBox {
     alignment = Pos.Center
     padding = Insets(10, 20, 10, 20)
 
+  //available tower types
     val comboBox = new ComboBox(List("Basic","SplashDamage"))
+  //available positions (GridPos)
     var available = game.gameBoard.available
     var posComboBox = new ComboBox(available.toList)
 

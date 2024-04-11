@@ -1,7 +1,6 @@
 Progress log
 
 Meeting 1
-
 Logic code should be ok for minimum viable product on 08.02.2024
 Next starting to create tests
 After that GUI
@@ -15,4 +14,17 @@ Created an interactive gui (purchasing, placing and updating towers)
 Changed game logic files quite a bit including:
     - Enemies within a wave spawning in steps
     - Enemies don't go by the same line, they are a bit transitioned 
+
+Meeting 3
+No notable progression made due to pressures from other courses
+Still going according to timetable due to progression in the beginning
+
+Meeting 4
+Increased the readability of the code and added multiple comments explaining the code
+Made some minor optimizations for a couple methods
+Been working on a JSON parser, only tough luck so far (this has been very frustrating)
+Started working on the final documentation
+Plans to add a JSON parser and perhaps animating the towers' shootings, which has also been frustrating to try to do
+When these are done, so am I, and the plan is to return the final document by 18.4.2024
+
     

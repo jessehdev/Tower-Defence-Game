@@ -12,7 +12,10 @@ import towers.Tower
 import scalafx.event.ActionEvent
 import scalafx.Includes._
 
-// THIS CODE IS NOT CURRENTLY USED IN THE APPLICATION
+/*
+ * THIS ENTIRE FILE IS LEGACY CODE THAT I MIGHT WANT TO 
+ * WORK ON LATER ON, IT IS NOT CURRENTLY USED IN THE GAME IN ANY WAY
+ */
 
 class TowerInventory(game: TowerDefenceGame) extends VBox {
     alignment = Pos.Center

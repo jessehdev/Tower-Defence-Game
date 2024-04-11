@@ -8,6 +8,11 @@ import scalafx.scene.control.Alert
 import scalafx.scene.control.Alert.AlertType
 import scalafx.application.Platform
 
+/*
+ * GameView essentially encapsulates all of the views and entities in a game
+ * It creates the one and only "TowerDefenceGame" object in the game
+ * It also works as the root in the "Main.scala" (found in gui) 
+ */
 object GameView {
   def apply(): BorderPane = new BorderPane {
     val game = new TowerDefenceGame
@@ -15,7 +20,7 @@ object GameView {
     
     val board = GameBoardView(game, state)
     val statusBar = StatusBar(state)
-    //val towerInventory = TowerInventory(game)
+
     val upgradeView = UpgradeView(game)
     val purchaseView = PurchaseView(game, upgradeView)
 
@@ -25,12 +30,13 @@ object GameView {
     // class renderGameState, which renders enemies, towers and status bar
     val render = RenderGameState(game, board, statusBar)
     
+    //has the containers for upgrading and purchasing towers
     val transactionContainer = new HBox {
       alignment = Pos.Center
       spacing = 40
       children = Array(upgradeView, purchaseView)
     }
-
+   
     val topContainer = new VBox {
       alignment = Pos.Center
       children = Array(statusBar, transactionContainer)
@@ -38,7 +44,7 @@ object GameView {
     
     top = topContainer
     center = board
-
+//shows messages for winning/losing the game and stops the continuation of the game
     def renderState() = 
       Platform.runLater {
         if game.gameStateLost && !gameLostAlertShown then
@@ -58,6 +64,9 @@ object GameView {
       } 
     end renderState
 
+  /*
+   * A scalafx animationtimer for updating (rendering) the gui 
+   */
     var timeCounter = 0L
     var lastTime = 0L
     val guiTimer = AnimationTimer(t => {

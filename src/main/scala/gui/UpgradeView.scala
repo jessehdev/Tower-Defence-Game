@@ -14,16 +14,23 @@ import scala.compiletime.ops.double
 import scala.collection.mutable.ArrayBuffer
 import scalafx.scene.control.Alert.AlertType
 
+/*
+ * A view for upgrading towers
+ * Consists of a combobox for checking towers for upgration and
+ * a button for actually upgrading the tower
+ * After upgrading user gets a confirmation or an error if unsuccesful
+ */
 class UpgradeView(game: TowerDefenceGame) extends VBox {
     alignment = Pos.Center
     padding = Insets(10, 20, 10, 20)
 
+    //checks where towers are currently placed and adds the positions to a combobox
     val towerPositions = ObservableBuffer[GridPos]()
     for i <- game.towers do
       towerPositions += i.position
     val towerComboBox = new ComboBox(towerPositions)
 
-    val button = new Button("Upgrade a Tower") {
+    val upgradeTowerButton = new Button("Upgrade a Tower") {
       style = "-fx-font-size: 12pt; " +
           "-fx-background-color: #d3d3d3; " +
           "-fx-border-color: #333333; " +
@@ -32,7 +39,7 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
           "-fx-padding: 5;"
     }
 
-    button.onAction = (event: ActionEvent) => {
+    upgradeTowerButton.onAction = (event: ActionEvent) => {
       println("Trying to upgrade a tower")
       towerComboBox.value.value match
         case pos: GridPos =>
@@ -40,7 +47,7 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
             showUpgradeConfirmation(pos)
         case null => println("Cannot upgrade") 
       }
-
+// this is shown if upgrading was succesful
     def showUpgradeConfirmation(pos: GridPos) = 
       game.towers.find(_.position == pos).foreach( tower =>
         new Alert(AlertType.Information) {
@@ -50,6 +57,11 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
         }.showAndWait()
       )
 
+/*
+* This is shown if upgrading wasn't succesful
+* Finds the tower in the position given, gives stats why upgrading
+* didn't work
+*/
     def showUpgradeError(pos: GridPos) =
       val towers = ArrayBuffer[Tower]()
       for i <- game.towers do
@@ -63,6 +75,7 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
           contentText = s"Resources: ${game.gameState.player.resources}, Cost: ${t.cost}"
     }.showAndWait()  
 
+// ChatGPT helped with clearing the combobox (look for the last line in this method)
     def updateUpgradable() =
       towerPositions.clear()
       for i <- game.towers do
@@ -76,5 +89,5 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
       children.add(comboBox)
     }
     
-    children = Array(button, boxContainer)
+    children = Array(upgradeTowerButton, boxContainer)
   }

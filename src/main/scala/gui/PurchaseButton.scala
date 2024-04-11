@@ -1,3 +1,4 @@
+/*
 package gui
 
 import scalafx.scene.control._
@@ -10,7 +11,10 @@ import towers._
 import utils.GridPos
 import scalafx.Includes._
 
-// CODE NOT CURRENTLY USED IN APPLICATION
+/*
+ * THIS ENTIRE FILE IS LEGACY CODE THAT I MIGHT WANT TO 
+ * WORK ON LATER ON, IT IS NOT CURRENTLY USED IN THE GAME IN ANY WAY
+ */
 
 object PurchaseButton {
   def apply(player: Player)= new VBox {
@@ -47,3 +51,4 @@ object PurchaseButton {
     children = Array(button, comboBox)
   }
 }
+*/

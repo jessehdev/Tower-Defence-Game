@@ -8,24 +8,30 @@ import game.{TowerDefenceGame}
 import game.{TowerException}
 import scala.collection.mutable.ArrayBuffer
 
+/* 
+ *This file represent the GameBoard in the Tower defence game
+ * The gameboard is essentially a 2D array consisting of GridCells
+ * The actual 2D array is the variable "grid" which is derived from
+ * configuration files
+ */
+
 class GameBoard(game: TowerDefenceGame) {
+  /*  
+   *These are legacy variables I might want to use later on
+  
   val width = game.constants.boardWidth
   val height = game.constants.boardHeight
   val size = width * height
+  */
  
- /*  
-  * initializes a grid consisting of scenery cells
-  * use later on, when reading JSON files
-  * might be unnecessary if grid data is given in JSON
-
-  var grid: Array[Array[GridCell]] = Array.tabulate(width, height)( (i, j) =>
-  SceneryCell(GridPos(i, j)) 
-  )
-*/
-
   val enemyPath = game.enemyPath
   var grid = game.grid
 
+  /* 
+  * The variable here and the method below it is used in the gui
+  * to render available position options for tower placement.
+  * The method uses some variables that can be found from the GridCells -folder  
+  */
   var available = ArrayBuffer[GridPos]() 
   
   def updateAvailable() =
@@ -35,12 +41,10 @@ class GameBoard(game: TowerDefenceGame) {
       available += cell.gridPos))  
   end updateAvailable 
 
-  /*
-    * logic how tower gets added to the arraybuffer might still need some extra thinking
-    * might not work, think how a tower is added e.g. placeTower(Basic(gridPos(2,2)), gridPos(2,2))
-    * also check if gridpos already populated
-    * 
-    * if it is, throw a new exception
+  /* 
+  * The method below checks if
+  * 1) the GridCell in question is one you can place a tower on
+  * 2) a tower already exists in the position
   */
 
   def placeTower(tower: Tower, gridPos: GridPos): Boolean = 
@@ -54,6 +58,11 @@ class GameBoard(game: TowerDefenceGame) {
       false
   end placeTower 
 
+/* 
+ * Once again, this is some fully working legacy code 
+ * that I might want to use later if elaborating on
+ * the development of the game
+
   def destroyTower(gridPos: GridPos): Boolean = 
     if grid(gridPos.x)(gridPos.y).hasTower(game.towers) then 
       game.towers = game.towers.filter( _.position != gridPos)
@@ -61,4 +70,5 @@ class GameBoard(game: TowerDefenceGame) {
     else 
       false
   end destroyTower
+ */ 
 } 

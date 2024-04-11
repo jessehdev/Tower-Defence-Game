@@ -6,16 +6,21 @@ import towers.{Tower,Basic}
 import utils.{Wave}
 import scala.collection.mutable.ArrayBuffer
 
+/*
+ * This file includes constants used in game/TowerDefenceGame
+ * These have been used mainly in development and testing.
+ * The actual values that are used in the game are replaced by level files
+ * in levels -folder 
+ */
+
 class Constants {
 
-  //these will be read from a JSON file eventually
   val m = Tanker(GridPos(2,1))
   val n = Fiend(GridPos(3,1))
   val enemies: ArrayBuffer[Enemy] = ArrayBuffer[Enemy](m,n)
 
   val k = new Basic(GridPos(3,3))
   val l = new Basic(GridPos(2,1))
-  //val towers: ArrayBuffer[Tower] = ArrayBuffer[Tower](k,l)
 
   var initialResources = 250
 
@@ -26,7 +31,6 @@ class Constants {
     Wave(ArrayBuffer(new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)), new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)), new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)))),
     Wave(ArrayBuffer(new Tanker(GridPos(0,1)), new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)), new Fiend(GridPos(0,1)))),
     Wave(ArrayBuffer(new Tanker(GridPos(0,1)), new Tanker(GridPos(0,1)), new Fiend(GridPos(0,1)), new Fiend(GridPos(0,1))),
-    // Continue for other waves
     ))
   
   var amountOfWaves = waves.length
@@ -39,7 +43,6 @@ class Constants {
 
   val initialPos = enemyPath(0).gridPos
   
-    // define a 6x6 grid and add gridcells to it, in the beginning only scenerycells and pathcells
   val grid = ArrayBuffer[Array[GridCell]]()
   grid += Array(SceneryCell(GridPos(0,0)), PathCell(GridPos(0,1)), TowerCell(GridPos(0,2)), TowerCell(GridPos(0,3)),
   SceneryCell(GridPos(0,4)), SceneryCell(GridPos(0,5)), SceneryCell(GridPos(0,6)), SceneryCell(GridPos(0,7)), SceneryCell(GridPos(0,8)))

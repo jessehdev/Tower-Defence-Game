@@ -4,6 +4,13 @@ import enemies.{Enemy}
 import scala.collection.mutable.ArrayBuffer
 import scala.math.{pow, sqrt}
 
+/*
+ * A tower is an important entity of the game as the name Tower defence game suggests
+ * Different towers (Basic and Splashdamage) inherit this class and can be found in
+ * the same directory as this.
+ * Towers try to shoot enemies, which are heading for the winning area.
+  */
+
 trait Tower {
   var position: GridPos
   var health: Int
@@ -14,7 +21,12 @@ trait Tower {
   val upgradeCost: Int
   var level: Int = 1
 
-  // if enemy if range, choose an arbitrary one to shoot
+  /*
+   * This method gets all the enemies that exist in the game currently as a parameter.
+   * Then it determines, by using Pythagora's theorem, if an enemy is within its range. 
+   * If so, the enemy in question gets added to an ArrayBuffer "inRange".
+   * If inRange is not empty, an arbritary enemy is chosen to shoot at
+   */
   def shootEnemy(arr: ArrayBuffer[Enemy]) = 
     var inRange = ArrayBuffer[Enemy]()
     arr.foreach( enemy =>

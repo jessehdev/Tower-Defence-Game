@@ -1,3 +1,4 @@
+/*
 package gui
 
 import scalafx.scene.control.Button
@@ -8,6 +9,11 @@ import scalafx.geometry.Insets
 import game.TowerDefenceGame
 import utils.GridPos
 import scala.collection.mutable.ArrayBuffer
+
+/*
+ * THIS ENTIRE FILE IS LEGACY CODE THAT I MIGHT WANT TO 
+ * WORK ON LATER ON, IT IS NOT CURRENTLY USED IN THE GAME IN ANY WAY
+ */
 
 class PlaceButton(player: Player) extends HBox {
     alignment = Pos.Center
@@ -28,3 +34,4 @@ class PlaceButton(player: Player) extends HBox {
     children.add(button)
   }
 
+*/
