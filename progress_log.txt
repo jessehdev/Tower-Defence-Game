@@ -31,4 +31,9 @@ TODO
 Last tests
 JSON loading
 Firing animation
-Configuration files?
+
+KUN TORNI AMPUU
+Lisää Mapiin kyseinen torni ja vihollinen
+Vaihda flagi turekis
+
+Tee gametickin tikatessa

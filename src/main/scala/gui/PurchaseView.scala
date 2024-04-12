@@ -41,9 +41,9 @@ class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBo
       println("Trying to purchase tower")
       (comboBox.value.value, posComboBox.value.value) match
         case ("Basic", pos: GridPos) =>
-            game.gameState.player.purchaseTower(Basic(pos), pos)
+            game.gameState.player.purchaseTower(Basic(game, pos), pos)
         case ("SplashDamage", pos: GridPos) => 
-            game.gameState.player.purchaseTower(SplashDamage(pos), pos)
+            game.gameState.player.purchaseTower(SplashDamage(game, pos), pos)
         case _ => println("Tower or position not selected")
       updatePurchasing()  
       upgradeView.updateUpgradable()

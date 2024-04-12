@@ -4,11 +4,13 @@ import utils.{GridPos}
 import enemies.{Enemy}
 import scala.collection.mutable.ArrayBuffer
 import scala.math.{sqrt, pow}
+import game.TowerDefenceGame
+import scala.compiletime.ops.double
 
 /*
  * SplashDamage is a tower type that shoots multiple enemies at once 
  */
-class SplashDamage(var position: GridPos) extends Tower {
+class SplashDamage(game: TowerDefenceGame, var position: GridPos) extends Tower(game: TowerDefenceGame) {
   var health: Int = 800
   var damage: Int = 750
   val firingRate: Int = 3
@@ -33,9 +35,13 @@ class SplashDamage(var position: GridPos) extends Tower {
         inRange += enemy
     )
     if inRange.nonEmpty then
+      val enemiesToShoot = ArrayBuffer[Enemy]()
       if inRange.length > 3 then
-        inRange.take(3).foreach(_.takeDamage(this.damage))
+        enemiesToShoot.addAll(inRange.take(3))
+        enemiesToShoot.foreach(_.takeDamage(this.damage))
+        game.towerShootingsMap.addOne(this, enemiesToShoot)
       else
         inRange.foreach( _.takeDamage(this.damage))
+        game.towerShootingsMap.addOne(this, inRange)
   end shootEnemy
 }

@@ -4,7 +4,7 @@ import game.{TowerDefenceGame}
 import utils.{GridPos}
 import towers._
 import scalafx.scene.layout.{GridPane, StackPane}
-import scalafx.scene.shape.Polygon
+import scalafx.scene.shape.{Polygon, Line}
 import scalafx.scene.paint.Color
 import enemies.Enemy
 import scalafx.scene.shape.Line
@@ -15,12 +15,16 @@ import scalafx.scene.shape.MoveTo
 import scalafx.scene.shape.LineTo
 import scalafx.animation.PauseTransition
 import scalafx.application.Platform
+import scalafx.animation.TranslateTransition
+import scalafx.util.Duration
+import scalafx.scene.layout.BorderPane
+import scalafx.scene.shape.Circle
 
 /*
  * TowerRendered handles the graphical representation and
  * rendering of the towers
  */
-class TowerRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
+class TowerRenderer(game: TowerDefenceGame, gameBoard: GridPane, gameView: BorderPane) {
   val cellSize = 100
 
   /* 
@@ -40,11 +44,31 @@ class TowerRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
     octagon
   end createOctagon  
 
+  def animateShooting(tower: Tower, target: Enemy) = 
+    Platform.runLater {
+    // Creates a circle to represent the ammunition to be shot
+    val projectile = new Circle {
+      centerX = tower.position.x * cellSize + cellSize /// 2
+      centerY = tower.position.y * cellSize + cellSize /// 2
+      radius = 5  // Set the radius of the projectile
+      fill = Color.Red
+    }
+
+    // Add the projectile to the game view
+    gameView.children.add(projectile)
+   
+    val transition = new TranslateTransition {
+     node = projectile
+     toX = (target.position.x - tower.position.x) * cellSize
+     toY = (target.position.y - tower.position.y) * cellSize
+     duration = Duration(15) // Adjust time as needed for visual effect
+     onFinished = _ => gameView.children.remove(projectile)
+    }
+    transition.play()
+  }
+  end animateShooting
   /*  
    * Function to render towers on the game board
-   * ChatGPT helped with the structure for the towerNode -variable and
-   * with setting the constraints for the gridpane (GridPane.setConstraints...)
-   * Most of the function is written by me
    */
   def renderTowers() = 
     game.towers.foreach(tower =>

@@ -1,7 +1,5 @@
 package gui
 
-package gui
-
 import game.{TowerDefenceGame, GameState}
 import enemies._
 import scalafx.scene.layout.GridPane

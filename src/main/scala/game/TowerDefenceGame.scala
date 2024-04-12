@@ -5,7 +5,7 @@ import utils.{GridPos, Constants}
 import towers.{Tower}
 import enemies.{Enemy}
 import game.{GameBoard, GameState}
-import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.{ArrayBuffer, Map}
 import java.util.{Timer, TimerTask}
 import enemies._
 import towers._
@@ -30,6 +30,12 @@ class TowerDefenceGame {
   var gameBoard = new GameBoard(this)
   var gameStateLost = false
   var gameStateWon = false
+
+  /*
+   * A map for ochestrating towers shooting in the backend
+   * and the animation in the frontend 
+   */
+  var towerShootingsMap: Map[Tower, ArrayBuffer[Enemy]] = Map.empty[Tower, ArrayBuffer[Enemy]]
 
 /*
  * The timer used for the gameTick -algorithm

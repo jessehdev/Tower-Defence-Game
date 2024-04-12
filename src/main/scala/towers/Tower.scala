@@ -3,6 +3,8 @@ import utils.{GridPos}
 import enemies.{Enemy}
 import scala.collection.mutable.ArrayBuffer
 import scala.math.{pow, sqrt}
+import gui._
+import game.TowerDefenceGame
 
 /*
  * A tower is an important entity of the game as the name Tower defence game suggests
@@ -11,7 +13,7 @@ import scala.math.{pow, sqrt}
  * Towers try to shoot enemies, which are heading for the winning area.
   */
 
-trait Tower {
+trait Tower(game: TowerDefenceGame) {
   var position: GridPos
   var health: Int
   var damage: Int
@@ -37,8 +39,12 @@ trait Tower {
         inRange += enemy
     )
     if inRange.nonEmpty then
+      val enemiesToShoot = ArrayBuffer[Enemy]()
       val target = inRange.head
+      enemiesToShoot += target
       target.takeDamage(this.damage)
+      game.towerShootingsMap.addOne(this, enemiesToShoot)
+      println(s"MAP: ${game.towerShootingsMap}")
   end shootEnemy
 
   def ugrade(): Unit 

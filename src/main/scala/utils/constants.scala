@@ -19,8 +19,8 @@ class Constants {
   val n = Fiend(GridPos(3,1))
   val enemies: ArrayBuffer[Enemy] = ArrayBuffer[Enemy](m,n)
 
-  val k = new Basic(GridPos(3,3))
-  val l = new Basic(GridPos(2,1))
+  //val k = new Basic(GridPos(3,3))
+  //val l = new Basic(GridPos(2,1))
 
   var initialResources = 250
 

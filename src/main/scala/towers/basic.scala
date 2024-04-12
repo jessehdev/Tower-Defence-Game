@@ -1,9 +1,10 @@
 package towers
 
 import utils.{GridPos}
+import game.TowerDefenceGame
 
 
-class Basic(var position: GridPos) extends Tower {
+class Basic(game: TowerDefenceGame, var position: GridPos) extends Tower(game: TowerDefenceGame) {
   var health: Int = 1200
   var damage: Int = 1000
   val firingRate: Int = 3
