@@ -38,9 +38,8 @@ class TowerDefenceGame {
  * The gameTick -algorithm is called every time the timer runs
  * Uses a java timer
  */
-  val timer = new Timer()
   var tickCounter = 0
-  val task = new TimerTask {
+  var currentTask = new TimerTask {
     def run(): Unit = 
       tickCounter += 1
       gameTick() 
@@ -67,8 +66,23 @@ class TowerDefenceGame {
   end gameTick
 
  // the variables below are used for the times above 
+
   val tickInterval = 1000 / 60 // Tick interval in milliseconds
-  timer.scheduleAtFixedRate(task, 0, tickInterval)
+  var currentTimer = new Timer
+  def startTimer() = 
+    val timer = currentTimer
+    timer.scheduleAtFixedRate(currentTask, 0, tickInterval)
+
+  def stopTimer() = 
+    currentTimer.cancel()
+    currentTimer = new Timer()
+    currentTask = new TimerTask {
+    def run(): Unit = 
+      tickCounter += 1
+      gameTick() 
+      if tickCounter % 60 == 0 then
+        println(s"Seconds passed: ${tickCounter / 60}")
+  }
 
   def gameWon() = 
     if ( enemies.isEmpty && gameState.wavesLeft == 0 ) then 

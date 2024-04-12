@@ -28,7 +28,7 @@ class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBo
     var available = game.gameBoard.available
     var posComboBox = new ComboBox(available.toList)
 
-    val button = new Button("Purchase a new Tower") {
+    val purchaseButton = new Button("Purchase a new Tower") {
       style = "-fx-font-size: 12pt; " +
           "-fx-background-color: #d3d3d3; " +
           "-fx-border-color: #333333; " +
@@ -37,7 +37,7 @@ class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBo
           "-fx-padding: 5;"
     }
 
-    button.onAction = (event: ActionEvent) => {
+    purchaseButton.onAction = (event: ActionEvent) => {
       println("Trying to purchase tower")
       (comboBox.value.value, posComboBox.value.value) match
         case ("Basic", pos: GridPos) =>
@@ -66,8 +66,9 @@ class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBo
         }.showAndWait()
 
     def updatePurchasing() =
+      game.gameBoard.updateAvailable()
       posComboBox.items = ObservableBuffer(available.toList: _*)
-      posComboBox.getSelectionModel.clearSelection()
+      //posComboBox.getSelectionModel.clearSelection()
 
-    children = Array(button, chooseBoxes)
+    children = Array(purchaseButton, chooseBoxes)
   }

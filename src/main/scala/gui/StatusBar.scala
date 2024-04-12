@@ -8,7 +8,7 @@ import game._
 import scalafx.geometry.Insets
 
 /*
- * Statusbar is the part of he gui that shows the "stats" of the game
+ * Statusbar is the part of the gui that shows the "stats" of the game
  * It is found at the top of the window
  */
 class StatusBar(state: GameState) extends HBox {

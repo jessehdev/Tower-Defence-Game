@@ -7,6 +7,7 @@ import scalafx.geometry.Pos
 import scalafx.scene.control.Alert
 import scalafx.scene.control.Alert.AlertType
 import scalafx.application.Platform
+import scalafx.scene.control.Button
 
 /*
  * GameView essentially encapsulates all of the views and entities in a game
@@ -23,6 +24,7 @@ object GameView {
 
     val upgradeView = UpgradeView(game)
     val purchaseView = PurchaseView(game, upgradeView)
+    val startGameView = StartGameView(game, purchaseView)
 
     // Flags for rendering game state alerts
     var gameLostAlertShown = false
@@ -30,11 +32,11 @@ object GameView {
     // class renderGameState, which renders enemies, towers and status bar
     val render = RenderGameState(game, board, statusBar)
     
-    //has the containers for upgrading and purchasing towers
+    //has the containers for upgrading and purchasing towers + starting the game
     val transactionContainer = new HBox {
       alignment = Pos.Center
       spacing = 40
-      children = Array(upgradeView, purchaseView)
+      children = Array(startGameView,upgradeView, purchaseView)
     }
    
     val topContainer = new VBox {

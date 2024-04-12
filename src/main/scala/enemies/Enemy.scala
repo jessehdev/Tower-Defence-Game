@@ -9,7 +9,7 @@ import scala.util.Random
  * This code is the trait for an entity "enemy", which is trying
  * to navigate through a given path to the end goal, which
  * is the last GridCell of the path
- * The classes that extend this traitcan be found in the same 
+ * The classes that extend this trait can be found in the same 
  * directory as this, they are called "Fiend" and "Tanker" and
  * they both have different attributes (variable values)
  */

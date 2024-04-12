@@ -7,9 +7,10 @@ import towers.{Tower}
 import game.{TowerDefenceGame}
 import game.{TowerException}
 import scala.collection.mutable.ArrayBuffer
+import scalafx.collections.ObservableBuffer
 
 /* 
- *This file represent the GameBoard in the Tower defence game
+ * This file represent the GameBoard in the Tower defence game
  * The gameboard is essentially a 2D array consisting of GridCells
  * The actual 2D array is the variable "grid" which is derived from
  * configuration files
@@ -32,13 +33,14 @@ class GameBoard(game: TowerDefenceGame) {
   * to render available position options for tower placement.
   * The method uses some variables that can be found from the GridCells -folder  
   */
-  var available = ArrayBuffer[GridPos]() 
+  var available = ObservableBuffer[GridPos]() 
   
   def updateAvailable() =
     available.clear()
-    grid.foreach(_.foreach( cell => 
-    if cell.canPlaceTower && !cell.hasTower(game.towers) then
-      available += cell.gridPos))  
+    grid.foreach(_.foreach( cell =>
+      if cell.canPlaceTower && !cell.hasTower(game.towers) then
+        available += cell.gridPos))
+     // println(s"available ${available}")
   end updateAvailable 
 
   /* 

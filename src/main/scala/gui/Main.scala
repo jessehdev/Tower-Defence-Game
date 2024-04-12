@@ -4,7 +4,6 @@ import gui.GameView
 
 /*
  * The game can be started from here 
- * The code for this MainApp was suggested by ChatGPT 
  */
 object MainApp extends JFXApp3 {
   override def start() = 
