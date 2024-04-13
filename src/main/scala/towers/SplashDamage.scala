@@ -38,12 +38,23 @@ class SplashDamage(game: TowerDefenceGame, var position: GridPos) extends Tower(
       val enemiesToShoot = ArrayBuffer[Enemy]()
       if inRange.length > 3 then
         enemiesToShoot.addAll(inRange.take(3))
-        enemiesToShoot.foreach(_.takeDamage(this.damage))
         game.towerShootingsMap.addOne(this, enemiesToShoot)
         game.towerHasShot = true
+        handleTakingDamage(enemiesToShoot)
       else
-        inRange.foreach( _.takeDamage(this.damage))
         game.towerShootingsMap.addOne(this, inRange)
         game.towerHasShot = true
+        handleTakingDamage(inRange)
   end shootEnemy
+
+  // This function is used so that enemies won't dissapear in the gui once the shot
+  // is taken but rather once the ammunition has reached their position
+  def handleTakingDamage(arr: ArrayBuffer[Enemy]) =
+   for enemy <- arr do
+     if enemy.health <= this.damage then 
+       Thread.sleep(200)
+       enemy.takeDamage(this.damage)
+     else
+       enemy.takeDamage(this.damage)
+  end handleTakingDamage
 }

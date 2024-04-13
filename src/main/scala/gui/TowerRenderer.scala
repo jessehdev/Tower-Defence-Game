@@ -69,7 +69,7 @@ class TowerRenderer(game: TowerDefenceGame, gameBoard: GameBoardView, gameView: 
      fromY = tower.position.y * cellSize + topContainerHeight.toDouble + cellSize / 2
      toX = target.position.x * cellSize + cellSize / 2 + target.offsetX
      toY = target.position.y * cellSize + topContainerHeight.toDouble + cellSize / 2 + target.offsetY
-     duration = Duration(100) // Adjust time as needed for visual effect
+     duration = Duration(200) // Adjust time in milliseconds, if changed, also change tower classes where Thread.sleep is used
      cycleCount = 1
      onFinished = _ => gameView.children.remove(ammunition)
     }

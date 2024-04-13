@@ -12,8 +12,8 @@ class GameState(game: TowerDefenceGame) {
   val amountOfWaves = game.constants.amountOfWaves
   var wavesLeft: Int = amountOfWaves
 
-  var enemiesMoveModulo = 80
-  var towersAttackModulo = 60
+  var enemiesMoveModulo = 120
+  var towersAttackModulo = 90
   var enemyQueue = ArrayBuffer[Enemy]()
   var spawnCounter = 0
   var spawnWait = 40
