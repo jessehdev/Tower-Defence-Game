@@ -15,7 +15,7 @@ class SplashDamage(game: TowerDefenceGame, var position: GridPos) extends Tower(
   var damage: Int = 750
   val firingRate: Int = 3
   val range: Double = 3.3
-  val cost: Int = 100
+  val cost: Int = 150
   val upgradeCost: Int = 100
   override def ugrade(): Unit =
     this.health += 200

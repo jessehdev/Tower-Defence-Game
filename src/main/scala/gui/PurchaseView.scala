@@ -23,7 +23,8 @@ class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBo
     padding = Insets(10, 20, 10, 20)
 
   //available tower types
-    val comboBox = new ComboBox(List("Basic","SplashDamage"))
+  // Cost values hardcoded :(
+    val comboBox = new ComboBox(List("Basic, cost: 100","SplashDamage, cost: 150"))
   //available positions (GridPos)
     var available = game.gameBoard.available
     var posComboBox = new ComboBox(available.toList)
@@ -40,10 +41,13 @@ class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBo
     purchaseButton.onAction = (event: ActionEvent) => {
       println("Trying to purchase tower")
       (comboBox.value.value, posComboBox.value.value) match
-        case ("Basic", pos: GridPos) =>
-            game.gameState.player.purchaseTower(Basic(game, pos), pos)
-        case ("SplashDamage", pos: GridPos) => 
-            game.gameState.player.purchaseTower(SplashDamage(game, pos), pos)
+        case ("Basic, cost: 100", pos: GridPos) =>
+          //purchasetower returns boolean
+            if !game.gameState.player.purchaseTower(Basic(game, pos), pos) then
+              showPurchasingError()
+        case ("SplashDamage, cost: 150", pos: GridPos) => 
+            if !game.gameState.player.purchaseTower(SplashDamage(game, pos), pos) then
+              showPurchasingError()
         case _ => println("Tower or position not selected")
       updatePurchasing()  
       upgradeView.updateUpgradable()
@@ -58,11 +62,11 @@ class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBo
       children = Array(towerBox, posBox)
     }
 
-    def showPurchasingError(t: Tower) =
+    def showPurchasingError() =
       new Alert(AlertType.Error) {
           title = "Cannot purchase tower"
           headerText = s"Not enough resources"
-          contentText = s"Current Resources : ${game.gameState.player.resources}, Cost : ${t.cost}"
+          contentText = s"Current Resources : ${game.gameState.player.resources}"
         }.showAndWait()
 
     def updatePurchasing() =

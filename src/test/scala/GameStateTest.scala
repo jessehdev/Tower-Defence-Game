@@ -71,8 +71,8 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     val tanker1 = new Tanker(pos1)
     val tanker2 = new Tanker(pos2)
     val comparisonTanker = new Tanker(pos5)
-    val basic1 = new Basic(pos3)
-    val splashTower = new SplashDamage(pos4)
+    val basic1 = new Basic(game, pos3)
+    val splashTower = new SplashDamage(game, pos4)
     game.enemies += tanker1
     game.enemies += tanker2
     game.towers += basic1
@@ -92,7 +92,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     val tanker = new Tanker(pos1)
     val tanker2 = new Tanker(pos3)
     val tanker3 = new Tanker(pos4)
-    val basic = new Basic(pos2)
+    val basic = new Basic(game, pos2)
     tanker.health = basic.damage
     game.enemies += tanker
     game.enemies += tanker2
@@ -111,7 +111,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     val pos3 = GridPos(11,10)
     val tanker = new Tanker(pos1)
     val comparisonTanker = new Tanker(pos3)
-    val basic = new Basic(pos2)
+    val basic = new Basic(game, pos2)
     game.tickCounter = 15
     state.towersAttack()
     tanker.health shouldBe comparisonTanker.health

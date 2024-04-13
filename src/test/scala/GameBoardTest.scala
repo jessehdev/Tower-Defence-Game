@@ -49,7 +49,7 @@ class GameBoardTest extends AnyFlatSpec with Matchers {
     val board = new GameBoard(game)
     val gridPos = GridPos(0,2) 
     val gridPos2 = GridPos(0,3)
-    val tower = new Basic(gridPos)
+    val tower = new Basic(game, gridPos)
     val result = board.placeTower(tower, gridPos)
     result shouldBe true
     game.towers should contain(tower)
@@ -58,9 +58,9 @@ class GameBoardTest extends AnyFlatSpec with Matchers {
     val game = new TowerDefenceGame
     val board = new GameBoard(game)
     val gridPos = GridPos(0,2) 
-    val tower = new Basic(gridPos)
+    val tower = new Basic(game, gridPos)
     board.placeTower(tower, gridPos)
-    val tower2 = new Basic(gridPos)
+    val tower2 = new Basic(game, gridPos)
     assertThrows[TowerException] {
       board.placeTower(tower, gridPos) 
     }
@@ -69,7 +69,7 @@ class GameBoardTest extends AnyFlatSpec with Matchers {
     val game = new TowerDefenceGame
     val board = new GameBoard(game)
     val gridPos = GridPos(3,5) 
-    val tower = new Basic(gridPos)
+    val tower = new Basic(game, gridPos)
     assertThrows[TowerException] {
       board.placeTower(tower, gridPos) 
     }  
@@ -80,8 +80,8 @@ class GameBoardTest extends AnyFlatSpec with Matchers {
   }
    it should "be incremented when added towers" in {
     val game = new TowerDefenceGame
-    val basic1 = new Basic(GridPos(3,3))
-    val basic2 = new Basic(GridPos(4,5))
+    val basic1 = new Basic(game, GridPos(3,3))
+    val basic2 = new Basic(game ,GridPos(4,5))
     game.towers += basic1
     game.towers += basic2
     game.towers.length shouldBe 2

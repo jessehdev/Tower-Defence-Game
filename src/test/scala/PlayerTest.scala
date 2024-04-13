@@ -34,20 +34,19 @@ class PlayerTest extends AnyFlatSpec with Matchers {
     val player = new Player(game, state)
     player.earnResources(350)
     val pos = GridPos(0,2)
-    val basic = new Basic(pos)
+    val basic = new Basic(game, pos)
     player.purchaseTower(basic, pos)
     player.resources shouldBe game.constants.initialResources + 350 - basic.cost
   }
-  it should "throw a TowerException when player doesn't have enough resources" in  {
+  it should "return false when player doesn't have enough resources" in  {
     val game = new TowerDefenceGame
     val state = new GameState(game)
     val player = new Player(game, state)
     player.resources = 20
     val pos = GridPos(0,2)
-    val splashTower = new SplashDamage(pos)
-    assertThrows[TowerException] {
-      player.purchaseTower(splashTower, pos) 
-    }
+    val splashTower = new SplashDamage(game, pos)
+    val a = player.purchaseTower(splashTower, pos)
+    a shouldBe false
   }
   "UpgradeTower" should "decrease the players resources correctly" in {
     val game = new TowerDefenceGame
@@ -55,23 +54,22 @@ class PlayerTest extends AnyFlatSpec with Matchers {
     val player = new Player(game, state)
     player.earnResources(350)
     val pos = GridPos(0,2)
-    val basic = new Basic(pos)
+    val basic = new Basic(game, pos)
     game.towers += basic
     player.upgradeTower(basic.position)
     println(s"${player.resources}")
     val resourceDelta = 350 - basic.upgradeCost
     player.resources shouldBe game.constants.initialResources + resourceDelta
   }
-  it should "throw a TowerException when player doesn't have enough resources" in  {
+  it should "return false when player doesn't have enough resources" in  {
     val game = new TowerDefenceGame
     val state = new GameState(game)
     val player = new Player(game, state)
     val pos = GridPos(0,2)
-    val basic = new Basic(pos)
+    val basic = new Basic(game, pos)
     game.towers += basic
     player.resources = 20
-    assertThrows[TowerException] {
-      player.upgradeTower(basic.position) 
-    }
+    val a = player.upgradeTower(basic.position)
+    a shouldBe false
   }
 }  

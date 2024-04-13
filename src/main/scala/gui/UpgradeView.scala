@@ -43,8 +43,11 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
       println("Trying to upgrade a tower")
       towerComboBox.value.value match
         case pos: GridPos =>
-            game.gameState.player.upgradeTower(pos)
-            showUpgradeConfirmation(pos)
+          // upgradetower returns boolean 
+            if game.gameState.player.upgradeTower(pos) then
+              showUpgradeConfirmation(pos)
+            else
+              showUpgradeError(pos)
         case null => println("Cannot upgrade") 
       }
 // this is shown if upgrading was succesful

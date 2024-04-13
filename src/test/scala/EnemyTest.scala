@@ -10,7 +10,8 @@ import gridcells._
 class EnemyTest extends AnyFlatSpec with Matchers {   
     "Tanker" should "have correct health when initialized" in {
         val tanker = new Tanker(GridPos(1,1))
-        tanker.health shouldBe 1000
+        val compareTanker = new Tanker(GridPos(10,10))
+        tanker.health shouldBe compareTanker.health
     }
     it should "have correct position when initialized" in {
         val tanker = new Tanker(GridPos(1,1))
@@ -19,8 +20,9 @@ class EnemyTest extends AnyFlatSpec with Matchers {
     }
     it should "correctly reduce damage when shot at" in {
         val tanker = new Tanker(GridPos(1,1))
+        val compareTanker = new Tanker(GridPos(10,10))
         tanker.takeDamage(700)
-        tanker.health shouldBe 300
+        tanker.health shouldBe compareTanker.health -700
     } 
     it should "not take any damage when shot at for 0 damage" in {
         val tanker = new Tanker(GridPos(1,1))

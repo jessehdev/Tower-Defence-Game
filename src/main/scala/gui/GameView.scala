@@ -9,6 +9,7 @@ import scalafx.scene.control.Alert.AlertType
 import scalafx.application.Platform
 import scalafx.scene.control.Button
 import scala.compiletime.ops.double
+import scala.annotation.elidable
 
 /*
  * GameView essentially encapsulates all of the views and entities in a game
@@ -26,11 +27,11 @@ object GameView {
     val upgradeView = UpgradeView(game)
     val purchaseView = PurchaseView(game, upgradeView)
     val startGameView = StartGameView(game, purchaseView)
-
+    
     // Flags for rendering game state alerts
     var gameLostAlertShown = false
     var gameWonAlertShown = false
-
+    
     val towerRenderer = TowerRenderer(game, board, this) 
     // class renderGameState, which renders enemies, towers and status bar
     val render = RenderGameState(game, board, statusBar, towerRenderer)
@@ -41,7 +42,7 @@ object GameView {
       spacing = 40
       children = Array(startGameView,upgradeView, purchaseView)
     }
-   
+    
     val topContainer = new VBox {
       alignment = Pos.Center
       children = Array(statusBar, transactionContainer)
@@ -76,7 +77,8 @@ object GameView {
            val enemiesToShoot = tower._2
            for enemy <- enemiesToShoot do
              towerRenderer.animateShooting(tower._1, enemy)
-             
+    end animateShootings
+
   /*
    * A scalafx animationtimer for updating (rendering) the gui 
    */
@@ -85,7 +87,7 @@ object GameView {
     val guiTimer = AnimationTimer(t => {
       timeCounter += 1
       if lastTime > 0 then
-        val delta = (t-lastTime)/1e9
+        val delta = (t-lastTime)/1e6
         this.render.renderGame()
         this.renderState()
         animateShootings()

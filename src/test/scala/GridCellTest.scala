@@ -9,21 +9,23 @@ import gridcells._
 
 class GridCellTest extends AnyFlatSpec with Matchers { 
   "HasTower" should "return true when the GridCell in question is occupied by a tower" in {
+    val game = new TowerDefenceGame
     var towerBuffer = ArrayBuffer[Tower]()
     val pos = GridPos(1,1)
     val cell = TowerCell(pos)
-    val basic = new Basic(pos)
+    val basic = new Basic(game, pos)
     towerBuffer += basic
     cell.hasTower(towerBuffer) shouldBe true
   }
   it should "return false when the GridCell in question is not occupied by a tower" in {
+    val game = new TowerDefenceGame
     var towerBuffer = ArrayBuffer[Tower]()
     val pos = GridPos(1,1)
     val pos2 = GridPos(3,3)
     val pos3 = GridPos(4,4)
     val cell = TowerCell(pos)
-    val basic = new Basic(pos2)
-    val splashTower = new SplashDamage(pos3) 
+    val basic = new Basic(game, pos2)
+    val splashTower = new SplashDamage(game, pos3) 
     towerBuffer += basic
     towerBuffer += splashTower
     cell.hasTower(towerBuffer) shouldBe false
