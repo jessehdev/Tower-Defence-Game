@@ -40,8 +40,10 @@ class SplashDamage(game: TowerDefenceGame, var position: GridPos) extends Tower(
         enemiesToShoot.addAll(inRange.take(3))
         enemiesToShoot.foreach(_.takeDamage(this.damage))
         game.towerShootingsMap.addOne(this, enemiesToShoot)
+        game.towerHasShot = true
       else
         inRange.foreach( _.takeDamage(this.damage))
         game.towerShootingsMap.addOne(this, inRange)
+        game.towerHasShot = true
   end shootEnemy
 }

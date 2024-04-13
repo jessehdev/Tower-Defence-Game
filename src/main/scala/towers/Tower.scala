@@ -44,6 +44,7 @@ trait Tower(game: TowerDefenceGame) {
       enemiesToShoot += target
       target.takeDamage(this.damage)
       game.towerShootingsMap.addOne(this, enemiesToShoot)
+      game.towerHasShot = true
       println(s"MAP: ${game.towerShootingsMap}")
   end shootEnemy
 

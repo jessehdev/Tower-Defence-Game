@@ -13,7 +13,7 @@ class GameState(game: TowerDefenceGame) {
   var wavesLeft: Int = amountOfWaves
 
   var enemiesMoveModulo = 80
-  var towersAttackModulo = 40
+  var towersAttackModulo = 60
   var enemyQueue = ArrayBuffer[Enemy]()
   var spawnCounter = 0
   var spawnWait = 40

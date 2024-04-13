@@ -19,12 +19,13 @@ import scalafx.animation.TranslateTransition
 import scalafx.util.Duration
 import scalafx.scene.layout.BorderPane
 import scalafx.scene.shape.Circle
+import scalafx.beans.property.ReadOnlyDoubleProperty
 
 /*
  * TowerRendered handles the graphical representation and
  * rendering of the towers
  */
-class TowerRenderer(game: TowerDefenceGame, gameBoard: GameBoardView, gameView: BorderPane) {
+class TowerRenderer(game: TowerDefenceGame, gameBoard: GameBoardView, gameView: BorderPane, topContainerHeight: ReadOnlyDoubleProperty) {
   //val cellSize = 100
   val cellSize = gameBoard.cellSize
   /* 
@@ -48,10 +49,7 @@ class TowerRenderer(game: TowerDefenceGame, gameBoard: GameBoardView, gameView: 
     Platform.runLater {
     // Creates a circle to represent the ammunition to be shot
     val ammunition = new Circle {
-      centerX = tower.position.x * cellSize //+ cellSize / 2
-     // centerX = (target.position.x - tower.position.x) * cellSize
-     // centerY = (target.position.y - tower.position.y) * cellSize
-      centerY = tower.position.y * cellSize + cellSize //- cellSize / 2
+      // consider using centerX and centerY for initial positions
       radius = 5  // Set the radius of the projectile
       fill = Color.Red
     }
@@ -61,11 +59,18 @@ class TowerRenderer(game: TowerDefenceGame, gameBoard: GameBoardView, gameView: 
    
     val transition = new TranslateTransition {
      node = ammunition
-     toX = (target.position.x - tower.position.x) * cellSize
-     //toX = tower.position.x * cellSize - cellSize / 2
-     toY = (target.position.y - tower.position.y) * cellSize
-     //toY = tower.position.y * cellSize - cellSize / 2
-     duration = Duration(15) // Adjust time as needed for visual effect
+     /*
+      * topContainerHeight is the height where are the stats and the buttons for 
+      * updating & upgrading the towers. target.offSetX/Y is a  random number between
+      * (-20,20) generated in the backend (Enemy.scala) to achieve randomness
+      * in enemy positions within a single grid
+      */
+     fromX = tower.position.x * cellSize + cellSize / 2 
+     fromY = tower.position.y * cellSize + topContainerHeight.toDouble + cellSize / 2
+     toX = target.position.x * cellSize + cellSize / 2 + target.offsetX
+     toY = target.position.y * cellSize + topContainerHeight.toDouble + cellSize / 2 + target.offsetY
+     duration = Duration(100) // Adjust time as needed for visual effect
+     cycleCount = 1
      onFinished = _ => gameView.children.remove(ammunition)
     }
     transition.play()

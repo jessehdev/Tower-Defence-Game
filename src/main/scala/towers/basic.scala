@@ -8,7 +8,7 @@ class Basic(game: TowerDefenceGame, var position: GridPos) extends Tower(game: T
   var health: Int = 1200
   var damage: Int = 1000
   val firingRate: Int = 3
-  val range: Double = 4.2
+  val range: Double = 3.2
   val cost: Int = 100
   val upgradeCost: Int = 150
   override def ugrade(): Unit =

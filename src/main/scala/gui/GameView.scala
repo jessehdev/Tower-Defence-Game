@@ -28,28 +28,29 @@ object GameView {
     val purchaseView = PurchaseView(game, upgradeView)
     val startGameView = StartGameView(game, purchaseView)
     
-    // Flags for rendering game state alerts
-    var gameLostAlertShown = false
-    var gameWonAlertShown = false
-    
-    val towerRenderer = TowerRenderer(game, board, this) 
-    // class renderGameState, which renders enemies, towers and status bar
-    val render = RenderGameState(game, board, statusBar, towerRenderer)
-    
-    //has the containers for upgrading and purchasing towers + starting the game
+        //has the containers for upgrading and purchasing towers + starting the game
     val transactionContainer = new HBox {
       alignment = Pos.Center
       spacing = 40
-      children = Array(startGameView,upgradeView, purchaseView)
+      children = Array(startGameView, upgradeView, purchaseView)
     }
     
     val topContainer = new VBox {
       alignment = Pos.Center
       children = Array(statusBar, transactionContainer)
     }   
-    
+
     top = topContainer
     center = board
+
+    // Flags for rendering game state alerts
+    var gameLostAlertShown = false
+    var gameWonAlertShown = false
+    
+    val towerRenderer = TowerRenderer(game, board, this, this.topContainer.height) 
+    // class renderGameState, which renders enemies, towers and status bar
+    val render = RenderGameState(game, board, statusBar, towerRenderer)
+    
 //shows messages for winning/losing the game and stops the continuation of the game
     def renderState() = 
       Platform.runLater {
@@ -71,12 +72,15 @@ object GameView {
     end renderState
   
     def animateShootings() =
-       if game.towerShootingsMap.nonEmpty then
+       if game.towerShootingsMap.nonEmpty && game.towerHasShot then
          for tower <- game.towerShootingsMap do
            //takes the enemies that the tower in question is about to shoot
            val enemiesToShoot = tower._2
            for enemy <- enemiesToShoot do
              towerRenderer.animateShooting(tower._1, enemy)
+           end for
+         end for
+         game.towerHasShot = false
     end animateShootings
 
   /*
@@ -87,7 +91,7 @@ object GameView {
     val guiTimer = AnimationTimer(t => {
       timeCounter += 1
       if lastTime > 0 then
-        val delta = (t-lastTime)/1e6
+        val delta = (t-lastTime)/1e6 // time difference in milliseconds
         this.render.renderGame()
         this.renderState()
         animateShootings()

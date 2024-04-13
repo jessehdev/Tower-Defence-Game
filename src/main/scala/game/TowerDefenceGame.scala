@@ -36,6 +36,7 @@ class TowerDefenceGame {
    * and the animation in the frontend 
    */
   var towerShootingsMap: Map[Tower, ArrayBuffer[Enemy]] = Map.empty[Tower, ArrayBuffer[Enemy]]
+  var towerHasShot: Boolean = false
 
 /*
  * The timer used for the gameTick -algorithm
@@ -79,6 +80,7 @@ class TowerDefenceGame {
     val timer = currentTimer
     timer.scheduleAtFixedRate(currentTask, 0, tickInterval)
 
+  // method for stopping the timer for when the player wants to pause the game
   def stopTimer() = 
     currentTimer.cancel()
     currentTimer = new Timer()
