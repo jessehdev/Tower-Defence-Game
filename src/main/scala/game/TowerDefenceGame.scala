@@ -9,6 +9,8 @@ import scala.collection.mutable.{ArrayBuffer, Map}
 import java.util.{Timer, TimerTask}
 import enemies._
 import towers._
+import gridcells._
+import java.io.File
 
 /*
  * TowerDefenceGame is the class that represents the game itself
@@ -17,22 +19,32 @@ import towers._
  * checking if the game is lost or won
  */
 class TowerDefenceGame(level: Int) {
-  // The configurable constants for the game are loaded here. Includes the grid, waves of enemies, etc. 
+  // The configurable constants for the game are loaded here. Includes the grid, waves of enemies and resoruces. 
   val config = GameConfig
 
   var enemies = ArrayBuffer[Enemy]()
   var towers = ArrayBuffer[Tower]()
 
-  var enemyPath = config.generateEnemyPath(level)
+  // the constants read from config levels
+  var enemyPath: Array[PathCell] = config.generateEnemyPath(level).toArray
   var waves = config.generateWaves(level)
   var grid = config.generateGrid(level)
   val resources = config.generateInitialResources(level)
   var waveCount = config.getWaveCount(level)
 
   var gameBoard = new GameBoard(this)
+  // flags for following the game state
   var gameStateLost = false
   var gameStateWon = false
 
+  //Counts amount of levels in the game and stores it in a variable for the gui
+  def countAmountOfLevels(path: String) = 
+    val directory = new File(path)
+      val files = directory.listFiles()
+      files.count(_.isFile) 
+  end countAmountOfLevels
+
+  val numberOfLevels = countAmountOfLevels("src/main/levels")
   /*
    * A map for ochestrating towers shooting in the backend
    * and the animation in the frontend 

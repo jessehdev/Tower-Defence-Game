@@ -4,6 +4,10 @@ import scala.collection.mutable.ArrayBuffer
 import enemies._
 import utils.Wave
 
+/* 
+ * The object in this files handles reading and parsing the JSON 
+ * files which represent the levels in the game
+ */
 object GameConfig extends App {
   /*
    * Returns an Array of PathCells that correspond to the path that enemies are to take in each level configuration.
