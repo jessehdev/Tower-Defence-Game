@@ -1,8 +1,7 @@
-package gui
+package gui_elements
 
 import game._
 import gridcells._
-import gui._
 import scalafx.scene.layout.GridPane
 import scalafx.scene.shape.{Rectangle}
 import scalafx.scene.paint.Color
@@ -12,7 +11,7 @@ import scalafx.scene.paint.Color
  */
 class GameBoardView(game: TowerDefenceGame, gameState: GameState) extends GridPane {
  // val cellSize = 40
-  val gridPaneSize = 850
+  val gridPaneSize = 800
   val gridWidth = game.grid.length
   val gridHeight = game.grid.length
   //scaling the cellsize

@@ -1,4 +1,4 @@
-package gui
+package gui_elements
 
 import scalafx.scene.layout.{BorderPane, VBox, Pane, HBox}
 import game.{GameState, TowerDefenceGame}
@@ -10,6 +10,8 @@ import scalafx.application.Platform
 import scalafx.scene.control.Button
 import scala.compiletime.ops.double
 import scala.annotation.elidable
+import scalafx.Includes._
+import scalafx.scene.Scene
 
 /*
  * GameView essentially encapsulates all of the views and entities in a game
@@ -17,8 +19,8 @@ import scala.annotation.elidable
  * It also works as the root in the "Main.scala" (found in gui) 
  */
 object GameView {
-  def apply(): BorderPane = new BorderPane {
-    val game = new TowerDefenceGame
+  def apply(level: Int): BorderPane = new BorderPane {
+    val game = new TowerDefenceGame(level)
     val state = game.gameState
     
     val board = GameBoardView(game, state)
@@ -34,10 +36,20 @@ object GameView {
       spacing = 40
       children = Array(startGameView, upgradeView, purchaseView)
     }
+
+   //TÄMÄKOHTA
+    val btn = new Button {
+      onAction = () => {
+        game.stopTimer()
+        MainApp.primaryStage.scene = new Scene {
+          root = GameView(2)
+        }
+      }
+    }
     
     val topContainer = new VBox {
       alignment = Pos.Center
-      children = Array(statusBar, transactionContainer)
+      children = Array(btn, statusBar, transactionContainer)
     }   
 
     top = topContainer

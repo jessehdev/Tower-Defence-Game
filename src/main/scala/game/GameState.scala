@@ -9,7 +9,7 @@ import enemies.{Enemy}
  */
 class GameState(game: TowerDefenceGame) {
   var enemiesKilled: Int = 0
-  val amountOfWaves = game.constants.amountOfWaves
+  val amountOfWaves = game.waveCount
   var wavesLeft: Int = amountOfWaves
 
   var enemiesMoveModulo = 120

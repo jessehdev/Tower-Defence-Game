@@ -1,4 +1,4 @@
-package gui
+package gui_elements
 
 import game.{TowerDefenceGame, GameState}
 import enemies._

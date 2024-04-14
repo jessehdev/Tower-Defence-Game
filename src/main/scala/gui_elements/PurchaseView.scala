@@ -1,4 +1,4 @@
-package gui
+package gui_elements
 
 import scalafx.scene.control._
 import scalafx.scene.layout.{VBox, HBox}
@@ -41,14 +41,19 @@ class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBo
     purchaseButton.onAction = (event: ActionEvent) => {
       println("Trying to purchase tower")
       (comboBox.value.value, posComboBox.value.value) match
-        case ("Basic, cost: 100", pos: GridPos) =>
+        case ("Basic, cost: 100", pos: GridPos)        =>
           //purchasetower returns boolean
             if !game.gameState.player.purchaseTower(Basic(game, pos), pos) then
               showPurchasingError()
         case ("SplashDamage, cost: 150", pos: GridPos) => 
             if !game.gameState.player.purchaseTower(SplashDamage(game, pos), pos) then
               showPurchasingError()
-        case _ => println("Tower or position not selected")
+        case _                                         => 
+            new Alert(AlertType.Error) {
+            title = "Cannot purchase tower"
+            headerText = s"Select a tower type and a position below"
+          }.showAndWait()
+
       updatePurchasing()  
       upgradeView.updateUpgradable()
       }
@@ -73,6 +78,9 @@ class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBo
       game.gameBoard.updateAvailable()
       posComboBox.items = ObservableBuffer(available.toList: _*)
       //posComboBox.getSelectionModel.clearSelection()
+
+    // call the method so it is possible to purchase a tower before the game starts
+    updatePurchasing()
 
     children = Array(purchaseButton, chooseBoxes)
   }

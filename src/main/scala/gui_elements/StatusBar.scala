@@ -1,4 +1,4 @@
-package gui
+package gui_elements
 
 import scalafx.scene.control.Label
 import scalafx.scene.layout.{HBox}

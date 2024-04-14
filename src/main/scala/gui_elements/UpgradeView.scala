@@ -1,4 +1,4 @@
-package gui
+package gui_elements
 
 import scalafx.scene.control._
 import scalafx.scene.layout.{VBox, HBox}
@@ -48,7 +48,11 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
               showUpgradeConfirmation(pos)
             else
               showUpgradeError(pos)
-        case null => println("Cannot upgrade") 
+        case null          =>
+            new Alert(AlertType.Error) {
+           title = "Cannot purchase tower"
+           headerText = s"Select the position of the tower"
+           }.showAndWait() 
       }
 // this is shown if upgrading was succesful
     def showUpgradeConfirmation(pos: GridPos) = 

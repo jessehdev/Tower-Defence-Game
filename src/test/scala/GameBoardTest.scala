@@ -45,7 +45,7 @@ class GameBoardTest extends AnyFlatSpec with Matchers {
   }
   */
   "PlaceTower" should "return true when a tower is successfully placed on the grid" in {
-    val game = new TowerDefenceGame
+    val game = new TowerDefenceGame(1)
     val board = new GameBoard(game)
     val gridPos = GridPos(0,2) 
     val gridPos2 = GridPos(0,3)
@@ -55,7 +55,7 @@ class GameBoardTest extends AnyFlatSpec with Matchers {
     game.towers should contain(tower)
   }
   it should "throw a TowerException when trying to place a tower on an occupied GridPos" in {
-    val game = new TowerDefenceGame
+    val game = new TowerDefenceGame(1)
     val board = new GameBoard(game)
     val gridPos = GridPos(0,2) 
     val tower = new Basic(game, gridPos)
@@ -66,7 +66,7 @@ class GameBoardTest extends AnyFlatSpec with Matchers {
     }
 }  
   it should "throw a TowerException when trying to place a tower on a wrong type of GridCell" in {
-    val game = new TowerDefenceGame
+    val game = new TowerDefenceGame(1)
     val board = new GameBoard(game)
     val gridPos = GridPos(3,5) 
     val tower = new Basic(game, gridPos)
@@ -75,11 +75,11 @@ class GameBoardTest extends AnyFlatSpec with Matchers {
     }  
   }
   "Towers" should "be an empty arraybuffer when initialized" in {
-     val game = new TowerDefenceGame
+     val game = new TowerDefenceGame(1)
      game.towers.length shouldBe 0
   }
    it should "be incremented when added towers" in {
-    val game = new TowerDefenceGame
+    val game = new TowerDefenceGame(1)
     val basic1 = new Basic(game, GridPos(3,3))
     val basic2 = new Basic(game ,GridPos(4,5))
     game.towers += basic1

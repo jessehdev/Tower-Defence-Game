@@ -14,8 +14,8 @@ case class TowerException(description: String)
  * Resources can be spend on buying or upgrading towers 
  */
 class Player(game: TowerDefenceGame, gameState: GameState) {
-  var constants = game.constants
-  var resources = constants.initialResources
+  
+  var resources = game.resources
 
   override def toString: String =
     s"Player with ($resources) amount of resources"

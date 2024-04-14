@@ -1,7 +1,7 @@
 package game
 
 import gridcells.{GridCell, SceneryCell}
-import utils.{GridPos, Constants}
+import utils.{GridPos, Constants, GameConfig}
 import towers.{Tower}
 import enemies.{Enemy}
 import game.{GameBoard, GameState}
@@ -16,16 +16,18 @@ import towers._
  * The class has a couple methods including the game ticker algorithm and methods
  * checking if the game is lost or won
  */
-class TowerDefenceGame {
+class TowerDefenceGame(level: Int) {
   // The configurable constants for the game are loaded here. Includes the grid, waves of enemies, etc. 
-  var constants = new Constants
+  val config = GameConfig
 
   var enemies = ArrayBuffer[Enemy]()
   var towers = ArrayBuffer[Tower]()
 
-  val enemyPath = constants.enemyPath
-  val waves = constants.waves
-  var grid = constants.grid
+  var enemyPath = config.generateEnemyPath(level)
+  var waves = config.generateWaves(level)
+  var grid = config.generateGrid(level)
+  val resources = config.generateInitialResources(level)
+  var waveCount = config.getWaveCount(level)
 
   var gameBoard = new GameBoard(this)
   var gameStateLost = false

@@ -3,7 +3,6 @@ import utils.{GridPos}
 import enemies.{Enemy}
 import scala.collection.mutable.ArrayBuffer
 import scala.math.{pow, sqrt}
-import gui._
 import game.TowerDefenceGame
 
 /*

@@ -1,4 +1,4 @@
-package gui
+package gui_elements
 
 import scalafx.scene.control._
 import scalafx.scene.layout.{VBox, HBox}

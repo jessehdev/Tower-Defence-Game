@@ -1,4 +1,4 @@
-package gui
+package gui_elements
 
 import game.{TowerDefenceGame}
 import utils.{GridPos}

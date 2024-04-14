@@ -9,7 +9,7 @@ import gridcells._
 
 class GameStateTest extends AnyFlatSpec with Matchers { 
   "enemiesMove" should "move an enemy to correct GridCell" in {
-    val game = new TowerDefenceGame
+    val game = new TowerDefenceGame(1)
     val state = new GameState(game)
     val pos = game.enemyPath.head.gridPos
     val tanker = new Tanker(pos)
@@ -21,7 +21,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     tanker.position.y shouldBe game.enemyPath(tanker.pathIndex).gridPos.y
   }
   it should "move multiple enemies correctly to GridCells on the enemyPath" in{
-    val game = new TowerDefenceGame
+    val game = new TowerDefenceGame(1)
     val state = new GameState(game)
     val pos = GridPos(0,1)
     val pos2 = GridPos(2,1)
@@ -49,7 +49,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     tanker3.position.y shouldBe game.enemyPath(tanker3.pathIndex).gridPos.y
   }
   it should "not move enemies, when game hasn't ticked enough yet" in {
-    val game = new TowerDefenceGame
+    val game = new TowerDefenceGame(1)
     val state = new GameState(game)
     val pos = game.enemyPath(0).gridPos
     val tanker = new Tanker(pos)
@@ -61,7 +61,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     tanker.position.y shouldBe game.enemyPath(tanker.pathIndex).gridPos.y //should be 1
   }
   "towersAttack" should "attack enemies in range of towers" in {
-    val game = new TowerDefenceGame
+    val game = new TowerDefenceGame(1)
     val state = new GameState(game)
     val pos1 = GridPos(0,0)
     val pos2 = GridPos(20,20)
@@ -83,7 +83,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     tanker2.health shouldBe comparisonTanker.health - splashTower.damage // should be 900
   }
   it should "correctly eliminate an enemy when its health is below or equals 0" in {
-    val game = new TowerDefenceGame
+    val game = new TowerDefenceGame(1)
     val state = new GameState(game)
     val pos1 = GridPos(0,0)
     val pos2 = GridPos(2,2)
@@ -104,7 +104,7 @@ class GameStateTest extends AnyFlatSpec with Matchers {
     game.enemies.length shouldBe 2
   }
   it should "not deal damage to enemies when game hasn't ticked enough yet" in {
-    val game = new TowerDefenceGame
+    val game = new TowerDefenceGame(1)
     val state = new GameState(game)
     val pos1 = GridPos(0,0)
     val pos2 = GridPos(2,2)

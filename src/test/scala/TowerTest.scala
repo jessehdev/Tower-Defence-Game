@@ -8,12 +8,12 @@ import scala.collection.mutable.ArrayBuffer
 
 class TowerTest extends AnyFlatSpec with Matchers {
     "Basic" should "have the correct position after initialization" in {
-        val game = new TowerDefenceGame
+        val game = new TowerDefenceGame(1)
         val basic = new Basic(game, GridPos(5,5))
         assert(basic.position.x === 5 && basic.position.y === 5)
     }
     it should "attack an enemy in range" in {  
-        val game = new TowerDefenceGame
+        val game = new TowerDefenceGame(1)
         var enemyBuffer = ArrayBuffer[Enemy]()
         val basic = new Basic(game, GridPos(3,3))
         val tanker = new Tanker(GridPos(4,3))
@@ -23,7 +23,7 @@ class TowerTest extends AnyFlatSpec with Matchers {
         assert(tanker.health < compareTanker.health)
     }
     it should "not attack a barely out of range enemy" in {
-        val game = new TowerDefenceGame
+        val game = new TowerDefenceGame(1)
         var enemyBuffer = ArrayBuffer[Enemy]()
         val tanker = new Tanker(GridPos(0,0))
         val basic = new Basic(game, GridPos(3,4))
@@ -33,7 +33,7 @@ class TowerTest extends AnyFlatSpec with Matchers {
         tanker.health shouldBe compareTanker.health
     }
     it should "upgrade correctly" in {
-        val game = new TowerDefenceGame
+        val game = new TowerDefenceGame(1)
         var tower = new Basic(game, GridPos(1,1))
         val compareBasic = new Basic(game, GridPos(1,2))
         tower.ugrade()
@@ -42,7 +42,7 @@ class TowerTest extends AnyFlatSpec with Matchers {
         tower.damage should be > compareBasic.damage
     }
     "SplashDamage" should "attack multiple enemies if encountered" in {
-        val game = new TowerDefenceGame
+        val game = new TowerDefenceGame(1)
         var enemyBuffer = ArrayBuffer[Enemy]()
         val tanker1 = new Tanker(GridPos(2,2))
         val tanker2 = new Tanker(GridPos(2,3))
@@ -58,7 +58,7 @@ class TowerTest extends AnyFlatSpec with Matchers {
         tanker3.health shouldBe compareTanker.health - splashTower.damage
     }
     it should "however attack three enemies maximum" in {
-        val game = new TowerDefenceGame
+        val game = new TowerDefenceGame(1)
         var enemyBuffer = ArrayBuffer[Enemy]()
         val tanker1 = new Tanker(GridPos(2,2))
         val tanker2 = new Tanker(GridPos(2,3))

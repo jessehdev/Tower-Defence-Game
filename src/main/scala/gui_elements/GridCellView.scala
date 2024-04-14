@@ -1,4 +1,4 @@
-package gui
+package gui_elements
 
 import gridcells._
 import scalafx.scene.paint.Color

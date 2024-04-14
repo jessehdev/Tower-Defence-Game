@@ -9,6 +9,7 @@ lazy val root = (project in file("."))
 libraryDependencies += "org.scalafx" %% "scalafx" % "18.0.1-R28"
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.15"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % "test"
+libraryDependencies += "org.scala-lang" %% "toolkit" % "0.2.0"
 
 libraryDependencies ++= {
   // Determine OS version of JavaFX binaries
@@ -21,3 +22,6 @@ libraryDependencies ++= {
   Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
     .map(m => "org.openjfx" % s"javafx-$m" % "16" classifier osName)
 }
+
+// Excluding all classes in the 'gui' package in test coverage report
+coverageExcludedPackages := ".*gui.*"
