@@ -50,7 +50,7 @@ class TowerRenderer(game: TowerDefenceGame, gameBoard: GameBoardView, gameView: 
     // Creates a circle to represent the ammunition to be shot
     val ammunition = new Circle {
       // consider using centerX and centerY for initial positions
-      radius = 5  // Set the radius of the projectile
+      radius = 3  // Set the radius of the projectile
       fill = Color.Red
     }
 
@@ -82,7 +82,7 @@ class TowerRenderer(game: TowerDefenceGame, gameBoard: GameBoardView, gameView: 
   def renderTowers() = 
     game.towers.foreach(tower =>
       val towerNode = new StackPane {
-        val octagon = createOctagon(48, 48, 24) 
+        val octagon = createOctagon(32, 32, 16) 
         octagon.fill = tower match {
           case _: Basic => Color.web("#ed92fd") // ("#da1afb")  
           case _: SplashDamage => Color.web("#B70404") 

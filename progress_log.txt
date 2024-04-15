@@ -31,3 +31,5 @@ TODO
 Last tests
 Tower shoots emptiness after enemy has been killed
     - look for amimateshootings in gameviewl
+Level loading bug
+Instructions in the document 

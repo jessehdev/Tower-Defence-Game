@@ -12,11 +12,11 @@ import scala.compiletime.ops.double
  */
 class SplashDamage(game: TowerDefenceGame, var position: GridPos) extends Tower(game: TowerDefenceGame) {
   var health: Int = 800
-  var damage: Int = 750
+  var damage: Int = 250
   val firingRate: Int = 3
-  val range: Double = 3.3
+  val range: Double = 2.3
   val cost: Int = 150
-  val upgradeCost: Int = 100
+  val upgradeCost: Int = 75
   override def ugrade(): Unit =
     this.health += 200
     this.damage += 50

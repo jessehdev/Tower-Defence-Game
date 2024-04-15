@@ -26,8 +26,8 @@ class EnemyRenderer(game: TowerDefenceGame, gameBoard: GridPane) {
   def createEnemyNode(enemy: Enemy): StackPane = 
     val enemyCircle = new Circle {
     radius = enemy match 
-      case _: Fiend => 12
-      case _: Tanker => 15
+      case _: Fiend => 9
+      case _: Tanker => 12
     fill = enemy match 
       case _: Fiend => Color.web("#FE0000") // Fiends are red
       case _: Tanker => Color.Violet // Tankers are violet

@@ -13,7 +13,7 @@ class GameState(game: TowerDefenceGame) {
   var wavesLeft: Int = amountOfWaves
 
   var enemiesMoveModulo = 120
-  var towersAttackModulo = 90
+  var towersAttackModulo = 80
   var enemyQueue = ArrayBuffer[Enemy]()
   var spawnCounter = 0
   var spawnWait = 40
@@ -28,7 +28,7 @@ class GameState(game: TowerDefenceGame) {
 
  /*
   * Method for attacking of towers
-  * If an enemy is killed, player earns 100 resources
+  * If an enemy is killed, player earns 20 resources
   * Handles updating of current (alive) enemies within the game
   */ 
   def towersAttack() =
@@ -36,7 +36,7 @@ class GameState(game: TowerDefenceGame) {
       game.towers.foreach( _.shootEnemy(game.enemies) )
       val killed = game.enemies.filterNot( _.health > 0).size
       if killed > 0 then
-        player.earnResources(killed * 100)
+        player.earnResources(killed * 20)
       enemiesKilled += killed
       println(s"killed: $killed")
       game.enemies = game.enemies.filter( _.health > 0 )

@@ -79,7 +79,7 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
         new Alert(AlertType.Error) {
           title = "Cannot upgrade tower"
           headerText = "Not enough resources"
-          contentText = s"Resources: ${game.gameState.player.resources}, Cost: ${t.cost}"
+          contentText = s"Resources: ${game.gameState.player.resources}, Cost: ${t.upgradeCost}"
     }.showAndWait()  
 
 // ChatGPT helped with clearing the combobox (look for the last line in this method)
