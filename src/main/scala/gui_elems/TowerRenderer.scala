@@ -23,7 +23,7 @@ import scalafx.beans.property.ReadOnlyDoubleProperty
 
 /*
  * TowerRendered handles the graphical representation and
- * rendering of the towers
+ * rendering of the towers including their shooting
  */
 class TowerRenderer(game: TowerDefenceGame, gameBoard: GameBoardView, gameView: BorderPane, topContainerHeight: ReadOnlyDoubleProperty) {
   //val cellSize = 100

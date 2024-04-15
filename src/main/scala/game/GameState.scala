@@ -17,8 +17,8 @@ class GameState(game: TowerDefenceGame) {
   var enemyQueue = ArrayBuffer[Enemy]()
   var spawnCounter = 0
   var spawnWait = 40
-  val firstWaveModulo = 900
-  val otherWaveModulo = 800
+  val firstWaveModulo = 400
+  val otherWaveModulo = 2000
 
   var player = new Player(game, this)
 

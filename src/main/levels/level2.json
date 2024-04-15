@@ -3,22 +3,18 @@
     "waves": [ 
       {"type": "Tanker", "wave": 1}, 
       {"type": "Fiend", "wave": 1}, 
-      {"type": "Tanker", "wave": 1}, 
-      {"type": "Fiend", "wave": 1}, 
-      {"type": "Tanker", "wave": 1}, 
-      {"type": "Fiend", "wave": 1},
       {"type": "Tanker", "wave": 2}, 
       {"type": "Fiend", "wave": 2}, 
       {"type": "Tanker", "wave": 2}, 
       {"type": "Fiend", "wave": 2}, 
       {"type": "Tanker", "wave": 2}, 
-      {"type": "Fiend", "wave": 2}, 
-      {"type": "Tanker", "wave": 2}, 
-      {"type": "Fiend", "wave": 2}, 
-      {"type": "Tanker", "wave": 2}, 
-      {"type": "Fiend", "wave": 2}, 
-      {"type": "Tanker", "wave": 2}, 
-      {"type": "Fiend", "wave": 2} 
+      {"type": "Tanker", "wave": 3}, 
+      {"type": "Tanker", "wave": 3}, 
+      {"type": "Tanker", "wave": 3}, 
+      {"type": "Tanker", "wave": 3}, 
+      {"type": "Tanker", "wave": 3}, 
+      {"type": "Tanker", "wave": 3}, 
+      {"type": "Fiend", "wave": 3} 
     ],
     "grid": 
       {

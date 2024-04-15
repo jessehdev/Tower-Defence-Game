@@ -29,6 +29,5 @@ When these are done, so am I, and the plan is to return the final document by 18
 
 TODO
 Last tests
-JSON loading
-Firing animation
-    - Try if gridpane.setconstraint works (look for enemyRenderer for example)
+Tower shoots emptiness after enemy has been killed
+    - look for amimateshootings in gameviewl

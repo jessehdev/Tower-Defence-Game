@@ -17,6 +17,8 @@ import scalafx.collections.ObservableBuffer
 import scalafx.scene.control.ComboBox
 import scalafx.event.ActionEvent
 import scala.compiletime.ops.string
+import scalafx.scene.control.Label
+import scalafx.scene.text.Font
 
 /*
  * GameView essentially encapsulates all of the views and entities in a game
@@ -47,7 +49,6 @@ object GameView {
     for level <- 1 to game.numberOfLevels do
       levels += level.toString
     end for
-    levels.map( i => s"level${i}")
     
     val levelsComboBox = new ComboBox(levels)
       
@@ -57,16 +58,28 @@ object GameView {
           println(s"level chosen: ${level}")
           //takes the level number from the string
           val l = level.toInt
+          // stops the timer of the previous level
+          game.stopTimer()
           MainApp.primaryStage.scene = new Scene {
             root = GameView(l)
           }
         case null              =>
           println("Level not chosen")  
     }
+    val chooseLevelLabel = new Label {
+      text = "Choose level (default: 1)"
+      font = Font.font("Arial", 14)
+    }
+
+    val levelChooser = new HBox {
+      alignment = Pos.Center
+      spacing = 10
+      children = Array(chooseLevelLabel, levelsComboBox)
+    }
 
     val topContainer = new VBox {
       alignment = Pos.Center
-      children = Array(levelsComboBox, statusBar, transactionContainer)
+      children = Array(levelChooser, statusBar, transactionContainer)
     }   
 
     top = topContainer

@@ -17,7 +17,7 @@ import scalafx.scene.image.ImageView
 import scalafx.scene.image.Image
 
 /*
- * A button object for starting and pausing the game from the gui 
+ * A button for starting and pausing the game from the gui 
  */
 
 class StartGameView(game: TowerDefenceGame, pView: PurchaseView) extends VBox {
