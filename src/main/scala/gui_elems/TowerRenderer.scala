@@ -82,7 +82,7 @@ class TowerRenderer(game: TowerDefenceGame, gameBoard: GameBoardView, gameView: 
   def renderTowers() = 
     game.towers.foreach(tower =>
       val towerNode = new StackPane {
-        val octagon = createOctagon(32, 32, 16) 
+        val octagon = createOctagon(38, 38, 20) 
         octagon.fill = tower match {
           case _: Basic => Color.web("#ed92fd") // ("#da1afb")  
           case _: SplashDamage => Color.web("#B70404") 

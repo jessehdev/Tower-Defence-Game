@@ -33,7 +33,7 @@ class PlayerTest extends AnyFlatSpec with Matchers {
     val state = new GameState(game)
     val player = new Player(game, state)
     player.earnResources(350)
-    val pos = GridPos(0,2)
+    val pos = GridPos(4,3)
     val basic = new Basic(game, pos)
     player.purchaseTower(basic, pos)
     player.resources shouldBe game.resources + 350 - basic.cost

@@ -102,8 +102,6 @@ class TowerDefenceGame(level: Int) {
     def run(): Unit = 
       tickCounter += 1
       gameTick() 
-      if tickCounter % 60 == 0 then
-        println(s"Seconds passed: ${tickCounter / 60}")
   }
 
   def gameWon() = 

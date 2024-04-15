@@ -28,8 +28,6 @@ Plans to add a JSON parser and perhaps animating the towers' shootings, which ha
 When these are done, so am I, and the plan is to return the final document by 18.4.2024
 
 TODO
-Last tests
 Tower shoots emptiness after enemy has been killed
-    - look for amimateshootings in gameviewl
-Level loading bug
-Instructions in the document 
+    - look for amimateshootings in gameview
+
