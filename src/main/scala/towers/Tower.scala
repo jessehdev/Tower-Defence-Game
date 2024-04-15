@@ -41,6 +41,8 @@ trait Tower(game: TowerDefenceGame) {
       val enemiesToShoot = ArrayBuffer[Enemy]()
       val target = inRange.head
       enemiesToShoot += target
+      // A map for ochestrating towers shooting in the backend
+      //and the animation in the frontend 
       game.towerShootingsMap.addOne(this, enemiesToShoot)
       game.towerHasShot = true
       if target.health <= this.damage then 
@@ -48,6 +50,7 @@ trait Tower(game: TowerDefenceGame) {
         target.takeDamage(this.damage)
       else
         target.takeDamage(this.damage)
+    inRange.clear()  
   end shootEnemy
 
   def ugrade(): Unit 

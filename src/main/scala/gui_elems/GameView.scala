@@ -121,6 +121,7 @@ object GameView {
            for enemy <- enemiesToShoot do
              towerRenderer.animateShooting(tower._1, enemy)
            end for
+           game.towerShootingsMap -= tower._1  
          end for
          game.towerHasShot = false
     end animateShootings

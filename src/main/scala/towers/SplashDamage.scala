@@ -45,6 +45,7 @@ class SplashDamage(game: TowerDefenceGame, var position: GridPos) extends Tower(
         game.towerShootingsMap.addOne(this, inRange)
         game.towerHasShot = true
         handleTakingDamage(inRange)
+      inRange.clear()   
   end shootEnemy
 
   // This function is used so that enemies won't dissapear in the gui once the shot
