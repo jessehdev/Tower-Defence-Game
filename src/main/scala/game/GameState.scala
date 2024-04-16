@@ -40,7 +40,7 @@ class GameState(game: TowerDefenceGame) {
       enemiesKilled += killed
       println(s"killed: $killed")
       game.enemies = game.enemies.filter( _.health > 0 )
-      println(s"Resources: ${player.resources}, enemies killed: ${enemiesKilled}, waves left : ${wavesLeft}")
+   //   println(s"Resources: ${player.resources}, enemies killed: ${enemiesKilled}, waves left : ${wavesLeft}")
   end towersAttack
 
   /*

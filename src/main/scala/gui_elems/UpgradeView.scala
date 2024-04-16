@@ -40,7 +40,6 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
     }
 
     upgradeTowerButton.onAction = (event: ActionEvent) => {
-      println("Trying to upgrade a tower")
       towerComboBox.value.value match
         case pos: GridPos => 
             val tower = game.towers.find(_.position == pos).get

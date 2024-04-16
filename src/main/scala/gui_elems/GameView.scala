@@ -134,7 +134,7 @@ object GameView {
     val guiTimer = AnimationTimer(t => {
       timeCounter += 1
       if lastTime > 0 then
-        val delta = (t-lastTime)/1e4 // time difference, 1e6 would be milliseconds
+        val delta = (t-lastTime)/1e5 // time difference, 1e6 would be milliseconds
         this.render.renderGame()
         this.renderState()
         animateShootings()

@@ -38,8 +38,8 @@ class PurchaseView(game: TowerDefenceGame, upgradeView: UpgradeView) extends VBo
           "-fx-padding: 5;"
     }
 
+    // purchasing the tower
     purchaseButton.onAction = (event: ActionEvent) => {
-      println("Trying to purchase tower")
       (comboBox.value.value, posComboBox.value.value) match
         case ("Basic, cost: 100", pos: GridPos)        =>
           //purchasetower returns boolean

@@ -51,7 +51,7 @@ class TowerRenderer(game: TowerDefenceGame, gameBoard: GameBoardView, gameView: 
     val ammunition = new Circle {
       // consider using centerX and centerY for initial positions
       radius = 3  // Set the radius of the projectile
-      fill = Color.Red
+      fill = Color.web("00008B") // dark blue
     }
 
     // Add the projectile to the game view
