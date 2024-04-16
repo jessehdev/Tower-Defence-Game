@@ -20,8 +20,9 @@ class RenderGameState(game: TowerDefenceGame, board: GameBoardView, statusBar: S
     enemyRenderer.renderEnemies()
 
   //Render towers
-   // val towerRenderer = TowerRenderer(game, board)
-    towerRenderer.renderTowers()
+  // The if clause prevents from concurrent mutation exception to be thrwon
+    if (game.tickCounter / game.gameState.towersAttackModulo != 0) then
+      towerRenderer.renderTowers()
     
     statusBar.updateLabels()
 }

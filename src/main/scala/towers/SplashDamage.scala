@@ -53,6 +53,7 @@ class SplashDamage(game: TowerDefenceGame, var position: GridPos) extends Tower(
   def handleTakingDamage(arr: ArrayBuffer[Enemy]) =
    for enemy <- arr do
      if enemy.health <= this.damage then 
+      // if the enemy dies, sleep for 200ms so backend and frontend are in sync
        Thread.sleep(200)
        enemy.takeDamage(this.damage)
      else

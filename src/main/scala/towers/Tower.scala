@@ -47,6 +47,7 @@ trait Tower(game: TowerDefenceGame) {
       game.towerShootingsMap.addOne(this, enemiesToShoot)
       game.towerHasShot = true
       if target.health <= this.damage then 
+        // if the enemy dies, sleep for 200ms so backend and frontend are in sync
         Thread.sleep(200)
         target.takeDamage(this.damage)
       else

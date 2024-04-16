@@ -38,7 +38,6 @@ class GameState(game: TowerDefenceGame) {
       if killed > 0 then
         player.earnResources(killed * 20)
       enemiesKilled += killed
-      println(s"killed: $killed")
       game.enemies = game.enemies.filter( _.health > 0 )
    //   println(s"Resources: ${player.resources}, enemies killed: ${enemiesKilled}, waves left : ${wavesLeft}")
   end towersAttack
@@ -59,7 +58,6 @@ class GameState(game: TowerDefenceGame) {
       // take the next wave from the array, starting from the head
       val wave = game.waves(amountOfWaves - wavesLeft)
       enemyQueue = wave.enemies
-      println(s"${enemyQueue}")
       game.waves.foreach(wave => println(s"${wave}"))
       wavesLeft -= 1
   end startWave
