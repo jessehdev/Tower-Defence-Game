@@ -21,6 +21,7 @@ trait Tower(game: TowerDefenceGame) {
   val cost: Int
   val upgradeCost: Int
   var level: Int = 1
+  var maxLevel = 10
 
   /*
    * This method gets all the enemies that exist in the game currently as a parameter.

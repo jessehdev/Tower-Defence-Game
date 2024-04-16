@@ -42,12 +42,17 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
     upgradeTowerButton.onAction = (event: ActionEvent) => {
       println("Trying to upgrade a tower")
       towerComboBox.value.value match
-        case pos: GridPos =>
-          // upgradetower returns boolean 
-            if game.gameState.player.upgradeTower(pos) then
-              showUpgradeConfirmation(pos)
+        case pos: GridPos => 
+            val tower = game.towers.find(_.position == pos).get
+            if tower.level < tower.maxLevel then
+              // upgradetower returns boolean 
+              if game.gameState.player.upgradeTower(pos) then
+                showUpgradeConfirmation(pos)
+              else
+                showUpgradeError(pos)
             else
-              showUpgradeError(pos)
+              //If max level, can't upgrade and must notify user
+              showMaxLevelError()
         case null          =>
             new Alert(AlertType.Error) {
            title = "Cannot purchase tower"
@@ -81,6 +86,13 @@ class UpgradeView(game: TowerDefenceGame) extends VBox {
           headerText = "Not enough resources"
           contentText = s"Resources: ${game.gameState.player.resources}, Cost: ${t.upgradeCost}"
     }.showAndWait()  
+
+    // showing upgrading error if tower has max level
+    def showMaxLevelError() =
+       new Alert(AlertType.Warning) {
+          title = "Cannot upgrade tower"
+          headerText = "Tower Max Level Reached"
+    }.showAndWait()
 
 // ChatGPT helped with clearing the combobox (look for the last line in this method)
     def updateUpgradable() =

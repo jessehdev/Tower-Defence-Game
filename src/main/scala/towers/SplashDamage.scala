@@ -18,9 +18,9 @@ class SplashDamage(game: TowerDefenceGame, var position: GridPos) extends Tower(
   val cost: Int = 150
   val upgradeCost: Int = 75
   override def ugrade(): Unit =
-    this.health += 200
-    this.damage += 40
-    this.level += 1
+    if this.level < this.maxLevel then
+      this.damage += 40
+      this.level += 1
 
     /*
     * Contrary to other types of towers, chooses at most 3 enemies to shoot at once.

@@ -12,7 +12,7 @@ class Basic(game: TowerDefenceGame, var position: GridPos) extends Tower(game: T
   val cost: Int = 100
   val upgradeCost: Int = 50
   override def ugrade(): Unit =
-    this.health += 300
-    this.damage += 100
-    this.level += 1
+    if this.level < this.maxLevel then
+      this.damage += 100
+      this.level += 1
 }
