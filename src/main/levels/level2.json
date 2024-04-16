@@ -1,5 +1,5 @@
 { 
-    "resources": 250,
+    "resources": 200,
     "waves": [ 
       {"type": "Tanker", "wave": 1}, 
       {"type": "Fiend", "wave": 1}, 

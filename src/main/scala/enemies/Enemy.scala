@@ -37,7 +37,7 @@ trait Enemy {
   val offsetY: Double = rand.between(-20.0,20.0)
 
   override def toString(): String = 
-    s"An enemy with $health amount of health at position $position"
+    s"$health, $position"
 
   def getPos() = 
     this.position
