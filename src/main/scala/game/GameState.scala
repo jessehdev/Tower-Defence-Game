@@ -58,7 +58,7 @@ class GameState(game: TowerDefenceGame) {
       // take the next wave from the array, starting from the head
       val wave = game.waves(amountOfWaves - wavesLeft)
       enemyQueue = wave.enemies
-      game.waves.foreach(wave => println(s"${wave}"))
+     // game.waves.foreach(wave => println(s"${wave}"))
       wavesLeft -= 1
   end startWave
 

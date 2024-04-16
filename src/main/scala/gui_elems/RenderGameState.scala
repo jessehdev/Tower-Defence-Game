@@ -16,13 +16,16 @@ class RenderGameState(game: TowerDefenceGame, board: GameBoardView, statusBar: S
     board.renderBoard()
 
   // Render enemies
+  
     val enemyRenderer = EnemyRenderer(game, board)
-    enemyRenderer.renderEnemies()
+      // The if clause prevents from concurrent mutation exception to be thrwon
+      // since the buffer containing enemies isn't modified while 
+      // the program reads the buffer (towers searching for enemies to shoot)   
+    if (game.tickCounter / game.gameState.towersAttackModulo != 0) then
+      enemyRenderer.renderEnemies()
 
   //Render towers
-  // The if clause prevents from concurrent mutation exception to be thrwon
-    if (game.tickCounter / game.gameState.towersAttackModulo != 0) then
-      towerRenderer.renderTowers()
+    towerRenderer.renderTowers()
     
     statusBar.updateLabels()
 }
