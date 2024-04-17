@@ -7,9 +7,3 @@ If an enemy reaches the goal area the game is lost. If enough waves of enemies a
 Eliminating enemies gives the player resources (most likely gold), which the player can use either to buy new towers or to upgrade the existing ones. There will be three types of towers: basic, long range and splash damage. The program will keep track of the number of eliminated enemies, the amount of resources the player has and how many waves of enemies are left for the level.
 
 ### Find out
-
-
-### Todo
- 1) Loading levels from JSON (kato a+)
- 2) Make more levels
- 3) Tower attacking animation
