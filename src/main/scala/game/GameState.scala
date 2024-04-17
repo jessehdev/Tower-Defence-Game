@@ -18,7 +18,7 @@ class GameState(game: TowerDefenceGame) {
   var spawnCounter = 0
   var spawnWait = 40
   val firstWaveModulo = 400
-  val otherWaveModulo = 2000
+  val otherWaveModulo = 1700
 
   var player = new Player(game, this)
 

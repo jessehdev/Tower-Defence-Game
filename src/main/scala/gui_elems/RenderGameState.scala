@@ -21,7 +21,8 @@ class RenderGameState(game: TowerDefenceGame, board: GameBoardView, statusBar: S
       // The if clause prevents from concurrent mutation exception to be thrwon
       // since the buffer containing enemies isn't modified while 
       // the program reads the buffer (towers searching for enemies to shoot)   
-    if (game.tickCounter / game.gameState.towersAttackModulo != 0) then
+    if (game.tickCounter / game.gameState.towersAttackModulo != 0) || (game.tickCounter / game.gameState.towersAttackModulo != 1)
+    || (game.tickCounter / game.gameState.towersAttackModulo != 2) then
       enemyRenderer.renderEnemies()
 
   //Render towers

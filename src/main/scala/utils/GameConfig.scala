@@ -36,7 +36,8 @@ object GameConfig extends App {
         new Tanker(GridPos(x,y)) 
       else 
         new Fiend(GridPos(x,y)))))
-    val asWaves = asEnemies.map(hash => hash._1 -> new Wave(hash._2)).values.toArray
+    val asWaves = asEnemies.map(hash => hash._1 -> (hash._1.toString.toInt, new Wave(hash._2)))
+      .values.toArray.sortBy(x => x._1).map(x => x._2)
 
     return asWaves
   end generateWaves
