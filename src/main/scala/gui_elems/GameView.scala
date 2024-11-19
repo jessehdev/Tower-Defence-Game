@@ -60,6 +60,7 @@ object GameView {
           val l = level.toInt
           // stops the timer of the previous level
           game.stopTimer()
+          game.stopGuiTimer(guiTimer) 
           MainApp.primaryStage.scene = new Scene {
             root = GameView(l)
           }

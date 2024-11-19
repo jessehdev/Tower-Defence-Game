@@ -11,6 +11,7 @@ import enemies._
 import towers._
 import gridcells._
 import java.io.File
+import scalafx.animation.AnimationTimer
 
 /*
  * TowerDefenceGame is the class that represents the game itself
@@ -99,10 +100,12 @@ class TowerDefenceGame(level: Int) {
     currentTimer.cancel()
     currentTimer = new Timer()
     currentTask = new TimerTask {
-    def run(): Unit = 
-      tickCounter += 1
-      gameTick() 
-  }
+      def run(): Unit = 
+        tickCounter += 1
+        gameTick() 
+    }
+    
+  def stopGuiTimer(guiTimer: AnimationTimer) = guiTimer.stop()  
 
   def gameWon() = 
     if ( enemies.isEmpty && gameState.wavesLeft == 0 ) then 
